@@ -1,0 +1,2 @@
+class LoyersController < ApplicationController
+end
