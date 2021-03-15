@@ -1,0 +1,2 @@
+class FraisRecurrentsController < ApplicationController
+end

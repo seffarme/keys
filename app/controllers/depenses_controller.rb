@@ -1,0 +1,2 @@
+class DepensesController < ApplicationController
+end

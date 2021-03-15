@@ -1,0 +1,2 @@
+class BiensController < ApplicationController
+end
