@@ -20,7 +20,7 @@ class CreateBiens < ActiveRecord::Migration[6.0]
       t.integer :frais_achat_agence
       t.integer :frais_achat_travaux
       t.integer :frais_achat_autres
-      t.references :proprietaire, null: false, foreign_key: true
+      t.references :user, null: false, foreign_key: true
 
       t.timestamps
     end
