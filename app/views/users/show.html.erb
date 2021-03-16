@@ -1,10 +1,6 @@
 <h1>Créer un compte propriétaire</h1>
 
-<%= simple_form_for [@proprietaire] do |f| %>
-  <%= f.input :prenom %>
-  <%= f.input :nom %>
-  <%= f.input :email %>
-  <%= f.input :num_tel %>
-  <%= f.input :photo, as: :file %>
-  <%= f.submit "Create propriétaire", class: "btn btn-primary" %>
-<% end %>
+<div id="map"
+     style="width: 100%; height: 600px;"
+     data-markers="<%= @markers.to_json %>"
+     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
