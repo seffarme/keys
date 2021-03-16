@@ -79,7 +79,7 @@ buckingham_palace_en_correze = Bien.new({
     frais_achat_autres: "500"
 })
 
-buckingham_palace_en_correze.User = queen_elizabeth
+buckingham_palace_en_correze.user = queen_elizabeth
 buckingham_palace_en_correze.save
 
 
