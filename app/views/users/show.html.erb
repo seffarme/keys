@@ -1,0 +1,10 @@
+<h1>Créer un compte propriétaire</h1>
+
+<%= simple_form_for [@proprietaire] do |f| %>
+  <%= f.input :prenom %>
+  <%= f.input :nom %>
+  <%= f.input :email %>
+  <%= f.input :num_tel %>
+  <%= f.input :photo, as: :file %>
+  <%= f.submit "Create propriétaire", class: "btn btn-primary" %>
+<% end %>

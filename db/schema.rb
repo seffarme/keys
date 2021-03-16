@@ -17,12 +17,12 @@ ActiveRecord::Schema.define(version: 2021_03_15_142246) do
 
   create_table "biens", force: :cascade do |t|
     t.string "nom"
-    t.string "type"
+    t.string "categorie"
     t.string "adresse"
     t.string "ville"
     t.integer "code_postal"
     t.string "pays"
-    t.string "info_comp_adresse"
+    t.string "info_compl_adresse"
     t.integer "surface"
     t.integer "nb_pieces"
     t.integer "nb_sdb"
@@ -35,10 +35,10 @@ ActiveRecord::Schema.define(version: 2021_03_15_142246) do
     t.integer "frais_achat_agence"
     t.integer "frais_achat_travaux"
     t.integer "frais_achat_autres"
-    t.bigint "proprietaire_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["proprietaire_id"], name: "index_biens_on_proprietaire_id"
+    t.index ["user_id"], name: "index_biens_on_user_id"
   end
 
   create_table "depenses", force: :cascade do |t|
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2021_03_15_142246) do
     t.integer "montant"
     t.date "date_paiement"
     t.bigint "bien_id", null: false
-    t.bigint "frais_recurrent_id", null: false
+    t.bigint "frais_recurrent_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["bien_id"], name: "index_depenses_on_bien_id"
@@ -91,18 +91,12 @@ ActiveRecord::Schema.define(version: 2021_03_15_142246) do
     t.index ["locataire_id"], name: "index_loyers_on_locataire_id"
   end
 
-  create_table "proprietaires", force: :cascade do |t|
-    t.string "prenom"
-    t.string "nom"
-    t.string "email"
-    t.integer "num_tel"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
+    t.string "prenom"
+    t.string "nom"
+    t.integer "num_tel"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -112,7 +106,7 @@ ActiveRecord::Schema.define(version: 2021_03_15_142246) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "biens", "proprietaires"
+  add_foreign_key "biens", "users"
   add_foreign_key "depenses", "biens"
   add_foreign_key "depenses", "frais_recurrents"
   add_foreign_key "frais_recurrents", "biens"
