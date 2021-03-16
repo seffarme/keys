@@ -4,7 +4,14 @@ def index
   end
 
   def show
-
+    @user = User.find(params[:id])
+    @biens = Bien.all
+    @markers = @biens.geocoded.map do |bien|
+      {
+        lat: bien.latitude,
+        lng: bien.longitude
+      }
+    end
   end
 
   def new
