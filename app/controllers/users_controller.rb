@@ -10,6 +10,7 @@ class UsersController < ApplicationController
         lat: bien.latitude,
         lng: bien.longitude
       }
+    end
   end
 
   def new
