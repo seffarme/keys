@@ -16,7 +16,6 @@ class FraisRecurrentsController < ApplicationController
   def populate_depenses(frais_recurrent)
     # Calculate the number of depenses to generate
     frais_duree_en_mois = frais_recurrent.date_fin - frais_recurrent.date_debut
-    raise
 
     number_of_depenses_to_generate = case frais_duree_en_mois
                                      when "Mensuel" then frais_duree_en_mois
@@ -24,7 +23,6 @@ class FraisRecurrentsController < ApplicationController
                                      end
 
     # Create the depenses
-    raise
     puts "eee"
   end
 end
