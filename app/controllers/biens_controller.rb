@@ -1,8 +1,17 @@
 class BiensController < ApplicationController
+  
+  def index
+
+  end
+  
 	def new
 		@bien = Bien.new
 	end
-
+  
+  def show
+    @bien = Bien.find(params[:id])
+  end
+  
 	def create
 	  # @bien = Bien.find(params[:bien_id])
 		# @bien = Bien.new(params[:bien])
@@ -21,5 +30,5 @@ class BiensController < ApplicationController
 
   def bien_params
     params.require(:bien).permit(:nom, :categorie, :adresse, :ville, :code_postal, :pays, :info_compl_adresse, :surface, :nb_pieces, :nb_sdb, :nb_etages, :num_etage, :annee_construction, :prix_acquisition, :date_acquisition, :frais_achat_notaire, :frais_achat_agence, :frais_achat_travaux, :frais_achat_autres)
-  end
+
 end
