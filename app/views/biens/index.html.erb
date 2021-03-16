@@ -1,17 +1,24 @@
 <h1>Liste des biens</h1>
 
-<ul>
-    <% @biens.each do |bien| %>
-        <li>
-            <%= link_to bien.nom, bien_path(bien) %>
-        </li>
-    <% end %>
-</ul>
-
+<div class="container">
+  <div class="row">
+    <div class="col 6">
+      <ul>
+          <% @biens.each do |bien| %>
+              <li>
+                  <%= link_to bien.nom, bien_path(bien) %>
+              </li>
+          <% end %>
+      </ul>
+    </div>
+    <div class="col 6" id="map"
+         style="width: 100%; height: 600px;"
+         data-markers="<%= @markers.to_json %>"
+         data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
+</div>
 <div class="">
   <div class="d-flex justify-content-around align-items-center">
     <div>
       <%= link_to "Ajoutez un nouveau bien 🚀", new_bien_path%>
     </div>
-  </div>
-</div>
