@@ -56,7 +56,7 @@ queen_elizabeth.save
 
 
 ### - # - ###
-# Bien
+# Bien 1
 buckingham_palace_en_correze = Bien.new({
     nom: "Buckingham Palace en Corrèze",
     categorie: "Maison",
@@ -82,6 +82,85 @@ buckingham_palace_en_correze = Bien.new({
 buckingham_palace_en_correze.user = queen_elizabeth
 buckingham_palace_en_correze.save
 
+
+# Bien 2
+chateau_de_sedieres = Bien.new({
+    nom: "Château de Sédières - Clergoux",
+    categorie: "Maison",
+    adresse: "sedières",
+    ville: "Clergoux",
+    code_postal: "19320",
+    pays: "France",
+    info_compl_adresse: "Parc Arboré",
+    surface: "320",
+    nb_pieces: "7",
+    nb_sdb: "3",
+    nb_etages: "3",
+    num_etage: "0",
+    annee_construction: "01/01/1780",
+    prix_acquisition: "670000",
+    date_acquisition: "01/01/2011",
+    frais_achat_notaire: "17000",
+    frais_achat_agence: "30000",
+    frais_achat_travaux: "250000",
+    frais_achat_autres: "1500"
+})
+
+chateau_de_sedieres.user = queen_elizabeth
+chateau_de_sedieres.save
+
+
+# Bien 3
+maison_lignerac = Bien.new({
+    nom: "Maison Lignerac - Clergoux",
+    categorie: "Maison",
+    adresse: "Le bourg",
+    ville: "lignerac",
+    code_postal: "19500",
+    pays: "France",
+    info_compl_adresse: "A seulement 15 min de Brive se trouve cette belle grange rénovée avec goût et des matériaux de qualité. En situation dominante, sur plus de 2 ha de terrain, elle vous offre le confort d'une maison moderne à l'intérieur et le charme des vielles pierres à l'extérieur. Le Rez de chaussée se compose d'un séjour de 85m² avec sa cuisine ouverte, une suite parentale avec salle de bain. Très lumineux grâce à des baies vitrées ouvertes sur la terrasse et le jardin.",
+    surface: "185",
+    nb_pieces: "5",
+    nb_sdb: "2",
+    nb_etages: "1",
+    num_etage: "0",
+    annee_construction: "01/01/1780",
+    prix_acquisition: "450000",
+    date_acquisition: "01/01/2011",
+    frais_achat_notaire: "20000",
+    frais_achat_agence: "22500",
+    frais_achat_travaux: "5000",
+    frais_achat_autres: "1750"
+})
+
+maison_lignerac.user = queen_elizabeth
+maison_lignerac.save
+
+# Bien 4
+villa_stprivat = Bien.new({
+    nom: "Villa - Saint Privat",
+    categorie: "Maison",
+    adresse: "Le bourg",
+    ville: "saint-privat",
+    code_postal: "19320",
+    pays: "France",
+    info_compl_adresse: "Au coeur d'un village historique de la Corrèze, cette maison unique avec un jardin magnifiquement aménagé et une piscine intérieure est à vendre. La résidence date du XIXe siècle, mais elle a été entièrement rénovée en 2009 et a été achevée et restaurée à la perfection. ",
+    surface: "406",
+    nb_pieces: "10",
+    nb_sdb: "3",
+    nb_etages: "1",
+    num_etage: "0",
+    annee_construction: "01/01/1880",
+    prix_acquisition: "407500",
+    date_acquisition: "01/01/2019",
+    frais_achat_notaire: "12000",
+    frais_achat_agence: "20500",
+    frais_achat_travaux: "3000",
+    frais_achat_autres: "1850"
+})
+
+villa_stprivat.user = queen_elizabeth
+villa_stprivat.save
 
 ### - # - ###
 # Frais recurents
@@ -118,7 +197,7 @@ charges_bpec.save
 
 
 ### - # - ###
-# Depenses
+# Depenses 1
 travaux_bal = Depense.new({
     nom: "Travaux boîte aux lettres",
     montant: "200",
@@ -128,13 +207,43 @@ travaux_bal = Depense.new({
 travaux_bal.bien = buckingham_palace_en_correze
 travaux_bal.save
 
+# Depenses 2
+travaux_bal = Depense.new({
+    nom: "Pompe à chaleur",
+    montant: "15000",
+    date_paiement: "01/04/2021"
+})
+
+travaux_bal.bien = chateau_de_sedieres
+travaux_bal.save
+
+# Depenses 3
+travaux_bal = Depense.new({
+    nom: "Entretien des jardins",
+    montant: "1200",
+    date_paiement: "01/03/2020"
+})
+
+travaux_bal.bien = maison_lignerac
+travaux_bal.save
+
+# Depenses 4
+travaux_bal = Depense.new({
+    nom: "Révision climatisation",
+    montant: "180",
+    date_paiement: "01/06/2020"
+})
+
+travaux_bal.bien = villa_stprivat
+travaux_bal.save
+
 
 ### - # - ###
-# Locataire
+# Locataire 1
 françois_hollande = Locataire.new({
     prenom: "François",
     nom: "Hollande",
-    email: "françois.hollande@gmail.com",
+    email: "julie.laloy@gmail.com",
     num_tel: "0614514503",
     adresse: "Avenue Montaigne",
     ville: "Paris",
@@ -145,9 +254,39 @@ françois_hollande = Locataire.new({
 françois_hollande.bien = buckingham_palace_en_correze
 françois_hollande.save
 
+# Locataire 2
+laeticia_halliday = Locataire.new({
+    prenom: "Laetitia",
+    nom: "Halliday",
+    email: "julie.laloy@gmail.com",
+    num_tel: "0614514503",
+    adresse: "45 Avenue Montaigne",
+    ville: "Paris",
+    code_postal: "75008",
+    pays: "France",
+    date_debut_location: "01/01/2020"
+})
+laeticia_halliday.bien = chateau_de_sedieres
+laeticia_halliday.save
+
+# Locataire 3
+
+julien_dore = Locataire.new({
+    prenom: "Julien",
+    nom: "Doré",
+    email: "julie.laloy@gmail.com",
+    num_tel: "0614514503",
+    adresse: "8 rue Danielle Casanova",
+    ville: "Paris",
+    code_postal: "75002",
+    pays: "France",
+    date_debut_location: "01/01/2022"
+})
+laeticia_halliday.bien = maison_lignerac
+laeticia_halliday.save
 
 ### - # - ###
-# Loyers
+# Loyers - locataire 1
 loyer_20200101 = Loyer.new({
     montant: "500",
     date_paiement: "01/01/2020"
@@ -167,4 +306,49 @@ loyer_20200301 = Loyer.new({
     date_paiement: "01/03/2020"
 })
 loyer_20200301.bien = buckingham_palace_en_correze
+loyer_20200301.save
+
+# Loyers - locataire 2
+loyer_20200101 = Loyer.new({
+    montant: "1200",
+    date_paiement: "01/01/2020"
+})
+loyer_20200101.bien = chateau_de_sedieres
+loyer_20200101.save
+
+loyer_20200201 = Loyer.new({
+    montant: "1200",
+    date_paiement: "01/02/2020"
+})
+loyer_20200201.bien = chateau_de_sedieres
+loyer_20200201.save
+
+loyer_20200301 = Loyer.new({
+    montant: "1200",
+    date_paiement: "01/03/2020"
+})
+loyer_20200301.bien = chateau_de_sedieres
+loyer_20200301.save
+
+
+# Loyers - locataire 3
+loyer_20200101 = Loyer.new({
+    montant: "990",
+    date_paiement: "01/01/2020"
+})
+loyer_20200101.bien = maison_lignerac
+loyer_20200101.save
+
+loyer_20200201 = Loyer.new({
+    montant: "990",
+    date_paiement: "01/02/2020"
+})
+loyer_20200201.bien = maison_lignerac
+loyer_20200201.save
+
+loyer_20200301 = Loyer.new({
+    montant: "990",
+    date_paiement: "01/03/2020"
+})
+loyer_20200301.bien = maison_lignerac
 loyer_20200301.save
