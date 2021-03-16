@@ -85,7 +85,7 @@ buckingham_palace_en_correze.save
 
 ### - # - ###
 # Frais recurents
-emprunt_bpec = Frais_recurrent.new({
+emprunt_bpec = FraisRecurrent.new({
     nom: "Prêt amortissable",
     montant: "170500",
     recurrence: "Mensuel",
@@ -96,7 +96,7 @@ emprunt_bpec.bien = buckingham_palace_en_correze
 emprunt_bpec.save
 
 
-taxe_fonciere_bpec = Frais_recurrent.new({
+taxe_fonciere_bpec = FraisRecurrent.new({
     nom: "Taxe foncière",
     montant: "2000",
     recurrence: "Annuel",
@@ -106,7 +106,7 @@ taxe_fonciere_bpec = Frais_recurrent.new({
 taxe_fonciere_bpec.bien = buckingham_palace_en_correze
 taxe_fonciere_bpec.save
 
-charges_bpec = Frais_recurrent.new({
+charges_bpec = FraisRecurrent.new({
     nom: "Charges",
     montant: "600",
     recurrence: "Annuel",

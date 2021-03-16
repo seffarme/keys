@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2021_03_15_142246) do
     t.integer "montant"
     t.date "date_paiement"
     t.bigint "bien_id", null: false
-    t.bigint "frais_recurrent_id", null: false
+    t.bigint "frais_recurrent_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["bien_id"], name: "index_depenses_on_bien_id"
