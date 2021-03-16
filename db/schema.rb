@@ -98,8 +98,6 @@ ActiveRecord::Schema.define(version: 2021_03_15_142246) do
     t.integer "num_tel"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "bien_id"
-    t.index ["bien_id"], name: "index_proprietaires_on_bien_id"
   end
 
   create_table "users", force: :cascade do |t|
