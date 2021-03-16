@@ -17,12 +17,12 @@ ActiveRecord::Schema.define(version: 2021_03_15_142246) do
 
   create_table "biens", force: :cascade do |t|
     t.string "nom"
-    t.string "type"
+    t.string "categorie"
     t.string "adresse"
     t.string "ville"
     t.integer "code_postal"
     t.string "pays"
-    t.string "info_comp_adresse"
+    t.string "info_compl_adresse"
     t.integer "surface"
     t.integer "nb_pieces"
     t.integer "nb_sdb"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2021_03_15_142246) do
     t.integer "montant"
     t.date "date_paiement"
     t.bigint "bien_id", null: false
-    t.bigint "frais_recurrent_id", null: false
+    t.bigint "frais_recurrent_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["bien_id"], name: "index_depenses_on_bien_id"

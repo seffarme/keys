@@ -5,6 +5,6 @@ class Bien < ApplicationRecord
   has_many :loyers
   has_many :locataires
 
-  TYPE_BIEN = %w[Appartement Maison]
-  validates :type, inclusion: { in: TYPE_BIEN }
+  CATEGORIE_BIEN = %w[Appartement Maison]
+  validates :categorie, inclusion: { in: CATEGORIE_BIEN }
 end
