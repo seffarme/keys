@@ -2,12 +2,12 @@ class CreateBiens < ActiveRecord::Migration[6.0]
   def change
     create_table :biens do |t|
       t.string :nom
-      t.string :type
+      t.string :categorie
       t.string :adresse
       t.string :ville
       t.integer :code_postal
       t.string :pays
-      t.string :info_comp_adresse
+      t.string :info_compl_adresse
       t.integer :surface
       t.integer :nb_pieces
       t.integer :nb_sdb
