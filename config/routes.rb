@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :biens do
       resources :loyers, only: [:create, :destroy]
       resources :locataires, only: [:create, :destroy]
-      resources :frais_recurents, only: [:create, :destroy]
+      resources :frais_recurrents, only: [:create, :destroy]
       resources :depenses, only: [:create, :destroy]
     end
   end

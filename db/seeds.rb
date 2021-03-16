@@ -13,11 +13,11 @@
 puts "//////////////////////////////////////////////////////"
 puts "Starting the DB cleaning process"
 
-puts "1/6- Cleaning the Locataire DB..."
-Locataire.destroy_all
-
-puts "2/6 - Cleaning the Loyer DB..."
+puts "1/6 - Cleaning the Loyer DB..."
 Loyer.destroy_all
+
+puts "2/6- Cleaning the Locataire DB..."
+Locataire.destroy_all
 
 puts "3/6 - Cleaning the Depense DB..."
 Depense.destroy_all
@@ -31,7 +31,7 @@ Bien.destroy_all
 puts "6/6 - Cleaning the User DB..."
 User.destroy_all
 
-puts "All DB cleaned up"
+puts "~ All DB cleaned up"
 puts "//////////////////////////////////////////////////////"
 
 
@@ -45,6 +45,8 @@ puts "Starting the seeding process..."
 
 ### - # - ###
 # User
+puts "1/6 - Seeding the User DB..."
+
 queen_elizabeth = User.new({
     prenom: "Elizabeth",
     nom: "Windsor",
@@ -56,6 +58,9 @@ queen_elizabeth.save
 
 
 ### - # - ###
+# Bien
+puts "2/6 - Seeding the Bien DB..."
+
 # Bien 1
 buckingham_palace_en_correze = Bien.new({
     nom: "Buckingham Palace en Corrèze",
@@ -163,11 +168,15 @@ villa_stprivat.user = queen_elizabeth
 villa_stprivat.save
 
 ### - # - ###
+# Frais recurrents
+puts "3/6 - Seeding the Frais recurrents DB..."
+
 # Frais recurents
 emprunt_bpec = FraisRecurrent.new({
     nom: "Prêt amortissable",
     montant: "170500",
     recurrence: "Mensuel",
+    date_debut: "01/01/2010",
     date_fin: "01/01/2030"
 })
 
@@ -179,6 +188,7 @@ taxe_fonciere_bpec = FraisRecurrent.new({
     nom: "Taxe foncière",
     montant: "2000",
     recurrence: "Annuel",
+    date_debut: "01/01/2010",
     date_fin: "01/01/2099"
 })
 
@@ -189,6 +199,7 @@ charges_bpec = FraisRecurrent.new({
     nom: "Charges",
     montant: "600",
     recurrence: "Annuel",
+    date_debut: "01/01/2010",
     date_fin: "01/01/2099"
 })
 
@@ -197,6 +208,9 @@ charges_bpec.save
 
 
 ### - # - ###
+# Depenses
+puts "4/6 - Seeding the Depenses DB..."
+
 # Depenses 1
 travaux_bal = Depense.new({
     nom: "Travaux boîte aux lettres",
@@ -239,6 +253,9 @@ travaux_bal.save
 
 
 ### - # - ###
+# Locataire
+puts "5/6 - Seeding the Locataires DB..."
+
 # Locataire 1
 françois_hollande = Locataire.new({
     prenom: "François",
@@ -282,73 +299,94 @@ julien_dore = Locataire.new({
     pays: "France",
     date_debut_location: "01/01/2022"
 })
-laeticia_halliday.bien = maison_lignerac
-laeticia_halliday.save
+julien_dore.bien = maison_lignerac
+julien_dore.save
 
 ### - # - ###
+# Loyers
+puts "6/6 - Seeding the Loyers DB..."
+
 # Loyers - locataire 1
-loyer_20200101 = Loyer.new({
+loyer_20210101 = Loyer.new({
     montant: "500",
-    date_paiement: "01/01/2020"
+    date_paiement: "01/01/2021"
 })
-loyer_20200101.bien = buckingham_palace_en_correze
-loyer_20200101.save
+loyer_20210101.bien = buckingham_palace_en_correze
+loyer_20210101.locataire = françois_hollande
+loyer_20210101.save
 
-loyer_20200201 = Loyer.new({
+loyer_20210201 = Loyer.new({
     montant: "500",
-    date_paiement: "01/02/2020"
+    date_paiement: "01/02/2021"
 })
-loyer_20200201.bien = buckingham_palace_en_correze
-loyer_20200201.save
+loyer_20210201.bien = buckingham_palace_en_correze
+loyer_20210201.locataire = françois_hollande
+loyer_20210201.save
 
-loyer_20200301 = Loyer.new({
+loyer_20210301 = Loyer.new({
     montant: "500",
-    date_paiement: "01/03/2020"
+    date_paiement: "01/03/2021"
 })
-loyer_20200301.bien = buckingham_palace_en_correze
-loyer_20200301.save
+loyer_20210301.bien = buckingham_palace_en_correze
+loyer_20210301.locataire = françois_hollande
+loyer_20210301.save
 
 # Loyers - locataire 2
-loyer_20200101 = Loyer.new({
+loyer_20210101 = Loyer.new({
     montant: "1200",
-    date_paiement: "01/01/2020"
+    date_paiement: "01/01/2021"
 })
-loyer_20200101.bien = chateau_de_sedieres
-loyer_20200101.save
+loyer_20210101.bien = chateau_de_sedieres
+loyer_20210101.locataire = laeticia_halliday
+loyer_20210101.save
 
-loyer_20200201 = Loyer.new({
+loyer_20210201 = Loyer.new({
     montant: "1200",
-    date_paiement: "01/02/2020"
+    date_paiement: "01/02/2021"
 })
-loyer_20200201.bien = chateau_de_sedieres
-loyer_20200201.save
+loyer_20210201.bien = chateau_de_sedieres
+loyer_20210201.locataire = laeticia_halliday
+loyer_20210201.save
 
-loyer_20200301 = Loyer.new({
+loyer_20210301 = Loyer.new({
     montant: "1200",
-    date_paiement: "01/03/2020"
+    date_paiement: "01/03/2021"
 })
-loyer_20200301.bien = chateau_de_sedieres
-loyer_20200301.save
+loyer_20210301.bien = chateau_de_sedieres
+loyer_20210301.locataire = laeticia_halliday
+loyer_20210301.save
 
 
 # Loyers - locataire 3
-loyer_20200101 = Loyer.new({
+loyer_20210101 = Loyer.new({
     montant: "990",
-    date_paiement: "01/01/2020"
+    date_paiement: "01/01/2021"
 })
-loyer_20200101.bien = maison_lignerac
-loyer_20200101.save
+loyer_20210101.bien = maison_lignerac
+loyer_20210101.locataire = julien_dore
+loyer_20210101.save
 
-loyer_20200201 = Loyer.new({
+loyer_20210201 = Loyer.new({
     montant: "990",
-    date_paiement: "01/02/2020"
+    date_paiement: "01/02/2021"
 })
-loyer_20200201.bien = maison_lignerac
-loyer_20200201.save
+loyer_20210201.bien = maison_lignerac
+loyer_20210201.locataire = julien_dore
+loyer_20210201.save
 
-loyer_20200301 = Loyer.new({
+loyer_20210301 = Loyer.new({
     montant: "990",
-    date_paiement: "01/03/2020"
+    date_paiement: "01/03/2021"
 })
-loyer_20200301.bien = maison_lignerac
-loyer_20200301.save
+loyer_20210301.bien = maison_lignerac
+loyer_20210301.locataire = julien_dore
+loyer_20210301.save
+
+puts "~ All seeds created: 
+- #{User.all.count} users
+- #{Bien.all.count} biens
+- #{FraisRecurrent.all.count} frais recurrents
+- #{Depense.all.count} depenses
+- #{Locataire.all.count} locataires
+- #{Loyer.all.count} loyers"
+puts "//////////////////////////////////////////////////////"

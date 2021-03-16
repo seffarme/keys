@@ -1,2 +1,34 @@
 <h1>My first apartment</h1>
 
+
+<p>Suivi financier</p>
+<p>Loyers collectés</p>
+
+
+<p>Autres</p>
+
+<!-- ADD DEPENSE -->
+<p>Ajouter une dépense</p>
+<%= simple_form_for [ @bien, @depense ] do |f| %>
+  <%= f.input :nom %>
+  <%= f.input :montant %>
+  <%= f.input :date_paiement %>
+  <%= f.submit "Enregistrer", class: "btn btn-primary" %>
+<% end %>
+
+
+
+<!-- ADD FRAIS RECURRENT -->
+<p>Ajouter une dépense récurrente</p>
+<%= simple_form_for [ @bien, @frais_recurrent ] do |f| %>
+  <%= f.input :nom %>
+  <%= f.input :montant %>
+  <%= f.input :recurrence %>
+  <%= f.input :date_debut %>
+  <%= f.input :date_fin %>
+  <%= f.submit "Enregistrer", class: "btn btn-primary" %>
+<% end %>
+
+
+<!-- RENDER MODAL DEPENSES -->
+<%= render "biens/modal_depenses" %>

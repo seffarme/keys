@@ -9,10 +9,11 @@ class Bien < ApplicationRecord
 
   CATEGORIE_BIEN = %w[Appartement Maison]
   validates :categorie, inclusion: { in: CATEGORIE_BIEN }
+
+  scope :depenses_in_interval, lambda { |date_debut, date_fin|
+                                 joins("JOIN depenses ON depenses.bien_id = biens.id").where("depenses.date_paiement >= ? AND depenses.date_paiement <= ?", date_debut, date_fin)
+                               }
+  scope :loyers_in_interval, lambda { |date_debut, date_fin|
+                               joins("JOIN loyers ON loyers.bien_id = biens.id").where("loyers.date_paiement >= ? AND loyers.date_paiement <= ?", date_debut, date_fin)
+                             }
 end
-
-# Get depenses from date to date
-# Get recettes from date to date
-# recettes - depenses / var
-
-# Generateur de depense depuis frais recurrents
