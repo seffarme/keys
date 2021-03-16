@@ -1,0 +1,9 @@
+<h1>Liste des biens</h1>
+
+<ul>
+    <% @biens.each do |bien| %>
+        <li>
+            <%= link_to bien.nom, bien_path(bien) %>
+        </li>
+    <% end %>
+</ul>

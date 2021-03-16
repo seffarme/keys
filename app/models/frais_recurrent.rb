@@ -4,5 +4,9 @@ class FraisRecurrent < ApplicationRecord
   belongs_to :bien
   has_many :depenses
 
-  validates :recurrence, inclusion: { in: RECURRENCE }
+  validates :nom, presence: true
+  validates :montant, presence: true
+  validates :date_debut, presence: true
+  validates :date_fin, presence: true
+  validates :recurrence, presence: true, inclusion: { in: RECURRENCE }
 end

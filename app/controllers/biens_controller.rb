@@ -1,6 +1,6 @@
 class BiensController < ApplicationController
   def index
-
+    @biens = current_user.biens
   end
 
   def show

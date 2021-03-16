@@ -10,3 +10,9 @@ class Bien < ApplicationRecord
   CATEGORIE_BIEN = %w[Appartement Maison]
   validates :categorie, inclusion: { in: CATEGORIE_BIEN }
 end
+
+# Get depenses from date to date
+# Get recettes from date to date
+# recettes - depenses / var
+
+# Generateur de depense depuis frais recurrents
