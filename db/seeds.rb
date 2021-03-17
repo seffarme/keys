@@ -43,7 +43,7 @@ puts "//////////////////////////////////////////////////////"
 puts "Starting the seeding process..."
 
 
-### - # - ###
+## - # - ###########################################################################
 # User
 puts "1/6 - Seeding the User DB..."
 
@@ -57,7 +57,7 @@ queen_elizabeth = User.new({
 queen_elizabeth.save
 
 
-### - # - ###
+## - # - ###########################################################################
 # Bien
 puts "2/6 - Seeding the Bien DB..."
 
@@ -167,7 +167,8 @@ villa_stprivat = Bien.new({
 villa_stprivat.user = queen_elizabeth
 villa_stprivat.save
 
-### - # - ###
+
+## - # - ###########################################################################
 # Frais recurrents
 puts "3/6 - Seeding the Frais recurrents DB..."
 
@@ -175,6 +176,7 @@ puts "3/6 - Seeding the Frais recurrents DB..."
 emprunt_bpec = FraisRecurrent.new({
     nom: "Prêt amortissable",
     montant: "170500",
+    categorie: "Crédit"
     recurrence: "Mensuel",
     date_debut: "01/01/2010",
     date_fin: "01/01/2030"
@@ -187,6 +189,7 @@ emprunt_bpec.save
 taxe_fonciere_bpec = FraisRecurrent.new({
     nom: "Taxe foncière",
     montant: "2000",
+    categorie: "Taxe Foncière"
     recurrence: "Annuel",
     date_debut: "01/01/2010",
     date_fin: "01/01/2099"
@@ -198,6 +201,7 @@ taxe_fonciere_bpec.save
 charges_bpec = FraisRecurrent.new({
     nom: "Charges",
     montant: "600",
+    categorie: "Copropriété"
     recurrence: "Annuel",
     date_debut: "01/01/2010",
     date_fin: "01/01/2099"
@@ -206,8 +210,20 @@ charges_bpec = FraisRecurrent.new({
 charges_bpec.bien = buckingham_palace_en_correze
 charges_bpec.save
 
+assurance_bpec = FraisRecurrent.new({
+    nom: "Assurance PNO",
+    montant: "200",
+    categorie: "Assurances"
+    recurrence: "Annuel",
+    date_debut: "01/01/2010",
+    date_fin: "01/01/2099"
+})
 
-### - # - ###
+assurance_bpec.bien = buckingham_palace_en_correze
+assurance_bpec.save
+
+
+## - # - ###########################################################################
 # Depenses
 puts "4/6 - Seeding the Depenses DB..."
 
@@ -261,7 +277,7 @@ travaux_bal.bien = villa_stprivat
 travaux_bal.save
 
 
-### - # - ###
+## - # - ###########################################################################
 # Locataire
 puts "5/6 - Seeding the Locataires DB..."
 
@@ -311,7 +327,8 @@ julien_dore = Locataire.new({
 julien_dore.bien = maison_lignerac
 julien_dore.save
 
-### - # - ###
+
+## - # - ###########################################################################
 # Loyers
 puts "6/6 - Seeding the Loyers DB..."
 
