@@ -1,6 +1,6 @@
 class FraisRecurrent < ApplicationRecord
   RECURRENCE = %w[Mensuel Annuel]
-  CATEGORIE = %w[Crédit Taxe\ Foncière Copropriété Assurances]
+  CATEGORIE = %w[Crédit Taxe\ Foncière Copropriété Assurances Travaux Autres]
 
   belongs_to :bien
   has_many :depenses

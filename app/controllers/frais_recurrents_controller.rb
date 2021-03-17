@@ -17,7 +17,7 @@ class FraisRecurrentsController < ApplicationController
   private
 
   def frais_recurrent_params
-    params.require(:frais_recurrent).permit(:nom, :montant, :recurrence, :date_debut, :date_fin)
+    params.require(:frais_recurrent).permit(:nom, :montant, :categorie, :recurrence, :date_debut, :date_fin)
   end
 
   def populate_depenses(frais_recurrent)
@@ -32,7 +32,7 @@ class FraisRecurrentsController < ApplicationController
       number_of_depenses_to_generate = duration_in_months
       (0..number_of_depenses_to_generate).each do |i|
         depense = Depense.new(nom: frais_recurrent.nom, montant: frais_recurrent.montant,
-                              date_paiement: frais_recurrent.date_debut.next_month(i))
+                              categorie: frais_recurrent.categorie, date_paiement: frais_recurrent.date_debut.next_month(i))
         depense.frais_recurrent = @frais_recurrent
         depense.bien = @bien
         depense.save
@@ -41,7 +41,7 @@ class FraisRecurrentsController < ApplicationController
       number_of_depenses_to_generate = (duration_in_months / 12).to_f.floor
       (0..number_of_depenses_to_generate).each do |i|
         depense = Depense.new(nom: frais_recurrent.nom, montant: frais_recurrent.montant,
-                              date_paiement: frais_recurrent.date_debut.next_year(i))
+                              categorie: frais_recurrent.categorie, date_paiement: frais_recurrent.date_debut.next_year(i))
         depense.frais_recurrent = @frais_recurrent
         depense.bien = @bien
         depense.save

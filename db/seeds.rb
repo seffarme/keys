@@ -31,7 +31,8 @@ Bien.destroy_all
 puts "6/6 - Cleaning the User DB..."
 User.destroy_all
 
-puts "~ All DB cleaned up"
+puts "~ All DB cleaned up
+"
 puts "//////////////////////////////////////////////////////"
 
 
@@ -176,7 +177,7 @@ puts "3/6 - Seeding the Frais recurrents DB..."
 emprunt_bpec = FraisRecurrent.new({
     nom: "Prêt amortissable",
     montant: "170500",
-    categorie: "Crédit"
+    categorie: "Crédit",
     recurrence: "Mensuel",
     date_debut: "01/01/2010",
     date_fin: "01/01/2030"
@@ -184,12 +185,13 @@ emprunt_bpec = FraisRecurrent.new({
 
 emprunt_bpec.bien = buckingham_palace_en_correze
 emprunt_bpec.save
+populate_depenses(emprunt_bpec)
 
 
 taxe_fonciere_bpec = FraisRecurrent.new({
     nom: "Taxe foncière",
     montant: "2000",
-    categorie: "Taxe Foncière"
+    categorie: "Taxe Foncière",
     recurrence: "Annuel",
     date_debut: "01/01/2010",
     date_fin: "01/01/2099"
@@ -201,7 +203,7 @@ taxe_fonciere_bpec.save
 charges_bpec = FraisRecurrent.new({
     nom: "Charges",
     montant: "600",
-    categorie: "Copropriété"
+    categorie: "Copropriété",
     recurrence: "Annuel",
     date_debut: "01/01/2010",
     date_fin: "01/01/2099"
@@ -213,7 +215,7 @@ charges_bpec.save
 assurance_bpec = FraisRecurrent.new({
     nom: "Assurance PNO",
     montant: "200",
-    categorie: "Assurances"
+    categorie: "Assurances",
     recurrence: "Annuel",
     date_debut: "01/01/2010",
     date_fin: "01/01/2099"
@@ -231,6 +233,7 @@ puts "4/6 - Seeding the Depenses DB..."
 travaux_bal = Depense.new({
     nom: "Travaux boîte aux lettres",
     montant: "200",
+    categorie: "Travaux",
     date_paiement: "01/02/2021"
 })
 
@@ -240,6 +243,7 @@ travaux_bal.save
 travaux_sdb = Depense.new({
     nom: "Travaux salle de bain",
     montant: "2500",
+    categorie: "Travaux",
     date_paiement: "01/06/2020"
 })
 
@@ -250,6 +254,7 @@ travaux_sdb.save
 pompe_chaleur = Depense.new({
     nom: "Pompe à chaleur",
     montant: "15000",
+    categorie: "Travaux",
     date_paiement: "01/04/2021"
 })
 
@@ -260,6 +265,7 @@ pompe_chaleur.save
 travaux_bal = Depense.new({
     nom: "Entretien des jardins",
     montant: "1200",
+    categorie: "Autres",
     date_paiement: "01/03/2020"
 })
 
@@ -270,6 +276,7 @@ travaux_bal.save
 travaux_bal = Depense.new({
     nom: "Révision climatisation",
     montant: "180",
+    categorie: "Autres",
     date_paiement: "01/06/2020"
 })
 
@@ -408,11 +415,13 @@ loyer_20210301.bien = maison_lignerac
 loyer_20210301.locataire = julien_dore
 loyer_20210301.save
 
-puts "~ All seeds created: 
+puts "
+~ All seeds created: 
 - #{User.all.count} users
 - #{Bien.all.count} biens
 - #{FraisRecurrent.all.count} frais recurrents
 - #{Depense.all.count} depenses
 - #{Locataire.all.count} locataires
-- #{Loyer.all.count} loyers"
+- #{Loyer.all.count} loyers
+"
 puts "//////////////////////////////////////////////////////"
