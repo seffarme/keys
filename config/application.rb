@@ -22,3 +22,7 @@ module Keys
     # the framework and any gems in your application.
   end
 end
+
+
+# config.action_mailer.delivery_method = :postmark
+# config.action_mailer.postmark_settings = { api_token: Rails.application.credentials.postmark_api_token }
