@@ -221,15 +221,24 @@ travaux_bal = Depense.new({
 travaux_bal.bien = buckingham_palace_en_correze
 travaux_bal.save
 
+travaux_sdb = Depense.new({
+    nom: "Travaux salle de bain",
+    montant: "2500",
+    date_paiement: "01/06/2020"
+})
+
+travaux_sdb.bien = buckingham_palace_en_correze
+travaux_sdb.save
+
 # Depenses 2
-travaux_bal = Depense.new({
+pompe_chaleur = Depense.new({
     nom: "Pompe à chaleur",
     montant: "15000",
     date_paiement: "01/04/2021"
 })
 
-travaux_bal.bien = chateau_de_sedieres
-travaux_bal.save
+pompe_chaleur.bien = chateau_de_sedieres
+pompe_chaleur.save
 
 # Depenses 3
 travaux_bal = Depense.new({

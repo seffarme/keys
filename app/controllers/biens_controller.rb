@@ -23,7 +23,11 @@ class BiensController < ApplicationController
     @frais_recurrent = FraisRecurrent.new
     @depense = Depense.new
 
-    @collected_loyers = Bien.loyers_in_interval(Date.new(CURRENT_YEAR), Date.today)
+    @loyers_collectes_liste = @bien.loyers.in_interval(Date.new(CURRENT_YEAR), Date.today)
+    @loyers_collectes = @loyers_collectes_liste.reduce(0) { |sum, loyer| sum + loyer }
+
+    @depenses_collectees_liste = @bien.depenses.in_interval(Date.new(CURRENT_YEAR), Date.today)
+    @depenses_collectees = @depenses_collectees_liste.reduce(0) { |sum, depense| sum + depense }
     raise
   end
 
