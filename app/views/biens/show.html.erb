@@ -1,8 +1,17 @@
 <h1>My first apartment</h1>
 
 
-<p>Suivi financier</p>
-<p>Loyers collectés</p>
+<h2>Suivi financier</h2>
+<h3>Recettes</h3>
+<p>Loyers collectés: <%= @loyers_received %>€ reçus / <%=  %>€ à venir</p>
+
+<h3>Dépenses</h3>
+<p>Crédit: <%= @credits_paid %>€ payés / <%= @credits_tbp %>€ à payer</p>
+<p>Taxe Foncière: <%= @taxe_fonciere_paid %>€ payés / <%= @taxe_fonciere_tbp %>€ à payer</p>
+<p>Copropriété: <%= @copropriete_paid %>€ payés / <%= @copropriete_tbp %>€ à payer</p>
+<p>Assurances: <%= @assurances_paid %>€ payés / <%= @assurances_tbp %>€ à payer</p>
+<p>Travaux: <%= @travaux_paid %>€ payés / <%= @travaux_tbp %>€ à payer</p>
+<p>Autres: <%= @autres_paid %>€ payés / <%= @autres_tbp %>€ à payer</p>
 
 
 <p>Autres</p>
@@ -12,6 +21,7 @@
 <%= simple_form_for [ @bien, @depense ] do |f| %>
   <%= f.input :nom %>
   <%= f.input :montant %>
+  <%= f.input :categorie, collection: Depense::CATEGORIE %>
   <%= f.input :date_paiement %>
   <%= f.submit "Enregistrer", class: "btn btn-primary" %>
 <% end %>
@@ -23,6 +33,7 @@
 <%= simple_form_for [ @bien, @frais_recurrent ] do |f| %>
   <%= f.input :nom %>
   <%= f.input :montant %>
+  <%= f.input :categorie, collection: FraisRecurrent::CATEGORIE %>
   <%= f.input :recurrence %>
   <%= f.input :date_debut %>
   <%= f.input :date_fin %>
