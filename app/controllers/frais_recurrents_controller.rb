@@ -25,6 +25,7 @@ class FraisRecurrentsController < ApplicationController
     duration_in_days = frais_recurrent.date_fin - frais_recurrent.date_debut
     duration_in_months = (duration_in_days / AVERAGE_DAYS_PER_MONTH).to_f.ceil
 
+    puts "test for commit"
     # Create the depenses
     case frais_recurrent.recurrence
     when "Mensuel"
