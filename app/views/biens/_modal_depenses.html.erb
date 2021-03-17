@@ -1,0 +1,19 @@
+<div class="text-center" >
+    <div class="modal fade" id="myModal" role="dialog" >
+      <div class="modal-dialog" class="text-center">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-body">
+            <p class="pt-3 text-success"><strong>Voici la liste de vos dépenses 👍</strong></p>
+          </div>
+          <ul>
+            <% @depenses.each do |depense|  %>
+                <li>
+                    <%= depense.nom %> <%= depense.montant %>
+                </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
