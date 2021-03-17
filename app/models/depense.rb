@@ -1,8 +1,9 @@
 class Depense < ApplicationRecord
+  CATEGORIE = %w[Crédit Taxe\ Foncière Copropriété Assurances Travaux Autres]
+
   belongs_to :bien
   belongs_to :frais_recurrent, optional: true
 
-  CATEGORIE = %w[Crédit Taxe\ Foncière Copropriété Assurances Travaux Autres]
   validates :categorie, presence: true, inclusion: { in: CATEGORIE }
 
   scope :cat_credit, -> { where("categorie = 'Crédit'") }

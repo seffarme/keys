@@ -176,7 +176,7 @@ puts "3/6 - Seeding the Frais recurrents DB..."
 # Frais recurents
 emprunt_bpec = FraisRecurrent.new({
     nom: "Prêt amortissable",
-    montant: "170500",
+    montant: "500",
     categorie: "Crédit",
     recurrence: "Mensuel",
     date_debut: "01/01/2010",
@@ -185,7 +185,7 @@ emprunt_bpec = FraisRecurrent.new({
 
 emprunt_bpec.bien = buckingham_palace_en_correze
 emprunt_bpec.save
-populate_depenses(emprunt_bpec)
+emprunt_bpec.populate_depenses(buckingham_palace_en_correze)
 
 
 taxe_fonciere_bpec = FraisRecurrent.new({
@@ -199,6 +199,7 @@ taxe_fonciere_bpec = FraisRecurrent.new({
 
 taxe_fonciere_bpec.bien = buckingham_palace_en_correze
 taxe_fonciere_bpec.save
+taxe_fonciere_bpec.populate_depenses(buckingham_palace_en_correze)
 
 charges_bpec = FraisRecurrent.new({
     nom: "Charges",
@@ -211,18 +212,20 @@ charges_bpec = FraisRecurrent.new({
 
 charges_bpec.bien = buckingham_palace_en_correze
 charges_bpec.save
+charges_bpec.populate_depenses(buckingham_palace_en_correze)
 
 assurance_bpec = FraisRecurrent.new({
     nom: "Assurance PNO",
-    montant: "200",
+    montant: "5",
     categorie: "Assurances",
-    recurrence: "Annuel",
+    recurrence: "Mensuel",
     date_debut: "01/01/2010",
     date_fin: "01/01/2099"
 })
 
 assurance_bpec.bien = buckingham_palace_en_correze
 assurance_bpec.save
+assurance_bpec.populate_depenses(buckingham_palace_en_correze)
 
 
 ## - # - ###########################################################################
@@ -244,7 +247,7 @@ travaux_sdb = Depense.new({
     nom: "Travaux salle de bain",
     montant: "2500",
     categorie: "Travaux",
-    date_paiement: "01/06/2020"
+    date_paiement: "01/06/2021"
 })
 
 travaux_sdb.bien = buckingham_palace_en_correze
