@@ -18,28 +18,15 @@
 
 <!-- ADD DEPENSE -->
 <p>Ajouter une dépense</p>
-<%= simple_form_for [ @bien, @depense ] do |f| %>
-  <%= f.input :nom %>
-  <%= f.input :montant %>
-  <%= f.input :categorie, collection: Depense::CATEGORIE %>
-  <%= f.input :date_paiement %>
+<%= form_for @bien do |f| %>
+  <%= f.simple_fields_for :depenses, @bien.depenses.build do |ff| %>
+    <%= ff.hidden_field :id %>
+    <%= ff.input :nom %>
+    <%= ff.input :montant %>
+    <%= ff.input :categorie, collection: Depense::CATEGORIE %>
+    <%= ff.input :date_paiement %>
+  <% end %>
+
   <%= f.submit "Enregistrer", class: "btn btn-primary" %>
 <% end %>
 
-
-
-<!-- ADD FRAIS RECURRENT -->
-<p>Ajouter une dépense récurrente</p>
-<%= simple_form_for [ @bien, @frais_recurrent ] do |f| %>
-  <%= f.input :nom %>
-  <%= f.input :montant %>
-  <%= f.input :categorie, collection: FraisRecurrent::CATEGORIE %>
-  <%= f.input :recurrence %>
-  <%= f.input :date_debut %>
-  <%= f.input :date_fin %>
-  <%= f.submit "Enregistrer", class: "btn btn-primary" %>
-<% end %>
-
-
-<!-- RENDER MODAL DEPENSES -->
-<%= render "biens/modal_depenses" %>

@@ -3,6 +3,8 @@ class BiensController < ApplicationController
   CURRENT_START_PERIOD = Date.new(CURRENT_YEAR)
   CURRENT_END_PERIOD = Date.new(CURRENT_YEAR + 1) - 1.day
 
+  before_action :set_bien, :set_report, only: %i[show update]
+
   def index
     @biens = current_user.biens
     @markers = @biens.geocoded.map do |bien|
@@ -14,17 +16,73 @@ class BiensController < ApplicationController
   end
 
   def show
-    @bien = Bien.find(params[:id])
-    # @markers = @biens.geocoded.map do |bien|
-    #   {
-    #     lat: bien.latitude,
-    #     lng: bien.longitude
-    #   }
-    # end
-    @depenses = Depense.all
-    @frais_recurrent = FraisRecurrent.new
-    @depense = Depense.new
+  end
 
+  def update
+    @bien.attributes = bien_params
+
+    if @bien.save
+      redirect_to bien_path(@bien)
+    else
+      render :show
+    end
+  end
+
+  def new
+    @bien = Bien.new
+  end
+
+  def create
+    @bien = Bien.new(bien_params)
+    @bien.user = current_user
+
+    if @bien.save
+      redirect_to bien_path(@bien)
+    else
+      render :new
+    end
+  end
+
+  private
+
+  def bien_params
+    params
+      .require(:bien)
+      .permit(
+        :nom,
+        :categorie,
+        :adresse,
+        :ville,
+        :code_postal,
+        :pays,
+        :info_compl_adresse,
+        :surface,
+        :nb_pieces,
+        :nb_sdb,
+        :nb_etages,
+        :num_etage,
+        :annee_construction,
+        :prix_acquisition,
+        :date_acquisition,
+        :frais_achat_notaire,
+        :frais_achat_agence,
+        :frais_achat_travaux,
+        :frais_achat_autres,
+        depenses_attributes: %i[
+          id
+          nom
+          montant
+          categorie
+          date_paiement
+        ]
+      )
+  end
+
+  def set_bien
+    @bien = Bien.find(params[:id])
+  end
+
+  def set_report
     ############################ Generate the loyers paid & to be paid ###########################################
     @loyers_received_list = @bien.loyers.in_interval(CURRENT_START_PERIOD, Date.today)
     @loyers_received = @loyers_received_list.reduce(0) { |sum, loyer| sum + loyer }
@@ -74,27 +132,5 @@ class BiensController < ApplicationController
 
     @autres_tbp_list = @bien.depenses.cat_autres.in_interval(Date.today, CURRENT_END_PERIOD)
     @autres_tbp = @autres_tbp_list.reduce(0) { |sum, autres| sum + autres }
-  end
-
-  def new
-    @bien = Bien.new
-  end
-
-  def create
-    @bien = Bien.new(bien_params)
-    @user = current_user
-    @bien.user = @user
-    if @bien.save
-      redirect_to bien_path(@bien)
-    else
-      render :new
-    end
-  end
-
-  private
-
-  def bien_params
-    params.require(:bien).permit(:nom, :categorie, :adresse, :ville, :code_postal, :pays, :info_compl_adresse, :surface,
-                                 :nb_pieces, :nb_sdb, :nb_etages, :num_etage, :annee_construction, :prix_acquisition, :date_acquisition, :frais_achat_notaire, :frais_achat_agence, :frais_achat_travaux, :frais_achat_autres)
   end
 end
