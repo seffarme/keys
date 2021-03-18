@@ -19,7 +19,7 @@ class Loyer < ApplicationRecord
   end
 end
 
-puts "git push"
+puts "git"
 # @biens = Bien.all // [Bien1, Bien2, ...., BienN]
 # @biens.reduce(0) { |sum, loyer_bien| bien.loyers.in_interval().reduce}
 
