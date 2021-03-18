@@ -16,7 +16,8 @@
 
   <body>
 
-    <%= render 'shared/navbar' %>
+    <%= render 'shared/navbar_home' if @home %>
+		<%= render 'shared/navbar_body' unless @home %>
     <%= render 'shared/flashes' %>
 
 

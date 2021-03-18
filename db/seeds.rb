@@ -83,7 +83,8 @@ buckingham_palace_en_correze = Bien.new({
     frais_achat_notaire: "10000",
     frais_achat_agence: "5000",
     frais_achat_travaux: "5000",
-    frais_achat_autres: "500"
+    frais_achat_autres: "500",
+    montant_loyer: "500"
 })
 
 buckingham_palace_en_correze.user = queen_elizabeth
@@ -110,7 +111,8 @@ chateau_de_sedieres = Bien.new({
     frais_achat_notaire: "17000",
     frais_achat_agence: "30000",
     frais_achat_travaux: "250000",
-    frais_achat_autres: "1500"
+    frais_achat_autres: "1500",
+    montant_loyer: "700"
 })
 
 chateau_de_sedieres.user = queen_elizabeth
@@ -137,7 +139,8 @@ maison_lignerac = Bien.new({
     frais_achat_notaire: "20000",
     frais_achat_agence: "22500",
     frais_achat_travaux: "5000",
-    frais_achat_autres: "1750"
+    frais_achat_autres: "1750",
+    montant_loyer: "330"
 })
 
 maison_lignerac.user = queen_elizabeth
@@ -163,7 +166,8 @@ villa_stprivat = Bien.new({
     frais_achat_notaire: "12000",
     frais_achat_agence: "20500",
     frais_achat_travaux: "3000",
-    frais_achat_autres: "1850"
+    frais_achat_autres: "1850",
+    montant_loyer: "1250"
 })
 
 villa_stprivat.user = queen_elizabeth

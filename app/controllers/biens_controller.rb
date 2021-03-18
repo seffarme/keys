@@ -14,20 +14,20 @@ class BiensController < ApplicationController
         infoWindow: render_to_string(partial: "info_window", locals: { bien: bien })
       }
     end
+
+    # sum_depenses
+    # raise
   end
 
   def show
-    @loyer_montant = 500
-    @loyer_date_paiement = Date.today
-    @loyer_locataire = @bien.locataires
     ## MERGE tableaux transactions ##
     @lasts_transactions = (@bien.loyers.where('date_paiement < ?', DateTime.now).order(date_paiement: :desc).limit(10).to_a + @bien.depenses.where('date_paiement < ?', DateTime.now).order(date_paiement: :desc).limit(10).to_a).map { |transaction| transaction.attributes}
     @lasts_transactions.sort_by!{ |t| t['date_paiement']}.reverse!
+
   end
 
   def update
     @bien.attributes = bien_params
-
     if @bien.save
       redirect_to bien_path(@bien)
     else
@@ -75,28 +75,36 @@ class BiensController < ApplicationController
         :frais_achat_agence,
         :frais_achat_travaux,
         :frais_achat_autres,
+        :montant_loyer,
         depenses_attributes: %i[
           id
           nom
           montant
           categorie
           date_paiement
-        ],
-        loyers_attributes: %i[
-          id
-          montant
-          date_paiement
-          locataire_id
         ]
       )
   end
 
   def set_bien
     @bien = Bien.find(params[:id])
+
+    # @markers = @biens.geocoded.map do |bien|
+    #   {
+    #     lat: bien.latitude,
+    #     lng: bien.longitude
+    #   }
+    # end
+    @depenses = Depense.all
+    @frais_recurrent = FraisRecurrent.new
+    @depense = Depense.new
+
+    @collected_loyers = @bien.loyers.in_interval(Date.new(CURRENT_YEAR), Date.today)
+
   end
 
-  def set_report
 
+  def set_report
     ############################ Generate the loyers paid & to be paid ###########################################
     @loyers_received_list = @bien.loyers.in_interval(CURRENT_START_PERIOD, Date.today)
     @loyers_received = @loyers_received_list.reduce(0) { |sum, loyer| sum + loyer }
@@ -146,6 +154,24 @@ class BiensController < ApplicationController
 
     @autres_tbp_list = @bien.depenses.cat_autres.in_interval(Date.today, CURRENT_END_PERIOD)
     @autres_tbp = @autres_tbp_list.reduce(0) { |sum, autres| sum + autres }
-
   end
+
+  # def sum_depenses
+  #   @biens = current_user.biens
+  #   raise
+  #   @depenses = @biens.depenses
+  #   @depenses.each do |depense|
+  #     @sum_depenses = 0
+  #     @sum_depenses += depense.montant
+  #   end
+  # end
+
+  # def sum_loyers
+  #   @bien = Bien.find(params[:id])
+  #   @loyers = @bien.loyers
+  #   @loyers.each do |loyer|
+  #     @sum_loyers = 0
+  #     @sum_loyers += loyer.montant
+  #   end
+  # end
 end
