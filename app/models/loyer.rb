@@ -18,3 +18,24 @@ class Loyer < ApplicationRecord
     loyers
   end
 end
+
+# @biens = Bien.all // [Bien1, Bien2, ...., BienN]
+# @biens.reduce(0) { |sum, loyer_bien| bien.loyers.in_interval().reduce}
+
+# Loyer.sum(:loyer)
+
+# loyer_per_months = {
+#   0 => 453433,
+#   1 => 453433,
+#   0 => 453433,
+#   0 => 453433,
+# }
+
+# loyer_per_months = {}
+
+# (1..Date.current.month).each do |month|
+#   date_debut = Date.current.change(month: month).beginning_of_month
+#   date_fin = Date.current.change(month: month).end_of_month
+
+#   loyer_per_months[month] = current_user.loyers.where().sum(:montant)
+# end
