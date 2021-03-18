@@ -6,7 +6,8 @@ class BiensController < ApplicationController
     @markers = @biens.geocoded.map do |bien|
       {
         lat: bien.latitude,
-        lng: bien.longitude
+        lng: bien.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { bien: bien })
       }
     end
   end
@@ -24,7 +25,7 @@ class BiensController < ApplicationController
     @depense = Depense.new
 
     @collected_loyers = Bien.loyers_in_interval(Date.new(CURRENT_YEAR), Date.today)
-    raise
+
   end
 
   def new

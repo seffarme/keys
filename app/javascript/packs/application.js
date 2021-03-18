@@ -21,7 +21,7 @@ require("channels")
 // Note(lewagon): ABOVE IS RAILS DEFAULT CONFIGURATION
 // WRITE YOUR OWN JS STARTING FROM HERE 👇
 // ----------------------------------------------------
-
+import { initChartCourbe, initChartBiens } from '../plugins/init_chart';
 // External imports
 import "bootstrap";
 
@@ -31,12 +31,10 @@ import { initMapbox } from '../plugins/init_mapbox';
 
 document.addEventListener('turbolinks:load', () => {
   initMapbox();
+  initChartCourbe();
+  initChartBiens()
 })
 
-document.addEventListener('turbolinks:load', () => {
-  // Call your functions here, e.g:
-  // initSelect2();
-});
 
 
 // NAVBAR transparente
@@ -46,3 +44,4 @@ document.addEventListener('turbolinks:load', () => {
 //   // Call your JS functions here
 //   initUpdateNavbarOnScroll();
 // });
+// External chart.js
