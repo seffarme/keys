@@ -13,22 +13,22 @@
 puts "//////////////////////////////////////////////////////"
 puts "Starting the DB cleaning process"
 
-puts "1/6 - Cleaning the Loyer DB..."
+puts "[1/6] - Cleaning the Loyer DB..."
 Loyer.destroy_all
 
-puts "2/6- Cleaning the Locataire DB..."
+puts "[2/6] - Cleaning the Locataire DB..."
 Locataire.destroy_all
 
-puts "3/6 - Cleaning the Depense DB..."
+puts "[3/6] - Cleaning the Depense DB..."
 Depense.destroy_all
 
-puts "4/6 - Cleaning the Frais_recurrent DB..."
+puts "[4/6] - Cleaning the Frais_recurrent DB..."
 FraisRecurrent.destroy_all
 
-puts "5/6 - Cleaning the Bien DB..."
+puts "[5/6] - Cleaning the Bien DB..."
 Bien.destroy_all
 
-puts "6/6 - Cleaning the User DB..."
+puts "[6/6] - Cleaning the User DB..."
 User.destroy_all
 
 puts "~ All DB cleaned up
@@ -46,21 +46,22 @@ puts "Starting the seeding process..."
 
 ## - # - ###########################################################################
 # User
-puts "1/6 - Seeding the User DB..."
+puts "[1/6] - Seeding the User DB..."
 
 queen_elizabeth = User.new({
     prenom: "Elizabeth",
     nom: "Windsor",
     email: "julie.laloy@gmail.com",
     num_tel: "0614514502",
-    password: "123456"
+    password: "123456",
+    admin: true
 })
 queen_elizabeth.save
 
 
 ## - # - ###########################################################################
 # Bien
-puts "2/6 - Seeding the Bien DB..."
+puts "[2/6] - Seeding the Bien DB..."
 
 # Bien 1
 buckingham_palace_en_correze = Bien.new({
@@ -82,7 +83,8 @@ buckingham_palace_en_correze = Bien.new({
     frais_achat_notaire: "10000",
     frais_achat_agence: "5000",
     frais_achat_travaux: "5000",
-    frais_achat_autres: "500"
+    frais_achat_autres: "500",
+    montant_loyer: "500"
 })
 
 buckingham_palace_en_correze.user = queen_elizabeth
@@ -109,7 +111,8 @@ chateau_de_sedieres = Bien.new({
     frais_achat_notaire: "17000",
     frais_achat_agence: "30000",
     frais_achat_travaux: "250000",
-    frais_achat_autres: "1500"
+    frais_achat_autres: "1500",
+    montant_loyer: "700"
 })
 
 chateau_de_sedieres.user = queen_elizabeth
@@ -136,7 +139,8 @@ maison_lignerac = Bien.new({
     frais_achat_notaire: "20000",
     frais_achat_agence: "22500",
     frais_achat_travaux: "5000",
-    frais_achat_autres: "1750"
+    frais_achat_autres: "1750",
+    montant_loyer: "330"
 })
 
 maison_lignerac.user = queen_elizabeth
@@ -162,7 +166,8 @@ villa_stprivat = Bien.new({
     frais_achat_notaire: "12000",
     frais_achat_agence: "20500",
     frais_achat_travaux: "3000",
-    frais_achat_autres: "1850"
+    frais_achat_autres: "1850",
+    montant_loyer: "1250"
 })
 
 villa_stprivat.user = queen_elizabeth
@@ -171,7 +176,7 @@ villa_stprivat.save
 
 ## - # - ###########################################################################
 # Frais recurrents
-puts "3/6 - Seeding the Frais recurrents DB..."
+puts "[3/6] - Seeding the Frais recurrents DB..."
 
 # Frais recurents
 emprunt_bpec = FraisRecurrent.new({
@@ -230,7 +235,7 @@ assurance_bpec.populate_depenses(buckingham_palace_en_correze)
 
 ## - # - ###########################################################################
 # Depenses
-puts "4/6 - Seeding the Depenses DB..."
+puts "[4/6] - Seeding the Depenses DB..."
 
 # Depenses 1
 travaux_bal = Depense.new({
@@ -289,7 +294,7 @@ travaux_bal.save
 
 ## - # - ###########################################################################
 # Locataire
-puts "5/6 - Seeding the Locataires DB..."
+puts "[5/6] - Seeding the Locataires DB..."
 
 # Locataire 1
 françois_hollande = Locataire.new({
@@ -340,7 +345,7 @@ julien_dore.save
 
 ## - # - ###########################################################################
 # Loyers
-puts "6/6 - Seeding the Loyers DB..."
+puts "[6/6] - Seeding the Loyers DB..."
 
 # Loyers - locataire 1
 loyer_20210101 = Loyer.new({

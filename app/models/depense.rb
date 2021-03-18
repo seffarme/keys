@@ -4,7 +4,10 @@ class Depense < ApplicationRecord
   belongs_to :bien
   belongs_to :frais_recurrent, optional: true
 
+  validates :nom, presence: true
+  validates :montant, presence: true
   validates :categorie, presence: true, inclusion: { in: CATEGORIE }
+  validates :date_paiement, presence: true
 
   scope :cat_credit, -> { where("categorie = 'Crédit'") }
   scope :cat_taxe_fonciere, -> { where("categorie = 'Taxe Foncière'") }

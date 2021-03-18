@@ -1,3 +1,4 @@
+
 <h1>Liste des biens</h1>
 
 <div class="container justify-content-around p-4">
@@ -37,3 +38,96 @@
     <div>
       <%= link_to "Ajoutez un nouveau bien 🚀", new_bien_path%>
     </div>
+=======
+
+<h1 style="text-align:center; margin-top: 20px;">Mes locations</h1>
+
+
+<%# <div class="container"> %>
+	<div class="row row-cols-1 row-cols-md-2" style="padding: 50px">
+		<div class="col" style="padding: 10px">
+			<div class="card" style="box-shadow: 10px 5px 5px grey;">
+				<div class="card-body" style="height: 500px">
+					<div class="d-flex justify-content-around align-items-center">
+						<div>
+							<div class="row justify-content-around">
+                <div class="card" class="col-6">
+                  <div class="card-body" style="width: 350px;">
+                    <canvas id="myChartCourbe"></canvas>
+                  </div>
+                </div>
+              </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col" style="padding: 10px">
+			<div class="card" style="box-shadow: 10px 5px 5px grey;">
+				<div class="card-body" style="height: 500px">
+					<div class="d-flex justify-content-around align-items-center">
+						<div>
+							<div class="card" class="col-6">
+                 <div class="card-body" style="width: 350px;">
+                    <canvas id="myChartBiens"></canvas>
+                 </div>
+              </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+		<%# <div class="col" style="padding: 10px" > %>
+			<%# <div class="card"> %>
+				<div class="card-body" style="padding-bottom: 5px" >
+					<% @biens.each do |bien| %>
+						<div class="card-product" style="padding: 10px; margin-top: 5px;">
+							<img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg"/>
+							<div class="card-product-infos" style="width: 600px">
+								<h2><%= bien.nom %></h2>
+								<p style="font-size: medium">Categorie: <strong><%= bien.categorie %></strong></p>
+								<p style="font-size: medium">Adresse: <strong><%= bien.adresse %></strong></p>
+							</div>
+							<div class="card-button" style="margin-right: 300px">
+								<p style="font-size: medium">
+								<strong>⚠️Loyer Payé</strong>
+									<%= link_to "YES ✅", new_bien_path, remote: true, class: "btn btn-ghost" %>
+									<%= link_to "NO  ❎", new_bien_path, remote: true, class: "btn btn-ghost" %>
+								</p>
+							</div>
+						</div>
+					<% end %>
+					<div class="card-product" style="padding: 10px; margin-top: 5px;">
+  					<img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+  					<div class="card-product-infos" style="width: 600px">
+  					  <h2>Vous pouvez ajouter un bien</h2>
+							<div type="button" class="btn btn-secondary txt-hover" style="margin: 10px; color: white; ">
+						  	<%= link_to "Ajoutez ➕" , new_bien_path, class:"txt-hover" %>
+							</div>
+  					</div>
+					</div>
+
+
+				</div>
+				<div class="container" style= "margin: 0 auto; text-align: center;">
+
+			<%# </div> %>
+		<%# </div> %>
+
+		<%# <div class="col" style="padding: 10px"> %>
+			<%# <div class="card", style="box-shadow: 10px 5px 5px grey;"> %>
+					<div class="card-body" style="padding: 0; margin-top: 30px">
+						<div id="map"
+									style="width: 100%; height: 500px;"
+									data-markers="<%= @markers.to_json %>"
+									data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+						</div>
+					</div>
+				</div>
+			<%# </div> %>
+		<%# </div> %>
+<%# </div> %>
+

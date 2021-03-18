@@ -1,6 +1,6 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.1);
   transition: 0.5s background-color ease;
   position:absolute;
   width: 100%;
@@ -16,4 +16,12 @@
 
 .navbar-lewagon .navbar-brand img {
   width: 100px;
+}
+.navbar-body {
+	background-color: #152F70;
+
+}
+
+.absolute-body {
+	position: static;
 }
