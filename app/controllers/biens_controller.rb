@@ -20,6 +20,9 @@ class BiensController < ApplicationController
     @loyer_montant = 500
     @loyer_date_paiement = Date.today
     @loyer_locataire = @bien.locataires
+    ## MERGE tableaux transactions ##
+    @lasts_transactions = (@bien.loyers.where('date_paiement < ?', DateTime.now).order(date_paiement: :desc).limit(10).to_a + @bien.depenses.where('date_paiement < ?', DateTime.now).order(date_paiement: :desc).limit(10).to_a).map { |transaction| transaction.attributes}
+    @lasts_transactions.sort_by!{ |t| t['date_paiement']}.reverse!
   end
 
   def update

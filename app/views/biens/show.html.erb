@@ -43,3 +43,30 @@
   <%= f.submit "Enregistrer", class: "btn btn-primary" %>
 <% end %>
 
+<!-- TABLEAU OPERATIONS -->
+
+
+
+
+
+<div class="tableau_depenses container">
+  <h2>Dernières transactions </h2>
+  <ul class="responsive-table">
+    <li class="table-header">
+      <div class="col col-1">Date</div>
+      <div class="col col-2">Categorie</div>
+      <div class="col col-3">Libellé</div>
+      <div class="col col-4">Montant</div>
+    </li>
+
+  <% @lasts_transactions.first(5).each do |transaction| %>
+    <li class="table-row">
+      <div class="col col-1" data-label="Date"><%= transaction['date_paiement'].strftime('%m/%d/%Y') %></div>
+      <div class="col col-2" data-label="Categorie"><%= transaction['categorie'] || 'Loyer' %> </div>
+      <div class="col col-3" data-label="Libellé"> <%= transaction['nom'] || 'Encaissé' %></div>
+      <div class="col col-4" data-label="Montant"><b><%= transaction['montant'] %> €</b></div>
+    </li>
+  <% end %>
+</div>
+
+

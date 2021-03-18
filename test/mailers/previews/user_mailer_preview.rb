@@ -8,4 +8,8 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.with(user: user).welcome
   end
 
+  def relance
+    locataire = locataire.last
+    UserMailer.with(user: locataire).relance
+
 end
