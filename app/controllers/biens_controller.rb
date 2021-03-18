@@ -12,6 +12,9 @@ class BiensController < ApplicationController
         infoWindow: render_to_string(partial: "info_window", locals: { bien: bien })
       }
     end
+
+    sum_depenses
+    raise
   end
 
   def show
@@ -26,7 +29,7 @@ class BiensController < ApplicationController
     @frais_recurrent = FraisRecurrent.new
     @depense = Depense.new
 
-    @collected_loyers = Bien.loyers_in_interval(Date.new(CURRENT_YEAR), Date.today)
+    @collected_loyers = @bien.loyers.in_interval(Date.new(CURRENT_YEAR), Date.today)
 
     ############################ Generate the loyers paid & to be paid ###########################################
     @loyers_received_list = @bien.loyers.in_interval(CURRENT_START_PERIOD, Date.today)
@@ -101,4 +104,23 @@ class BiensController < ApplicationController
     params.require(:bien).permit(:nom, :categorie, :adresse, :ville, :code_postal, :pays, :info_compl_adresse, :surface,
                                  :nb_pieces, :nb_sdb, :nb_etages, :num_etage, :annee_construction, :prix_acquisition, :date_acquisition, :frais_achat_notaire, :frais_achat_agence, :frais_achat_travaux, :frais_achat_autres)
   end
+
+  # def sum_depenses
+  #   @biens = current_user.biens
+  #   raise
+  #   @depenses = @biens.depenses
+  #   @depenses.each do |depense|
+  #     @sum_depenses = 0
+  #     @sum_depenses += depense.montant
+  #   end
+  # end
+
+  # def sum_loyers
+  #   @bien = Bien.find(params[:id])
+  #   @loyers = @bien.loyers
+  #   @loyers.each do |loyer|
+  #     @sum_loyers = 0
+  #     @sum_loyers += loyer.montant
+  #   end
+  # end
 end
