@@ -8,7 +8,8 @@ class BiensController < ApplicationController
     @markers = @biens.geocoded.map do |bien|
       {
         lat: bien.latitude,
-        lng: bien.longitude
+        lng: bien.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { bien: bien })
       }
     end
   end
@@ -24,6 +25,8 @@ class BiensController < ApplicationController
     @depenses = Depense.all
     @frais_recurrent = FraisRecurrent.new
     @depense = Depense.new
+
+    @collected_loyers = Bien.loyers_in_interval(Date.new(CURRENT_YEAR), Date.today)
 
     ############################ Generate the loyers paid & to be paid ###########################################
     @loyers_received_list = @bien.loyers.in_interval(CURRENT_START_PERIOD, Date.today)
@@ -74,6 +77,7 @@ class BiensController < ApplicationController
 
     @autres_tbp_list = @bien.depenses.cat_autres.in_interval(Date.today, CURRENT_END_PERIOD)
     @autres_tbp = @autres_tbp_list.reduce(0) { |sum, autres| sum + autres }
+
   end
 
   def new
