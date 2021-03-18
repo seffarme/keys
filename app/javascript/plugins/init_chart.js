@@ -11,11 +11,16 @@ const initChartCourbe = () => {
     const myChart = new Chart(ctx, {
       type: 'bar',
       data: {
-          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-          datasets: [{
-              label: '# of Votes',
-              data: [12, 19, 3, 5, 2, 3],
-              backgroundColor: [
+        datasets: [{
+            label: 'Bar CashFlow',
+            data: [10, 20, 30, 40]
+        }, {
+            label: 'Line CashFlow',
+            data: [10, 17, 40, 50],
+
+            // Changes this dataset to become a line
+            type: 'line',
+            backgroundColor: [
                   'rgba(255, 99, 132, 0.2)',
                   'rgba(54, 162, 235, 0.2)',
                   'rgba(255, 206, 86, 0.2)',
@@ -32,20 +37,23 @@ const initChartCourbe = () => {
                   'rgba(255, 159, 64, 1)'
               ],
               borderWidth: 1
-          }]
+        }],
+        labels: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre']
       },
       options: {
           scales: {
               yAxes: [{
                   ticks: {
-                      beginAtZero: true
+                      beginAtZero: false,
+                      padding: 4,
+                      fontSize: 10
                   }
               }]
           }
         // responsive: true,
         // maintainAspectRatio: false
       }
-  });
+    });
   }
 };
 

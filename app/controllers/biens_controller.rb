@@ -14,6 +14,9 @@ class BiensController < ApplicationController
         infoWindow: render_to_string(partial: "info_window", locals: { bien: bien })
       }
     end
+
+    sum_depenses
+    raise
   end
 
   def show
@@ -81,7 +84,21 @@ class BiensController < ApplicationController
 
   def set_bien
     @bien = Bien.find(params[:id])
+
+    # @markers = @biens.geocoded.map do |bien|
+    #   {
+    #     lat: bien.latitude,
+    #     lng: bien.longitude
+    #   }
+    # end
+    @depenses = Depense.all
+    @frais_recurrent = FraisRecurrent.new
+    @depense = Depense.new
+
+    @collected_loyers = @bien.loyers.in_interval(Date.new(CURRENT_YEAR), Date.today)
+
   end
+
 
   def set_report
     ############################ Generate the loyers paid & to be paid ###########################################
@@ -134,4 +151,23 @@ class BiensController < ApplicationController
     @autres_tbp_list = @bien.depenses.cat_autres.in_interval(Date.today, CURRENT_END_PERIOD)
     @autres_tbp = @autres_tbp_list.reduce(0) { |sum, autres| sum + autres }
   end
+
+  # def sum_depenses
+  #   @biens = current_user.biens
+  #   raise
+  #   @depenses = @biens.depenses
+  #   @depenses.each do |depense|
+  #     @sum_depenses = 0
+  #     @sum_depenses += depense.montant
+  #   end
+  # end
+
+  # def sum_loyers
+  #   @bien = Bien.find(params[:id])
+  #   @loyers = @bien.loyers
+  #   @loyers.each do |loyer|
+  #     @sum_loyers = 0
+  #     @sum_loyers += loyer.montant
+  #   end
+  # end
 end
