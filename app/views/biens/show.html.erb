@@ -1,34 +1,45 @@
 <h1>My first apartment</h1>
 
 
-<p>Suivi financier</p>
-<p>Loyers collectés</p>
+<h2>Suivi financier</h2>
+<h3>Recettes</h3>
+<p>Loyers collectés: <%= @loyers_received %>€ reçus / <%=  %>€ à venir</p>
+
+<h3>Dépenses</h3>
+<p>Crédit: <%= @credits_paid %>€ payés / <%= @credits_tbp %>€ à payer</p>
+<p>Taxe Foncière: <%= @taxe_fonciere_paid %>€ payés / <%= @taxe_fonciere_tbp %>€ à payer</p>
+<p>Copropriété: <%= @copropriete_paid %>€ payés / <%= @copropriete_tbp %>€ à payer</p>
+<p>Assurances: <%= @assurances_paid %>€ payés / <%= @assurances_tbp %>€ à payer</p>
+<p>Travaux: <%= @travaux_paid %>€ payés / <%= @travaux_tbp %>€ à payer</p>
+<p>Autres: <%= @autres_paid %>€ payés / <%= @autres_tbp %>€ à payer</p>
 
 
 <p>Autres</p>
 
+
+<p>Ajouter un loyer</p>
+<%= form_for @bien do |f| %>
+  <%= f.simple_fields_for :loyers, @bien.loyers.build do |ff| %>
+    <%= ff.hidden_field :id %>
+    <%= ff.hidden_field :montant, :value => @loyer_montant %>
+    <%= ff.hidden_field :date_paiement, :value => @loyer_date_paiement  %>
+    <%= ff.hidden_field :locataire_id, :value => @loyer_locataire  %>
+  <% end %>
+
+  <%= f.submit "Enregistrer", class: "btn btn-primary" %>
+<% end %>
+
 <!-- ADD DEPENSE -->
 <p>Ajouter une dépense</p>
-<%= simple_form_for [ @bien, @depense ] do |f| %>
-  <%= f.input :nom %>
-  <%= f.input :montant %>
-  <%= f.input :date_paiement %>
+<%= form_for @bien do |f| %>
+  <%= f.simple_fields_for :depenses, @bien.depenses.build do |ff| %>
+    <%= ff.hidden_field :id %>
+    <%= ff.input :nom %>
+    <%= ff.input :montant %>
+    <%= ff.input :categorie, collection: Depense::CATEGORIE %>
+    <%= ff.input :date_paiement %>
+  <% end %>
+
   <%= f.submit "Enregistrer", class: "btn btn-primary" %>
 <% end %>
 
-
-
-<!-- ADD FRAIS RECURRENT -->
-<p>Ajouter une dépense récurrente</p>
-<%= simple_form_for [ @bien, @frais_recurrent ] do |f| %>
-  <%= f.input :nom %>
-  <%= f.input :montant %>
-  <%= f.input :recurrence %>
-  <%= f.input :date_debut %>
-  <%= f.input :date_fin %>
-  <%= f.submit "Enregistrer", class: "btn btn-primary" %>
-<% end %>
-
-
-<!-- RENDER MODAL DEPENSES -->
-<%= render "biens/modal_depenses" %>
