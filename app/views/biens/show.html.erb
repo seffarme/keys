@@ -18,16 +18,7 @@
 
 
 <p>Ajouter un loyer</p>
-<%= form_for @bien do |f| %>
-  <%= f.simple_fields_for :loyers, @bien.loyers.build do |ff| %>
-    <%= ff.hidden_field :id %>
-    <%= ff.hidden_field :montant, :value => @loyer_montant %>
-    <%= ff.hidden_field :date_paiement, :value => @loyer_date_paiement  %>
-    <%= ff.hidden_field :locataire_id, :value => @loyer_locataire  %>
-  <% end %>
-
-  <%= f.submit "Enregistrer", class: "btn btn-primary" %>
-<% end %>
+<%= link_to "Ajouter un loyer", bien_loyers_path(bien_id: @bien.id), method: :post %>
 
 <!-- ADD DEPENSE -->
 <p>Ajouter une dépense</p>
