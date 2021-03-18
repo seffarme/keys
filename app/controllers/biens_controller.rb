@@ -25,10 +25,8 @@ class BiensController < ApplicationController
     @bien.attributes = bien_params
 
     if @bien.save
-      byebug
       redirect_to bien_path(@bien)
     else
-      byebug
       render :show
     end
   end
