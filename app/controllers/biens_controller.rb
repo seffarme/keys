@@ -16,14 +16,19 @@ class BiensController < ApplicationController
   end
 
   def show
+    @loyer_montant = 500
+    @loyer_date_paiement = Date.today
+    @loyer_locataire = @bien.locataires
   end
 
   def update
     @bien.attributes = bien_params
 
     if @bien.save
+      byebug
       redirect_to bien_path(@bien)
     else
+      byebug
       render :show
     end
   end
@@ -74,6 +79,12 @@ class BiensController < ApplicationController
           montant
           categorie
           date_paiement
+        ],
+        loyers_attributes: %i[
+          id
+          montant
+          date_paiement
+          locataire_id
         ]
       )
   end
