@@ -15,8 +15,8 @@ class BiensController < ApplicationController
       }
     end
 
-    sum_depenses
-    raise
+    # sum_depenses
+    # raise
   end
 
   def show
