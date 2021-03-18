@@ -17,9 +17,6 @@ class BiensController < ApplicationController
   end
 
   def show
-    @loyer_montant = 500
-    @loyer_date_paiement = Date.today
-    @loyer_locataire = @bien.locataires
   end
 
   def update
@@ -72,18 +69,13 @@ class BiensController < ApplicationController
         :frais_achat_agence,
         :frais_achat_travaux,
         :frais_achat_autres,
+        :montant_loyer,
         depenses_attributes: %i[
           id
           nom
           montant
           categorie
           date_paiement
-        ],
-        loyers_attributes: %i[
-          id
-          montant
-          date_paiement
-          locataire_id
         ]
       )
   end
@@ -93,7 +85,6 @@ class BiensController < ApplicationController
   end
 
   def set_report
-
     ############################ Generate the loyers paid & to be paid ###########################################
     @loyers_received_list = @bien.loyers.in_interval(CURRENT_START_PERIOD, Date.today)
     @loyers_received = @loyers_received_list.reduce(0) { |sum, loyer| sum + loyer }
@@ -143,6 +134,5 @@ class BiensController < ApplicationController
 
     @autres_tbp_list = @bien.depenses.cat_autres.in_interval(Date.today, CURRENT_END_PERIOD)
     @autres_tbp = @autres_tbp_list.reduce(0) { |sum, autres| sum + autres }
-
   end
 end

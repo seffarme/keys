@@ -13,5 +13,6 @@ class Bien < ApplicationRecord
   has_many :locataires
 
   CATEGORIE_BIEN = %w[Appartement Maison]
+  validates :montant_loyer, presence: true
   validates :categorie, inclusion: { in: CATEGORIE_BIEN }
 end
