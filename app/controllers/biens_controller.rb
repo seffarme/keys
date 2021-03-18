@@ -24,7 +24,7 @@ class BiensController < ApplicationController
     @depense = Depense.new
 
     @collected_loyers = Bien.loyers_in_interval(Date.new(CURRENT_YEAR), Date.today)
-    raise
+    # raise
   end
 
   def new
