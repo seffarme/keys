@@ -2,13 +2,14 @@ import Chart from 'chart.js';
 
 const initChartCourbe = () => {
 
-  const ctx = document.getElementById('myChartCourbe').getContext('2d');
+  const ctx = document.getElementById('myChartCourbe')
+
 
   if (ctx) {
-
+  const deuxd = ctx.getContext('2d');
     // data = document.querySelector('#depense')
 
-    const myChart = new Chart(ctx, {
+    const myChart = new Chart(deuxd, {
       type: 'bar',
       data: {
         datasets: [{
@@ -59,13 +60,13 @@ const initChartCourbe = () => {
 
 const initChartBiens = () => {
 
-  const ctx = document.getElementById('myChartBiens').getContext('2d');
+  const ctx = document.getElementById('myChartBiens')
 
   if (ctx) {
-
+    const deuxd = ctx.getContext('2d');
     // data = document.querySelector('#depense')
 
-    const myChart = new Chart(ctx, {
+    const myChart = new Chart(deuxd, {
       type: 'bar',
       data: {
           labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
