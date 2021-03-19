@@ -42,22 +42,38 @@ const initChartCourbe = () => {
         labels: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre']
       },
       options: {
+					legend: {
+						display: true,
+						labels: {
+								fontColor: 'rgb(255, 99, 132)',
+								fontSize: 20,
+						}
+					},
           scales: {
               yAxes: [{
                   ticks: {
                       beginAtZero: false,
                       padding: 4,
-                      fontSize: 10
+                      fontSize: 25
                   }
-              }]
-          }
-        // responsive: true,
-        // maintainAspectRatio: false
+              }],
+							xAxes: [{
+								ticks: {
+										beginAtZero: false,
+										padding: 4,
+										fontSize: 25
+								}
+						}]
+          },
+        responsive: true,
+        maintainAspectRatio: false,
+				aspectRatio: 2,
+				onResize: null
       }
     });
   }
 };
-
+console.log('toto')
 const initChartBiens = () => {
 
   const ctx = document.getElementById('myChartBiens')
@@ -72,7 +88,7 @@ const initChartBiens = () => {
           labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
           datasets: [{
               label: '# of Votes',
-              data: [12, 19, 7, 5, 2, 15],
+              data: [12, 19, 7, 5, 2, 15,0],
               backgroundColor: [
                   'rgba(255, 99, 132, 0.2)',
                   'rgba(54, 162, 235, 0.2)',
@@ -93,17 +109,37 @@ const initChartBiens = () => {
           }]
       },
       options: {
+				legend: {
+					display: true,
+					labels: {
+							fontColor: 'rgb(255, 99, 132)',
+							fontSize: 20
+					}
+				},
+				scales: {
           scales: {
               yAxes: [{
                   ticks: {
-                      beginAtZero: true
+                      beginAtZero: false,
+											padding: 4,
+											fontSize: 25
                   }
-              }]
-          }
-        // responsive: true,
-        // maintainAspectRatio: false
+              }],
+							xAxes: [{
+									ticks: {
+											beginAtZero: false,
+											padding: 4,
+											fontSize: 40
+									}
+							}]
+          },
+        responsive: true,
+        maintainAspectRatio: false,
+				aspectRatio: 2,
+				onResize: null
       }
-  });
+  	}
+	});
   }
 };
 export { initChartCourbe, initChartBiens };
