@@ -31,27 +31,54 @@
     </div>
   </section>
 
-  <h2>Suivi financier</h2>
-  <h3>Recettes</h3>
-  <p>Loyers collectés: <%= @loyers_received %>€ reçus / <%=  %>€ à venir</p>
 
-  <h3>Dépenses</h3>
-  <p>Crédit: <%= @credits_paid %>€ payés / <%= @credits_tbp %>€ à payer</p>
-  <p>Taxe Foncière: <%= @taxe_fonciere_paid %>€ payés / <%= @taxe_fonciere_tbp %>€ à payer</p>
-  <p>Copropriété: <%= @copropriete_paid %>€ payés / <%= @copropriete_tbp %>€ à payer</p>
-  <p>Assurances: <%= @assurances_paid %>€ payés / <%= @assurances_tbp %>€ à payer</p>
-  <p>Travaux: <%= @travaux_paid %>€ payés / <%= @travaux_tbp %>€ à payer</p>
-  <p>Autres: <%= @autres_paid %>€ payés / <%= @autres_tbp %>€ à payer</p>
-
-
-  <p>Autres</p>
-
+<!-- TABLEAU  SYNTHESE -->
+<div class="responsive-table">
+  <table class="tableau-synthese">
+    <thead>
+      <tr>
+        <th> </th>
+        <th>Encaissé</th>
+        <th>A venir</th>
+      </tr>
+    <thead>
+    <tbody>
+      <tr>
+        <td>Loyers</td>
+        <td><%= @loyers_received %></td>
+        <td><%=  %>- € </td>
+      </tr>
+      <tr>
+        <td>Taxe Foncière</td>
+        <td><%= @taxe_fonciere_paid %>€</td>
+        <td><%= @taxe_fonciere_tbp %>€</td>
+      </tr>
+      <tr>
+        <td>Copropriété</td>
+        <td><%= @copropriete_paid %>€</p></td>
+        <td><%= @copropriete_tbp %>€</td>
+      </tr>
+      <tr>
+        <td>Assurances</p></td>
+        <td><%= @assurances_paid %>€</td>
+        <td><%= @assurances_tbp %>€</td>
+      </tr>
+      <tr>
+        <td>Travaux</p></td>
+        <td><%= @travaux_paid %>€</td>
+        <td><%= @travaux_tbp %>€</td>
+      </tr>
+      <tr>
+        <td>Autres</p></td>
+        <td><%= @autres_paid %>€</td>
+        <td><%= @autres_tbp %>€</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 
   <!-- TABLEAU OPERATIONS -->
-
-
-
 
 
   <div class="tableau_depenses container">
@@ -66,7 +93,7 @@
 
     <% @lasts_transactions.first(5).each do |transaction| %>
       <li class="table-row">
-        <div class="col col-1" data-label="Date"><%= transaction['date_paiement'].strftime('%m/%d/%Y') %></div>
+        <div class="col col-1" data-label="Date"><%= transaction['date_paiement'].strftime('%d/%m/%Y') %></div>
         <div class="col col-2" data-label="Categorie"><%= transaction['categorie'] || 'Loyer' %> </div>
         <div class="col col-3" data-label="Libellé"> <%= transaction['nom'] || 'Encaissé' %></div>
         <div class="col col-4" data-label="Montant"><b><%= transaction['montant'] %> €</b></div>
@@ -76,3 +103,21 @@
 
 
 </div>
+
+
+
+
+<!-- <h2>Suivi financier</h2>
+<h3>Recettes</h3>
+<p>Loyers collectés: <%= @loyers_received %>€ reçus / <%=  %>€ à venir</p>
+
+<h3>Dépenses</h3>
+<p>Crédit: <%= @credits_paid %>€ payés / <%= @credits_tbp %>€ à payer</p>
+<p>Taxe Foncière: <%= @taxe_fonciere_paid %>€ payés / <%= @taxe_fonciere_tbp %>€ à payer</p>
+<p>Copropriété: <%= @copropriete_paid %>€ payés / <%= @copropriete_tbp %>€ à payer</p>
+<p>Assurances: <%= @assurances_paid %>€ payés / <%= @assurances_tbp %>€ à payer</p>
+<p>Travaux: <%= @travaux_paid %>€ payés / <%= @travaux_tbp %>€ à payer</p>
+<p>Autres: <%= @autres_paid %>€ payés / <%= @autres_tbp %>€ à payer</p>
+
+
+<p>Autres</p> -->
