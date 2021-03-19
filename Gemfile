@@ -49,8 +49,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 
-  # Rails admin
-  gem 'rails_admin', '~> 2.0'
+
 end
 
 group :test do
@@ -67,3 +66,6 @@ gem 'geocoder'
 
 gem 'letter_opener', group: :development
 gem 'postmark-rails'
+
+  # Rails admin
+  gem 'rails_admin', '~> 2.0'
