@@ -1,0 +1,44 @@
+.section-title {
+    text-align: center;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    padding: 16px;
+
+    h1 {
+        font-size: 32px;
+    }
+}
+
+.section-head {
+    display: flex;
+    justify-content: space-around;
+    background-color: white;
+    border-radius: 3px;
+
+    .section-text-loyer {
+        font-size: 16px;
+        font-style: italic;
+    }
+
+    .section-text-depense {
+        font-size: 16px;
+    }
+}
+
+.form-input {
+    font-size: 14px;
+}
+
+
+
+.section-card {
+    padding: 24px 0px;
+}
+
+.section-add-loyer {
+    width: 400px;
+}
+
+.section-add-depense {
+    width: 600px;
+}
