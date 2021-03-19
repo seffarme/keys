@@ -4,10 +4,10 @@
     <h1><%= @bien.nom %></h1>
   </section>
 
-  <section class="section-head">
+  <section class="section-head mb-4">
     <div class="section-card section-add-loyer">
       <p class="section-text-loyer">Avez-vous reçu le loyer de <%= @bien.montant_loyer %> de la part de <%= @bien.locataires.first.prenom %> <%= @bien.locataires.first.nom %> ?</p>
-      <%= link_to "J'ai reçu le loyer 💰", bien_loyers_path(bien_id: @bien.id), method: :post, class:"btn btn-primary" %>
+      <%= link_to "J'ai reçu le loyer 💰", bien_loyers_path(bien_id: @bien.id), method: :post, class:"btn btn-gradient" %>
     </div>
 
     <div class="section-card section-add-depense">
@@ -24,8 +24,8 @@
             </div>
             <%= ff.input :date_paiement, label: false, as: :date, order: [:day, :month, :year], input_html: {class: "form-input"} %>
           <% end %>
-    
-          <%= f.submit "Enregistrer", class: "btn btn-primary" %>
+
+          <%= f.submit "Enregistrer", class: "btn btn-gradient" %>
         <% end %>
       </div>
     </div>
@@ -37,7 +37,7 @@
   <table class="tableau-synthese">
     <thead>
       <tr>
-        <th> </th>
+        <th> Année en cours </th>
         <th>Encaissé</th>
         <th>A venir</th>
       </tr>
@@ -45,8 +45,8 @@
     <tbody>
       <tr>
         <td>Loyers</td>
-        <td><%= @loyers_received %></td>
-        <td><%=  %>- € </td>
+        <td><%= @loyers_received %>€</td>
+        <td><%=  %>0€ </td>
       </tr>
       <tr>
         <td>Taxe Foncière</td>
@@ -81,7 +81,7 @@
   <!-- TABLEAU OPERATIONS -->
 
 
-  <div class="tableau_depenses container">
+  <div class="tableau_depenses container mb-4">
     <h2>Dernières transactions </h2>
     <ul class="responsive-table">
       <li class="table-header">
