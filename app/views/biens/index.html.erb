@@ -1,10 +1,8 @@
-<h1 style="text-align:center; margin-top: 20px;">Mes locations</h1>
-
-
-<%# <div class="container"> %>
+<h4 style="text-align:center; margin-top: 20px;">Bonjour, <%=current_user.prenom %></h4>
+<div class="container">
 	<div class="row row-cols-1 row-cols-md-2" style="padding: 50px">
 		<div class="col" style="padding: 10px">
-			<div class="card" style="box-shadow: 10px 5px 5px grey;">
+			<div class="card">
 				<div class="card-body" style="height: 500px">
 					<div class="d-flex justify-content-around align-items-center">
 						<div>
@@ -22,7 +20,7 @@
 		</div>
 
 		<div class="col" style="padding: 10px">
-			<div class="card" style="box-shadow: 10px 5px 5px grey;">
+			<div class="card" >
 				<div class="card-body" style="height: 500px">
 					<div class="d-flex justify-content-around align-items-center">
 						<div>
@@ -50,11 +48,11 @@
 								<p style="font-size: medium">Adresse: <strong><%= bien.adresse %></strong></p>
 							</div>
 							<div class="card-button" style="margin-right: 300px">
-								<p style="font-size: medium">
+								<!-- <p style="font-size: medium">
 								<strong>⚠️Loyer Payé</strong>
 									<%= link_to "YES ✅", new_bien_path, remote: true, class: "btn btn-ghost" %>
 									<%= link_to "NO  ❎", new_bien_path, remote: true, class: "btn btn-ghost" %>
-								</p>
+								</p> -->
 							</div>
 						</div>
 					<% end %>
@@ -87,5 +85,5 @@
 				</div>
 			<%# </div> %>
 		<%# </div> %>
-<%# </div> %>
+</div>
 
