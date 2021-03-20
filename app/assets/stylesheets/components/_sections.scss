@@ -1,3 +1,45 @@
+
+// Base layout 
+.section-card {
+    background-color: white;
+    box-shadow: 0 0 12px rgba(0,0,0,0.2);
+    border-radius: 3px;
+    border-top: 16px;
+}
+
+
+// Style
+.section-pop-up {
+    font-size: 100%;
+}
+
+.section-graph {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+
+
+// Event
+.section-alert {
+    background-color:$light-red;
+    color: white;
+}
+
+.section-success {
+    background-color: $light-green;
+    color: white;
+}
+
+
+
+
+
+
+
+
+
 .section-title {
     text-align: center;
     margin-top: 16px;
@@ -25,14 +67,10 @@
     }
 }
 
+
+
 .form-input {
     font-size: 14px;
-}
-
-
-
-.section-card {
-    padding: 24px 0px;
 }
 
 .section-add-loyer {

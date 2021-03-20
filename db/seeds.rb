@@ -48,15 +48,15 @@ puts "Starting the seeding process..."
 # User
 puts "[1/6] - Seeding the User DB..."
 
-queen_elizabeth = User.new({
-    prenom: "Elizabeth",
-    nom: "Windsor",
-    email: "julie.laloy@gmail.com",
-    num_tel: "0614514502",
+mathieu_eustachy = User.new({
+    prenom: "Mathieu",
+    nom: "Eustachy",
+    email: "mathieu.eustachy@gmail.com",
+    num_tel: "0614714702",
     password: "123456",
     admin: true
 })
-queen_elizabeth.save
+mathieu_eustachy.save
 
 
 ## - # - ###########################################################################
@@ -87,7 +87,7 @@ buckingham_palace_en_correze = Bien.new({
     montant_loyer: "500"
 })
 
-buckingham_palace_en_correze.user = queen_elizabeth
+buckingham_palace_en_correze.user = mathieu_eustachy
 buckingham_palace_en_correze.save
 
 
@@ -115,7 +115,7 @@ chateau_de_sedieres = Bien.new({
     montant_loyer: "700"
 })
 
-chateau_de_sedieres.user = queen_elizabeth
+chateau_de_sedieres.user = mathieu_eustachy
 chateau_de_sedieres.save
 
 
@@ -143,7 +143,7 @@ maison_lignerac = Bien.new({
     montant_loyer: "330"
 })
 
-maison_lignerac.user = queen_elizabeth
+maison_lignerac.user = mathieu_eustachy
 maison_lignerac.save
 
 # Bien 4
@@ -170,7 +170,7 @@ villa_stprivat = Bien.new({
     montant_loyer: "1250"
 })
 
-villa_stprivat.user = queen_elizabeth
+villa_stprivat.user = mathieu_eustachy
 villa_stprivat.save
 
 

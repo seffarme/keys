@@ -24,12 +24,19 @@
 
   <body>
 
+    <!-- NAVBAR -->
     <%= render 'shared/navbar_home' if @home %>
 		<%= render 'shared/navbar_body' unless @home %>
+
+    
+    <!-- CONTENT -->
+    <%= yield %>
+    
+    <!-- FLASHES -->
     <%= render 'shared/flashes' %>
 
+    <!-- FOOTER home -->
+    <%= render 'shared/footer_home' if @home %>
 
-    <%= yield %>
-    <%= render "shared/footer_white" %>
   </body>
 </html>

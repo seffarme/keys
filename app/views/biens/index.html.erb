@@ -1,42 +1,62 @@
-<h1 style="text-align:center; margin-top: 20px;">Mes locations</h1>
+<div class="container">
 
-
-<%# <div class="container"> %>
-	<div class="row row-cols-1 row-cols-md-2" style="padding: 50px">
-		<div class="col" style="padding: 10px">
-			<div class="card" style="box-shadow: 10px 5px 5px grey;">
-				<div class="card-body" style="height: 500px">
-					<div class="d-flex justify-content-around align-items-center">
-						<div>
-							<%# <div class="row justify-content-around"> %>
-                <%# <div class="card" class="col-6"> %>
-                  <div class="card-body chart-container" style="position: relative; height: 50vh; width: 40vw;">
-                    <canvas id="myChartCourbe"></canvas>
-                  </div>
-                <%# </div> %>
-              <%# </div> %>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="col" style="padding: 10px">
-			<div class="card" style="box-shadow: 10px 5px 5px grey;">
-				<div class="card-body" style="height: 500px">
-					<div class="d-flex justify-content-around align-items-center">
-						<div>
-							<%# <div class="card" class="col-6"> %>
-                 <div class="card-body chart-container" style="position: relative; height: 80vh; width: 40vw;">
-                    <canvas id="myChartBiens"></canvas>
-                 </div>
-              <%# </div> %>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+	<!-- WELCOME MESSAGE -->
+	<div class="">
+		<p class="">Bonjour <%= current_user.prenom %>, ravi de vous revoir parmi nous</p>
 	</div>
+
+
+	<!-- LOYERS POP UP; color depends on status -->
+	<section class="section-card section-pop-up section-alert">
+		<p>Ici on met du JS avec cond si loyers mois non payé</p>
+	</section>
+
+
+	<!-- GRAPHS OVER LAST 12 MONTHS-->
+	<section class="section-graph">
+		<div class="row row-cols-1 row-cols-md-2">
+
+			<!-- DETAILED CF PER MONTH with CUMULATIVE CF GRAPH -->
+			<div class="graph-card">
+				<canvas class="graph" id="myChartCourbe"></canvas>
+			</div>
+
+			<!-- CUMULATIVE CF PER FLAT GRAPH -->
+			<div class="graph-card">
+				<canvas class="graph" id="myChartBiens"></canvas>
+			</div>
+
+		</div>
+	</section>
+
+
+	<!-- BIENS LIST -->
+	<section class="section-card">
+		<!-- LIST -->
+		<div>
+			<% @biens.each do |bien| %>
+				<!-- BIEN LIST-CARD -->
+				<div class="card-product">
+					<i class="fas fa-house-user"></i>
+					<div class="card-product-infos">
+						<h2><%= link_to bien.nom, bien_path(bien) %></h2>
+						<p>Categorie: <strong><%= bien.categorie %></strong></p>
+						<p>Adresse: <strong><%= bien.adresse %></strong></p>
+					</div>
+				</div>
+			<% end %>
+		</div>
+
+		<!-- ADD A BIEN -->
+		<div>
+
+		</div>
+
+	</section>
+
+
+
+
 
 		<%# <div class="col" style="padding: 10px" > %>
 			<%# <div class="card"> %>
@@ -75,17 +95,21 @@
 			<%# </div> %>
 		<%# </div> %>
 
-		<%# <div class="col" style="padding: 10px"> %>
-			<%# <div class="card", style="box-shadow: 10px 5px 5px grey;"> %>
-					<div class="card-body" style="padding: 0; margin-top: 30px">
-						<div id="map"
-									style="width: 100%; height: 500px;"
-									data-markers="<%= @markers.to_json %>"
-									data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-						</div>
-					</div>
-				</div>
-			<%# </div> %>
-		<%# </div> %>
-<%# </div> %>
+	
+	<!-- BIENS MAP -->
+	<section class="section-card">
 
+		<div id="map"
+			style="width: 100%; height: 500px;"
+			data-markers="<%= @markers.to_json %>"
+			data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+		</div>
+
+	</section>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer-set-height">
+	<%= render 'shared/footer_body' unless @home %>
+</div>
