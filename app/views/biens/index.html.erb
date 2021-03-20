@@ -1,8 +1,8 @@
 <div class="container">
 
 	<!-- WELCOME MESSAGE -->
-	<div class="">
-		<p class="">Bonjour <%= current_user.prenom %>, ravi de vous revoir parmi nous</p>
+	<div class="section-introduction">
+		<p>Bonjour <%= current_user.prenom %>, ravi de vous revoir parmi nous !</p>
 	</div>
 
 
@@ -31,39 +31,62 @@
 
 
 	<!-- BIENS LIST -->
-	<section class="">
+	<section class="" id="biens-list">
+
 		<!-- LIST -->
 		<div>
 			<% @biens.each do |bien| %>
 				<!-- BIEN LIST-CARD -->
-				<div class="card-product row">
+				<div class="card-product">
 
 					<!-- LEFT PART of the card -->
 					<div class="card-product-informations">
 						<!-- ICON -->
-						<i class="fas fa-house-user"></i>
+						<i class="card-product-icon fas fa-house-user"></i>
 						<!-- BASE INFO -->
-						<div class="card-product-infos">
-							<h2><%= link_to bien.nom, bien_path(bien) %></h2>
+						<div class="card-product-text-infos">
+							<%= link_to bien.nom, bien_path(bien) %>
 						</div>
 
 					</div>
 
-					<!-- RIGHT PART of the card -->
+					<!-- RIGHT PART of the card QUICK ACTIONS -->
 					<div class="card-product-quick-actions">
-						<!-- QUICK ACTIONS -->
-						<div>
-							<!-- LOYER PAID ? -->
-							<% if bien.loyers.empty? %>
-								<div class="block-base block-btn block-btn-loyer">
-									<p>Loyer reçu ?</p>
-									<%= link_to "", bien_loyers_path(bien_id: bien.id), method: :post %>
-								</div>
-							<% else %>
-								<div class="block-base block-paid-success">
-									<p>Loyer reçu ✅</p>
-								</div>
-							<% end %>
+
+						<!-- LOYER PAID ? -->
+						<% if bien.loyers.empty? %>
+							<div class="block-base block-btn block-btn-loyer">
+								<p>Valider le loyer</p>
+								<%= link_to "", bien_loyers_path(bien_id: bien.id), method: :post %>
+							</div>
+						<% elsif bien.loyers.last.date_paiement.month != Date.today.month %>
+							<div class="block-base block-btn block-btn-loyer">
+								<p>Valider le loyer</p>
+								<%= link_to "", bien_loyers_path(bien_id: bien.id), method: :post %>
+							</div>
+						<% else %>
+							<div class="block-base block-paid-success">
+								<p>Loyer reçu ✅</p>
+							</div>
+						<% end %>
+
+						<!-- RELANCE TO DO ? -->
+						<% if bien.loyers.empty? %>
+							<div class="block-base block-btn block-btn-relance">
+								<p>Faire une relance</p>
+								<%= link_to "", bien_loyers_path(bien_id: bien.id), method: :post %>
+							</div>
+						<% elsif bien.loyers.last.date_paiement.month != Date.today.month %>
+							<div class="block-base block-btn block-btn-relance">
+								<p>Faire une relance</p>
+								<%= link_to "", bien_loyers_path(bien_id: bien.id), method: :post %>
+							</div>
+						<% end %>
+
+						<!-- ADD A DEPENSE -->
+						<div class="block-base block-btn block-btn-add-depense">
+							<p>Ajouter une dépense</p>
+							<%= link_to "", bien_path(bien) %>
 						</div>
 					</div>
 				</div>
@@ -71,68 +94,32 @@
 		</div>
 
 		<!-- ADD A BIEN -->
-		<div>
-
+		<div class="card-product-new-bien">
+			<div class="large-block-base block-btn block-btn-add-bien">
+				<i class="far fa-plus-square"></i>
+				<p>Ajouter un nouveau bien</p>
+				<%= link_to "" , new_bien_path, class:"txt-hover" %>
+			</div>
 		</div>
 
 	</section>
 
-
-
-
-
-		<%# <div class="col" style="padding: 10px" > %>
-			<%# <div class="card"> %>
-				<div class="card-body" style="padding-bottom: 5px" >
-					<% @biens.each do |bien| %>
-						<div class="card-product" style="padding: 10px; margin-top: 5px;">
-							<img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg"/>
-							<div class="card-product-infos" style="width: 600px">
-								<h2><%= link_to bien.nom, bien_path(bien) %></h2>
-								<p style="font-size: medium">Categorie: <strong><%= bien.categorie %></strong></p>
-								<p style="font-size: medium">Adresse: <strong><%= bien.adresse %></strong></p>
-							</div>
-							<div class="card-button" style="margin-right: 300px">
-								<p style="font-size: medium">
-								<strong>⚠️Loyer Payé</strong>
-									<%= link_to "YES ✅", new_bien_path, remote: true, class: "btn btn-ghost" %>
-									<%= link_to "NO  ❎", new_bien_path, remote: true, class: "btn btn-ghost" %>
-								</p>
-							</div>
-						</div>
-					<% end %>
-					<div class="card-product" style="padding: 10px; margin-top: 5px;">
-  					<img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-  					<div class="card-product-infos" style="width: 600px">
-  					  <h2>Vous pouvez ajouter un bien</h2>
-							<div type="button" class="btn btn-secondary txt-hover" style="margin: 10px; color: white; ">
-						  	<%= link_to "Ajoutez ➕" , new_bien_path, class:"txt-hover" %>
-							</div>
-  					</div>
-					</div>
-
-
-				</div>
-				<div class="container" style= "margin: 0 auto; text-align: center;">
-
-			<%# </div> %>
-		<%# </div> %>
-
 	
 	<!-- BIENS MAP -->
-	<section class="section-card">
+	<section class="section-card section-mapbox">
+		<h3>Localisations de vos <%= @biens.count %> biens</h3>
 
 		<div id="map"
-			style="width: 100%; height: 500px;"
 			data-markers="<%= @markers.to_json %>"
 			data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
 		</div>
 
 	</section>
 
-</div>
+	
+	<!-- FOOTER -->
+	<div class="footer-set-height">
+		<%= render 'shared/footer_body' unless @home %>
+	</div>
 
-<!-- FOOTER -->
-<div class="footer-set-height">
-	<%= render 'shared/footer_body' unless @home %>
 </div>

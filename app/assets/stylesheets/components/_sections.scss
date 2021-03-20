@@ -4,7 +4,7 @@
     background-color: white;
     box-shadow: 0 0 8px rgba(0,0,0,0.1);
     border-radius: 3px;
-    border-top: 16px;
+    margin-top: 16px;
 }
 
 
@@ -17,6 +17,18 @@
     display: flex;
     justify-content: space-around;
     width: 100%;
+}
+
+.section-mapbox {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    h3 {
+        font-size: 16px;
+        margin: 12px 0;
+    }
 }
 
 
@@ -32,7 +44,21 @@
     color: white;
 }
 
+// Other
+.section-introduction {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
+    margin-top: 16px;
+
+    p {
+        font-size: 14px;
+        font-weight: 300;
+        color: $font-light-grey;
+        margin: 0;
+    }
+}
 
 
 

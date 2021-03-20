@@ -9,6 +9,16 @@
     align-items: center;
 }
 
+.large-block-base {
+    width: 40%;
+    height: 40px;
+    border-radius: 3px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .block-btn {
     position: relative;
 
@@ -24,21 +34,59 @@
 }
 
 .block-btn-loyer {
-    background-color: $orange;
+    background-color: $green;
+    margin-right: 8px;
+
     p {
         color: white;
+        text-align: center;
         font-size: 12px;
         font-weight: 700;
+    }
+}
+
+.block-btn-relance {
+    background-color: $orange;
+    margin-right: 8px;
+
+    p {
+        color: white;
+        text-align: center;
+        font-size: 12px;
+        font-weight: 700;
+    }
+}
+
+.block-btn-add-depense {
+    background-color: $dark-grey;
+
+    p {
+        color: white;
+        text-align: center;
+        font-size: 12px;
+        font-weight: 700;
+    }
+}
+
+.block-btn-add-bien {
+    background-color: transparent;
+
+    p {
+        color: $font-light-grey;
+        text-align: center;
+        font-size: 12px;
+        font-weight: 300
     }
 }
 
 // STATE
 .block-paid-success {
     color: $font-light-grey;
-    background-color: $light-green;
+    // background-color: $light-green;
+    margin-right: 8px;
 
     p {
-        font-size: 12px;
+        font-size: 14px;
         font-weight: 300;
         margin: 0;
     }

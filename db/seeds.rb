@@ -121,10 +121,10 @@ chateau_de_sedieres.save
 
 # Bien 3
 maison_lignerac = Bien.new({
-    nom: "Maison Lignerac - Clergoux",
+    nom: "Maison Ligneyrac - Clergoux",
     categorie: "Maison",
     adresse: "Le bourg",
-    ville: "Lignerac",
+    ville: "Ligneyrac",
     code_postal: "19500",
     pays: "France",
     info_compl_adresse: "A seulement 15 min de Brive se trouve cette belle grange rénovée avec goût et des matériaux de qualité. En situation dominante, sur plus de 2 ha de terrain, elle vous offre le confort d'une maison moderne à l'intérieur et le charme des vielles pierres à l'extérieur. Le Rez de chaussée se compose d'un séjour de 85m² avec sa cuisine ouverte, une suite parentale avec salle de bain. Très lumineux grâce à des baies vitrées ouvertes sur la terrasse et le jardin.",

@@ -1,7 +1,7 @@
-// APPARTMENT LIST
+// Layout
 .card-product {
     overflow: hidden;
-    height: 100px;
+    height: 80px;
     margin-bottom: 8px;
     border-radius: 3px;
 
@@ -13,43 +13,55 @@
     justify-content: space-between;
 }
 
+// Left-part
 .card-product i {
     font-size: 28px;
     padding: 16px;
     color: $dark-grey;
 }
 
+
 .card-product-informations {
     width: 25%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+
+    .card-product-text-infos {
+        min-width: 280px;
+        display: flex;
+        align-items: center;
+
+        a {
+            width: 100%;
+            font-weight: 500;
+            text-decoration: none;
+        }
+    }
 }
 
+// Right part
 .card-product-quick-actions {
     width: 35%;
     display: flex;
+    justify-content: flex-end;
+    padding-right: 20px;
+}
+
+// Other
+.card-product-new-bien {
+    height: 40px;
+    margin-bottom: 8px;
+    border-radius: 3px;
+
+    background: transparent;
+
+    display: flex;
+    align-items: center;
     justify-content: center;
-}
 
-
-
-.card-product img {
-    height: 100%;
-    width: 120px;
-    object-fit: cover;
-}
-
-.card-product h2 {
-    font-size: 16px;
-    font-weight: bold;
-    margin: 0;
-}
-
-
-.card-product .card-product-infos {
-    padding: 16px;
-}
-
-.txt-hover:hover {
-    text-decoration: none;
+    i {
+        font-size: 16px;
+        margin-right: 8px;
+        color: $font-light-grey;
+    }
 }

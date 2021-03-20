@@ -14,7 +14,7 @@ class LoyersController < ApplicationController
 
     if @loyer.save
       if previous_url == index_url
-        redirect_to biens_path
+        redirect_to biens_path(anchor: 'biens-list')
       else
         redirect_to bien_path(@bien)
       end
