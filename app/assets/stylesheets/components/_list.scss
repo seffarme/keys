@@ -3,17 +3,32 @@
     overflow: hidden;
     height: 100px;
     margin-bottom: 8px;
+    border-radius: 3px;
+
     background: white;
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
+
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
 }
 
 .card-product i {
-    font-size: 36px;
+    font-size: 28px;
     padding: 16px;
     color: $dark-grey;
+}
+
+.card-product-informations {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+}
+
+.card-product-quick-actions {
+    width: 35%;
+    display: flex;
+    justify-content: center;
 }
 
 
@@ -30,13 +45,6 @@
     margin: 0;
 }
 
-.card-product p {
-    font-size: 12px;
-    line-height: 1.4;
-    opacity: .7;
-    margin-bottom: 0;
-    margin-top: 8px;
-}
 
 .card-product .card-product-infos {
     padding: 16px;

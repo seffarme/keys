@@ -31,17 +31,40 @@
 
 
 	<!-- BIENS LIST -->
-	<section class="section-card">
+	<section class="">
 		<!-- LIST -->
 		<div>
 			<% @biens.each do |bien| %>
 				<!-- BIEN LIST-CARD -->
-				<div class="card-product">
-					<i class="fas fa-house-user"></i>
-					<div class="card-product-infos">
-						<h2><%= link_to bien.nom, bien_path(bien) %></h2>
-						<p>Categorie: <strong><%= bien.categorie %></strong></p>
-						<p>Adresse: <strong><%= bien.adresse %></strong></p>
+				<div class="card-product row">
+
+					<!-- LEFT PART of the card -->
+					<div class="card-product-informations">
+						<!-- ICON -->
+						<i class="fas fa-house-user"></i>
+						<!-- BASE INFO -->
+						<div class="card-product-infos">
+							<h2><%= link_to bien.nom, bien_path(bien) %></h2>
+						</div>
+
+					</div>
+
+					<!-- RIGHT PART of the card -->
+					<div class="card-product-quick-actions">
+						<!-- QUICK ACTIONS -->
+						<div>
+							<!-- LOYER PAID ? -->
+							<% if bien.loyers.empty? %>
+								<div class="block-base block-btn block-btn-loyer">
+									<p>Loyer reçu ?</p>
+									<%= link_to "", bien_loyers_path(bien_id: bien.id), method: :post %>
+								</div>
+							<% else %>
+								<div class="block-base block-paid-success">
+									<p>Loyer reçu ✅</p>
+								</div>
+							<% end %>
+						</div>
 					</div>
 				</div>
 			<% end %>
