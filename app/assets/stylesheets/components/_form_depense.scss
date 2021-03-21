@@ -1,0 +1,33 @@
+.depense-form {
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+#depense-form-nom-montant-cat {
+    display: flex;
+    justify-content: space-between;
+
+    margin-right: 12px;
+
+    div > input {
+        font-size: 12px;
+    }
+
+    div > select {
+        font-size: 12px;
+    }
+}
+
+#depense-form-date {
+    display: flex;
+    justify-content: center;
+
+    margin-right: 12px;
+
+    div > select {
+        font-size: 12px;
+        margin: 0 !important;
+        padding-left: 4px;
+    }
+}

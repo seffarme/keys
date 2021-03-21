@@ -3,7 +3,7 @@ class BiensController < ApplicationController
   CURRENT_START_PERIOD = Date.new(CURRENT_YEAR)
   CURRENT_END_PERIOD = Date.new(CURRENT_YEAR + 1) - 1.day
 
-  before_action :set_biens, :loyer_missing?, only: [:index]
+  before_action :set_biens, :any_loyer_missing?, only: [:index]
   before_action :set_bien, :set_report, only: %i[show update]
 
   def index
@@ -161,8 +161,8 @@ class BiensController < ApplicationController
     @autres_tbp = @autres_tbp_list.reduce(0) { |sum, autres| sum + autres }
   end
 
-  def loyer_missing?
-    @loyer_missing = @biens.any? do |bien|
+  def any_loyer_missing?
+    @any_loyer_missing = @biens.any? do |bien|
       bien.loyers.empty? || bien.loyers.last.date_paiement.month != Date.today.month
     end
   end

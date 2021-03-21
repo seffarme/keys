@@ -1,34 +1,62 @@
 <div class="container">
 
+  <!-- TITLE -->
   <section class="section-title">
+    <!-- BACK TO LIST BTN -->
+    <div class="block-base block-btn block-btn-retour-biens">
+      <p>Retour aux biens</p>
+      <%= link_to "", biens_path %>
+    </div>
+    <!-- ICON -->
+    <i class="card-product-icon fas fa-house-user"></i>
+    <!-- TITLE NAME -->
     <h1><%= @bien.nom %></h1>
   </section>
 
-  <section class="section-head">
-    <div class="section-card section-add-loyer">
-      <p class="section-text-loyer">Avez-vous reçu le loyer de <%= @bien.montant_loyer %> de la part de <%= @bien.locataires.first.prenom %> <%= @bien.locataires.first.nom %> ?</p>
+  <!-- LOYER POP UP; color depends on status -->
+	<% if @loyer_missing %>
+    <section class="section-card section-pop-up section-alert">
+      <p>Le loyer du mois de mars n'a pas été réglé !</p>
+    </section>
+  <% else %>
+    <section class="section-card section-pop-up section-success">
+      <p>Le loyer du mois de mars a été payé !</p>
+    </section>
+  <% end %>
+
+  <!-- IMPORTANT ACTIONS -->
+  <section class="section-important-actions">
+
+    <!-- ADD LOYER -->
+    <div class="section-card-add-loyer">
+      <p class="">Avez-vous reçu le loyer de <%= @bien.montant_loyer %> de la part de <%= @bien.locataires.first.prenom %> <%= @bien.locataires.first.nom %> ?</p>
       <%= link_to "J'ai reçu le loyer 💰", bien_loyers_path(bien_id: @bien.id), method: :post, class:"btn btn-primary" %>
     </div>
 
-    <div class="section-card section-add-depense">
-      <!-- ADD DEPENSE -->
+    <!-- ADD DEPENSE -->
+    <div class="section-card-add-depense">
       <p class="section-text-depense">Ajouter une dépense</p>
       <div class="form-container">
         <%= form_for @bien do |f| %>
           <%= f.simple_fields_for :depenses, @bien.depenses.build do |ff| %>
             <%= ff.hidden_field :id %>
-            <div class="d-flex justify-content-between">
-              <%= ff.input :nom, label: false, placeholder: "Nom", input_html: {class: "form-input"} %>
-              <%= ff.input :montant, label: false, placeholder: "Montant", input_html: {class: "form-input"} %>
-              <%= ff.input :categorie, label: false, collection: Depense::CATEGORIE, prompt: "-- Sélectionnez une catégorie --", input_html: {class: "form-input"}  %>
+            <div class="depense-form">
+              <div id="depense-form-nom-montant-cat">
+                <%= ff.input :nom, label: false, placeholder: "Nom", input_html: {class: "form-input"} %>
+                <%= ff.input :montant, label: false, placeholder: "Montant", input_html: {class: "form-input"} %>
+                <%= ff.input :categorie, label: false, collection: Depense::CATEGORIE, prompt: "-- Catégorie --", input_html: {class: "form-input"}  %>
+              </div>
+              <div id="depense-form-date">
+                <%= ff.input :date_paiement, label: false, as: :date, order: [:day, :month, :year], input_html: {class: "form-input"} %>
+              </div>
             </div>
-            <%= ff.input :date_paiement, label: false, as: :date, order: [:day, :month, :year], input_html: {class: "form-input"} %>
           <% end %>
     
           <%= f.submit "Enregistrer", class: "btn btn-primary" %>
         <% end %>
       </div>
     </div>
+
   </section>
 
 
@@ -101,23 +129,10 @@
     <% end %>
   </div>
 
+  <!-- FOOTER -->
+	<div class="footer-set-height">
+		<%= render 'shared/footer_body' unless @home %>
+	</div>
 
 </div>
 
-
-
-
-<!-- <h2>Suivi financier</h2>
-<h3>Recettes</h3>
-<p>Loyers collectés: <%= @loyers_received %>€ reçus / <%=  %>€ à venir</p>
-
-<h3>Dépenses</h3>
-<p>Crédit: <%= @credits_paid %>€ payés / <%= @credits_tbp %>€ à payer</p>
-<p>Taxe Foncière: <%= @taxe_fonciere_paid %>€ payés / <%= @taxe_fonciere_tbp %>€ à payer</p>
-<p>Copropriété: <%= @copropriete_paid %>€ payés / <%= @copropriete_tbp %>€ à payer</p>
-<p>Assurances: <%= @assurances_paid %>€ payés / <%= @assurances_tbp %>€ à payer</p>
-<p>Travaux: <%= @travaux_paid %>€ payés / <%= @travaux_tbp %>€ à payer</p>
-<p>Autres: <%= @autres_paid %>€ payés / <%= @autres_tbp %>€ à payer</p>
-
-
-<p>Autres</p> -->

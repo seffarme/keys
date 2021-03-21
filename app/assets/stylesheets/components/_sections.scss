@@ -43,12 +43,87 @@
     justify-content: space-around;
     align-items: center;
 
+    margin-bottom: 32px;
+
     h3 {
         font-size: 16px;
         margin: 12px 0;
     }
 }
 
+.section-important-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+
+    margin-top: 16px;
+    border-radius: 3px;
+
+    .section-card-add-loyer {
+        background-color: white;
+        box-shadow: 0 0 8px rgba(0,0,0,0.1);
+        border-radius: 3px;
+
+        width: 35%;
+        height: 100%;
+
+        p {
+            margin: 0;
+        }
+    }
+
+    .section-card-add-depense {
+        background-color: white;
+        box-shadow: 0 0 8px rgba(0,0,0,0.1);
+        border-radius: 3px;
+    }
+}
+
+
+// Other
+.section-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+    position: relative;
+    
+    margin-top: 12px;
+    margin-bottom: 12px;
+    padding: 16px;
+    
+    div {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    i {
+        color: $font-dark-grey;
+    }
+    
+    h1 {
+        margin-left: 12px;
+        font-size: 32px;
+    }
+}
+
+.section-introduction {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    margin-top: 16px;
+    
+    p {
+        font-size: 14px;
+        font-weight: 300;
+        color: $font-light-grey;
+        margin: 0;
+    }
+}
 
 
 // Event
@@ -61,67 +136,4 @@
 .section-success {
     background-color: $light-green;
     color:$font-light-grey;
-}
-
-// Other
-.section-introduction {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    margin-top: 16px;
-
-    p {
-        font-size: 14px;
-        font-weight: 300;
-        color: $font-light-grey;
-        margin: 0;
-    }
-}
-
-
-
-
-
-
-
-.section-title {
-    text-align: center;
-    margin-top: 16px;
-    margin-bottom: 16px;
-    padding: 16px;
-
-    h1 {
-        font-size: 32px;
-    }
-}
-
-.section-head {
-    display: flex;
-    justify-content: space-around;
-    background-color: white;
-    border-radius: 3px;
-
-    .section-text-loyer {
-        font-size: 16px;
-        font-style: italic;
-    }
-
-    .section-text-depense {
-        font-size: 16px;
-    }
-}
-
-
-
-.form-input {
-    font-size: 14px;
-}
-
-.section-add-loyer {
-    width: 400px;
-}
-
-.section-add-depense {
-    width: 600px;
 }

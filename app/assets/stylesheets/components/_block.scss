@@ -79,6 +79,19 @@
     }
 }
 
+.block-btn-retour-biens {
+    background-color: transparent;
+    
+    border: 1px solid $dark-grey;
+
+    p {
+        color: $dark-grey;
+        text-align: center;
+        font-size: 12px;
+        font-weight: 300;
+    }
+}
+
 // STATE
 .block-paid-success {
     color: $font-light-grey;
