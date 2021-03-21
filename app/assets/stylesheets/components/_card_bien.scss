@@ -16,6 +16,7 @@ $cubic-bezier: cubic-bezier(.55,0,.1,1);
 * {
   box-sizing: border-box;
   font-family: $font;
+
 }
 
 body {
@@ -48,6 +49,8 @@ body {
 	height: $bien-height;
 
 	color: $bien-text-color;
+
+
 
 	label {
 		margin: 0;
@@ -159,7 +162,7 @@ body {
 		// Item selected style
 		input[name="bien"]:checked + .item--container {
 	  		cursor: default;
-			width: 280px;
+			width: 300px;
 			padding: 20px;
 			background: $bien-color;
 
