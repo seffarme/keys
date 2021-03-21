@@ -11,6 +11,7 @@
   width:100%;
   margin:0 auto;
   position:relative;
+  font-size: 14px;;
 
 
   *               { position:relative }
@@ -26,7 +27,7 @@
     letter-spacing: 0.03em;
   }
 
-  tbody tr        { height:48px; border-bottom:1px solid rgb(233, 233, 233) ;
+  tbody tr        { height:30px; border-bottom:1px solid rgb(233, 233, 233) ;
     &:last-child  { border:0; }
   }
 
