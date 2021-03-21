@@ -55,161 +55,164 @@
       <% end %>
     </div>
 
+  </section>
+
     
-    <div class="flex-container">
+  <section class="section-dual-equiv-items-centered ">
 
     <!-- descriptif bien / locataire -->
-      <div class="flex-item">
-        <ul class="horizontal-bien">
-          <label for="one">
-            <li class="item">
-              <input checked type="radio" name="bien" id="one">
+    <div>
+      <ul class="horizontal-bien">
+        <label for="one">
+          <li class="item">
+            <input checked type="radio" name="bien" id="one">
 
-              <div class="item--container">
-                <header class="item--header">
-                  <span class="item--header--icon"><i class="fa fa-home"></i></span>
-                  <h4 class="item--header--title"><%= @bien.nom %></h4>
-                </header>
+            <div class="item--container">
+              <header class="item--header">
+                <span class="item--header--icon"><i class="fa fa-home"></i></span>
+                <h4 class="item--header--title"><%= @bien.nom %></h4>
+              </header>
 
-                <ul class="item--description">
-                  <li><%= @bien.categorie %></li>
-                  <li>loyer : <%= @bien.montant_loyer %>€</li>
-                  <li>acquis le : <%= @bien.date_acquisition %></li>
-                  <li>Prix d'achat : <%= @bien.prix_acquisition%>€</li>
-                </ul>
+              <ul class="item--description">
+                <li><%= @bien.categorie %></li>
+                <li>loyer : <%= @bien.montant_loyer %>€</li>
+                <li>acquis le : <%= @bien.date_acquisition %></li>
+                <li>Prix d'achat : <%= @bien.prix_acquisition%>€</li>
+              </ul>
 
-                <footer class="item--footer">
-                  <a href="#"><i class="fa fa-angle-right"></i>En savoir plus</a>
-                </footer>
-              </div>
+              <footer class="item--footer">
+                <a href="#"><i class="fa fa-angle-right"></i>En savoir plus</a>
+              </footer>
+            </div>
 
-            </li>
-          </label>
+          </li>
+        </label>
 
 
-          <label for="two">
-            <li class="item">
-              <input type="radio" name="bien" id="two">
+        <label for="two">
+          <li class="item">
+            <input type="radio" name="bien" id="two">
 
-              <div class="item--container">
-                <header class="item--header">
-                  <span class="item--header--icon"><i class="fa fa-house-user"></i></span>
-                  <h4 class="item--header--title">Locataire</h4>
-                </header>
+            <div class="item--container">
+              <header class="item--header">
+                <span class="item--header--icon"><i class="fa fa-house-user"></i></span>
+                <h4 class="item--header--title">Locataire</h4>
+              </header>
 
-                <ul class="item--description">
-                  <li>Locataire Prenom</li>
-                  <li>Locataire Nom</li>
-                  <li><i class="fa fa-mobile-alt"></i> 06 01 21 31 34</li>
-                  <li><i class="fa fa-envelope"></i> email@locataire.fr </li></li>
-                  <li><i class="far fa-calendar-alt"></i>date debut location</li>
-                  <li></li>
-                </ul>
+              <ul class="item--description">
+                <li>Locataire Prenom</li>
+                <li>Locataire Nom</li>
+                <li><i class="fa fa-mobile-alt"></i> 06 01 21 31 34</li>
+                <li><i class="fa fa-envelope"></i> email@locataire.fr </li></li>
+                <li><i class="far fa-calendar-alt"></i>date debut location</li>
+                <li></li>
+              </ul>
 
-                <footer class="item--footer">
-                  <a href="#"><i class="fa fa-angle-right"></i>En savoir plus</a>
-                </footer>
-              </div>
-            </li>
-          </label>
+              <footer class="item--footer">
+                <a href="#"><i class="fa fa-angle-right"></i>En savoir plus</a>
+              </footer>
+            </div>
+          </li>
+        </label>
 
-          <label for="three">
-            <li class="item">
-              <input type="radio" name="bien" id="three">
+        <label for="three">
+          <li class="item">
+            <input type="radio" name="bien" id="three">
 
-              <div class="item--container">
-                <header class="item--header">
-                  <span class="item--header--icon"><i class="fa fa-map-marker-alt"></i></span>
-                  <h4 class="item--header--title">Adresse</h4>
-                </header>
+            <div class="item--container">
+              <header class="item--header">
+                <span class="item--header--icon"><i class="fa fa-map-marker-alt"></i></span>
+                <h4 class="item--header--title">Adresse</h4>
+              </header>
 
-                <ul class="item--description">
-                  <li> <%= @bien.adresse %></li>
-                  <li><%= @bien.code_postal %> <%= @bien.ville %></li>
-                  <li><%= @bien.surface %>m2</li>
-                  <li><%= @bien.nb_pieces %> pièces</li>
-                  <li><%= @bien.nb_sdb %> sdb</li>
-                </ul>
+              <ul class="item--description">
+                <li> <%= @bien.adresse %></li>
+                <li><%= @bien.code_postal %> <%= @bien.ville %></li>
+                <li><%= @bien.surface %>m2</li>
+                <li><%= @bien.nb_pieces %> pièces</li>
+                <li><%= @bien.nb_sdb %> sdb</li>
+              </ul>
 
-                <footer class="item--footer">
-                  <a href="#"><i class="fa fa-angle-right"></i>En savoir plus</a>
-                </footer>
-              </div>
-            </li>
-          </label>
+              <footer class="item--footer">
+                <a href="#"><i class="fa fa-angle-right"></i>En savoir plus</a>
+              </footer>
+            </div>
+          </li>
+        </label>
 
-          <label for="four">
-            <li class="item">
-              <input type="radio" name="bien" id="four">
+        <label for="four">
+          <li class="item">
+            <input type="radio" name="bien" id="four">
 
-              <div class="item--container">
-                <header class="item--header">
-                  <span class="item--header--icon"><i class="fa fa-chart-line"></i></span>
-                  <h4 class="item--header--title">CashFlow</h4>
-                </header>
+            <div class="item--container">
+              <header class="item--header">
+                <span class="item--header--icon"><i class="fa fa-chart-line"></i></span>
+                <h4 class="item--header--title">CashFlow</h4>
+              </header>
 
-                <ul class="item--description">
-                  <li>Ce mois-ci : €</li>
-                  <li>Depuis le début de l'année : €</li>
-                  <li>Emprunt : €</li>
-                  <li>Remboursement restant: €</li>
-                </ul>
+              <ul class="item--description">
+                <li>Ce mois-ci : €</li>
+                <li>Depuis le début de l'année : €</li>
+                <li>Emprunt : €</li>
+                <li>Remboursement restant: €</li>
+              </ul>
 
-                <footer class="item--footer">
-                  <a href="#"><i class="fa fa-angle-right"></i>En savoir plus</a>
-                </footer>
-              </div>
-            </li>
-          </label>
-      </ul>
-      </div>
-      <!-- TABLEAU  SYNTHESE -->
-      <div class="flex-item-grow">
-        <div class="responsive-table">
-          <table class="tableau-synthese">
-            <thead>
-              <tr>
-                <th> Année en cours </th>
-                <th>Encaissé / Payé</th>
-                <th>A venir</th>
-              </tr>
-            <thead>
-            <tbody>
-              <tr>
-                <td>Loyers</td>
-                <td><%= @loyers_received %>€</td>
-                <td><%=  %>0€ </td>
-              </tr>
-              <tr>
-                <td>Taxe Foncière</td>
-                <td><%= @taxe_fonciere_paid %>€</td>
-                <td><%= @taxe_fonciere_tbp %>€</td>
-              </tr>
-              <tr>
-                <td>Copropriété</td>
-                <td><%= @copropriete_paid %>€</p></td>
-                <td><%= @copropriete_tbp %>€</td>
-              </tr>
-              <tr>
-                <td>Assurances</td>
-                <td><%= @assurances_paid %>€</td>
-                <td><%= @assurances_tbp %>€</td>
-              </tr>
-              <tr>
-                <td>Travaux</td>
-                <td><%= @travaux_paid %>€</td>
-                <td><%= @travaux_tbp %>€</td>
-              </tr>
-              <tr>
-                <td>Autres</td>
-                <td><%= @autres_paid %>€</td>
-                <td><%= @autres_tbp %>€</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+              <footer class="item--footer">
+                <a href="#"><i class="fa fa-angle-right"></i>En savoir plus</a>
+              </footer>
+            </div>
+          </li>
+        </label>
+    </ul>
+    </div>
+
+    <!-- TABLEAU  SYNTHESE -->
+    <div class="flex-item-grow">
+      <div class="responsive-table">
+        <table class="tableau-synthese">
+          <thead>
+            <tr>
+              <th> Année en cours </th>
+              <th>Encaissé / Payé</th>
+              <th>A venir</th>
+            </tr>
+          <thead>
+          <tbody>
+            <tr>
+              <td>Loyers</td>
+              <td><%= @loyers_received %>€</td>
+              <td><%=  %>0€ </td>
+            </tr>
+            <tr>
+              <td>Taxe Foncière</td>
+              <td><%= @taxe_fonciere_paid %>€</td>
+              <td><%= @taxe_fonciere_tbp %>€</td>
+            </tr>
+            <tr>
+              <td>Copropriété</td>
+              <td><%= @copropriete_paid %>€</p></td>
+              <td><%= @copropriete_tbp %>€</td>
+            </tr>
+            <tr>
+              <td>Assurances</td>
+              <td><%= @assurances_paid %>€</td>
+              <td><%= @assurances_tbp %>€</td>
+            </tr>
+            <tr>
+              <td>Travaux</td>
+              <td><%= @travaux_paid %>€</td>
+              <td><%= @travaux_tbp %>€</td>
+            </tr>
+            <tr>
+              <td>Autres</td>
+              <td><%= @autres_paid %>€</td>
+              <td><%= @autres_tbp %>€</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
+  </section>
 
 
   <!-- LAST OPERATIONS TABLE -->
