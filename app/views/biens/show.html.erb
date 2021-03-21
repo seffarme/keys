@@ -35,81 +35,78 @@
 
     <!-- ADD DEPENSE -->
     <div class="section-card-add-depense">
-      <p class="section-text-depense">Ajouter une dépense</p>
-      <div class="form-container">
-        <%= form_for @bien do |f| %>
-          <%= f.simple_fields_for :depenses, @bien.depenses.build do |ff| %>
-            <%= ff.hidden_field :id %>
-            <div class="depense-form">
-              <div id="depense-form-nom-montant-cat">
-                <%= ff.input :nom, label: false, placeholder: "Nom", input_html: {class: "form-input"} %>
-                <%= ff.input :montant, label: false, placeholder: "Montant", input_html: {class: "form-input"} %>
-                <%= ff.input :categorie, label: false, collection: Depense::CATEGORIE, prompt: "-- Catégorie --", input_html: {class: "form-input"}  %>
-              </div>
-              <div id="depense-form-date">
-                <%= ff.input :date_paiement, label: false, as: :date, order: [:day, :month, :year], input_html: {class: "form-input"} %>
-              </div>
+      <h4>Ajouter une dépense</h4>
+
+      <%= form_for @bien do |f| %>
+        <%= f.simple_fields_for :depenses, @bien.depenses.build do |ff| %>
+          <%= ff.hidden_field :id %>
+          <div class="form-depense">
+            <div id="depense-form-nom-montant-cat">
+              <%= ff.input :nom, label: false, placeholder: "Nom", input_html: {class: "form-input"} %>
+              <%= ff.input :montant, label: false, placeholder: "Montant", input_html: {class: "form-input"} %>
+              <%= ff.input :categorie, label: false, collection: Depense::CATEGORIE, prompt: "-- Catégorie --", input_html: {class: "form-input"}  %>
             </div>
-          <% end %>
-    
-          <%= f.submit "Enregistrer", class: "btn btn-primary" %>
-        <% end %>
-      </div>
+            <div id="depense-form-date">
+              <%= ff.input :date_paiement, label: false, as: :date, order: [:day, :month, :year], input_html: {class: "form-input"} %>
+            </div>
+            <% end %>
+            <%= f.submit "Enregistrer", class: "btn btn-primary" %>
+          </div>
+      <% end %>
+
     </div>
 
   </section>
 
 
-<!-- TABLEAU  SYNTHESE -->
-<div class="responsive-table">
-  <table class="tableau-synthese">
-    <thead>
-      <tr>
-        <th> </th>
-        <th>Encaissé</th>
-        <th>A venir</th>
-      </tr>
-    <thead>
-    <tbody>
-      <tr>
-        <td>Loyers</td>
-        <td><%= @loyers_received %></td>
-        <td><%=  %>- € </td>
-      </tr>
-      <tr>
-        <td>Taxe Foncière</td>
-        <td><%= @taxe_fonciere_paid %>€</td>
-        <td><%= @taxe_fonciere_tbp %>€</td>
-      </tr>
-      <tr>
-        <td>Copropriété</td>
-        <td><%= @copropriete_paid %>€</p></td>
-        <td><%= @copropriete_tbp %>€</td>
-      </tr>
-      <tr>
-        <td>Assurances</p></td>
-        <td><%= @assurances_paid %>€</td>
-        <td><%= @assurances_tbp %>€</td>
-      </tr>
-      <tr>
-        <td>Travaux</p></td>
-        <td><%= @travaux_paid %>€</td>
-        <td><%= @travaux_tbp %>€</td>
-      </tr>
-      <tr>
-        <td>Autres</p></td>
-        <td><%= @autres_paid %>€</td>
-        <td><%= @autres_tbp %>€</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+  <!-- TABLEAU SYNTHESE -->
+  <div class="responsive-table">
+    <table class="tableau-synthese">
+      <thead>
+        <tr>
+          <th> </th>
+          <th>Encaissé</th>
+          <th>A venir</th>
+        </tr>
+      <thead>
+      <tbody>
+        <tr>
+          <td>Loyers</td>
+          <td><%= @loyers_received %></td>
+          <td><%=  %>- € </td>
+        </tr>
+        <tr>
+          <td>Taxe Foncière</td>
+          <td><%= @taxe_fonciere_paid %>€</td>
+          <td><%= @taxe_fonciere_tbp %>€</td>
+        </tr>
+        <tr>
+          <td>Copropriété</td>
+          <td><%= @copropriete_paid %>€</p></td>
+          <td><%= @copropriete_tbp %>€</td>
+        </tr>
+        <tr>
+          <td>Assurances</p></td>
+          <td><%= @assurances_paid %>€</td>
+          <td><%= @assurances_tbp %>€</td>
+        </tr>
+        <tr>
+          <td>Travaux</p></td>
+          <td><%= @travaux_paid %>€</td>
+          <td><%= @travaux_tbp %>€</td>
+        </tr>
+        <tr>
+          <td>Autres</p></td>
+          <td><%= @autres_paid %>€</td>
+          <td><%= @autres_tbp %>€</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
 
   <!-- TABLEAU OPERATIONS -->
-
-
-  <div class="tableau_depenses container">
+  <div class="tableau_depenses">
     <h2>Dernières transactions </h2>
     <ul class="responsive-table">
       <li class="table-header">
@@ -128,6 +125,7 @@
       </li>
     <% end %>
   </div>
+
 
   <!-- FOOTER -->
 	<div class="footer-set-height">
