@@ -10,13 +10,31 @@
 
 // Style
 .section-pop-up {
-    font-size: 100%;
+    display: flex;
+    justify-content: center;
+
+    padding: 8px;
+
+    p {
+        font-size: 14px;
+        margin: 0;
+    }    
+}
+
+.section-kpi {
+    display: flex;
+    justify-content: space-between;
+}
+
+.section-biens-list {
+    margin-top: 16px;
 }
 
 .section-graph {
     display: flex;
     justify-content: space-around;
     width: 100%;
+    margin-top: 16px;
 }
 
 .section-mapbox {
@@ -36,12 +54,13 @@
 // Event
 .section-alert {
     background-color:$light-red;
-    color: white;
+    color: $font-dark-grey;
+    font-weight: 700;
 }
 
 .section-success {
     background-color: $light-green;
-    color: white;
+    color:$font-light-grey;
 }
 
 // Other

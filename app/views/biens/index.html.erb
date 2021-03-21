@@ -1,37 +1,62 @@
 <div class="container">
 
-	<!-- WELCOME MESSAGE -->
+	<!-- WELCOME MESSAGE
 	<div class="section-introduction">
 		<p>Bonjour <%= current_user.prenom %>, ravi de vous revoir parmi nous !</p>
-	</div>
+	</div> -->
 
 
 	<!-- LOYERS POP UP; color depends on status -->
-	<section class="section-card section-pop-up section-alert">
-		<p>Ici on met du JS avec cond si loyers mois non payé</p>
-	</section>
+	<% if @loyer_missing %>
+		<section class="section-card section-pop-up section-alert">
+			<p>Plusieurs loyers du mois de mars n'ont pas été réglés !</p>
+		</section>
+	<% else %>
+		<section class="section-card section-pop-up section-success">
+			<p>Tous les loyers du mois de mars ont été payés !</p>
+		</section>
+	<% end %>
 
+	<!-- KEY PERFORMANCE INDICATORS *3 -->
+	<section class="section-kpi">
+
+		<!-- NET CF SINCE BEGINNING -->
+		<div class="section-card kpi-card">
+			<p class="kpi-big-number">+XX XXX<span class="kpi-little-symbol">€</span></p>
+			<p class="kpi-metric-name">nets générés au total</p>
+		</div>
+
+		<!-- ESTIMATED ANNUAL PERFORMANCE -->
+		<div class="section-card kpi-card">
+			<p class="kpi-big-number">X,X<span class="kpi-little-symbol">%</span></p>
+			<p class="kpi-metric-name">rentabilité annuelle moyenne</p>
+		</div>
+
+		<!-- ESTIMATED VALUE OF GLOBAL REAL ESTATE -->
+		<div class="section-card kpi-card">
+			<p class="kpi-big-number">X XXX XXX<span class="kpi-little-symbol">€</span></p>
+			<p class="kpi-metric-name">valeur estimée de vos biens</p>
+		</div>
+	</section>
 
 	<!-- GRAPHS OVER LAST 12 MONTHS-->
 	<section class="section-graph">
-		<div class="row row-cols-1 row-cols-md-2">
 
-			<!-- DETAILED CF PER MONTH with CUMULATIVE CF GRAPH -->
-			<div class="graph-card">
-				<canvas class="graph" id="myChartCourbe"></canvas>
-			</div>
-
-			<!-- CUMULATIVE CF PER FLAT GRAPH -->
-			<div class="graph-card">
-				<canvas class="graph" id="myChartBiens"></canvas>
-			</div>
-
+		<!-- DETAILED CF PER MONTH with CUMULATIVE CF GRAPH -->
+		<div class="graph-card">
+			<canvas class="graph" id="myChartCourbe"></canvas>
 		</div>
+
+		<!-- CUMULATIVE CF PER FLAT GRAPH -->
+		<div class="graph-card">
+			<canvas class="graph" id="myChartBiens"></canvas>
+		</div>
+
 	</section>
 
 
 	<!-- BIENS LIST -->
-	<section class="" id="biens-list">
+	<section class="section-biens-list" id="biens-list">
 
 		<!-- LIST -->
 		<div>
@@ -107,7 +132,7 @@
 	
 	<!-- BIENS MAP -->
 	<section class="section-card section-mapbox">
-		<h3>Localisations de vos <%= @biens.count %> biens</h3>
+		<h3>Localisation de vos <%= @biens.count %> biens</h3>
 
 		<div id="map"
 			data-markers="<%= @markers.to_json %>"
