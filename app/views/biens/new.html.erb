@@ -1,25 +1,30 @@
-<h1>Créer un nouveau Bien</h1>
 
-<%= simple_form_for [@bien] do |f| %>
-  <%= f.input :nom %>
-  <%= f.input :categorie%>
-  <%= f.input :adresse %>
-	<%= f.input :ville %>
-	<%= f.input :code_postal %>
-	<%= f.input :pays %>
-	<%= f.input :info_compl_adresse %>
-	<%= f.input :surface %>
-	<%= f.input :nb_pieces %>
-	<%= f.input :nb_sdb %>
-	<%= f.input :nb_etages %>
-	<%= f.input :num_etage %>
-	<%= f.input :annee_construction %>
-	<%= f.input :prix_acquisition %>
-	<%= f.input :date_acquisition %>
-	<%= f.input :frais_achat_notaire %>
-	<%= f.input :frais_achat_agence %>
-	<%= f.input :frais_achat_travaux %>
-	<%= f.input :frais_achat_autres %>
-  <%= f.input :photo, as: :file %>
-  <%= f.submit "Creer un Bien", class: "btn btn-success" %>
-<% end %>
+<div class="container">
+	
+	<h1>Créer un nouveau bien</h1>
+	
+	<%= simple_form_for [@bien] do |f| %>
+	  <%= f.input :nom %>
+	  <%= f.input :categorie%>
+	  <%= f.input :adresse %>
+		<%= f.input :ville %>
+		<%= f.input :code_postal %>
+		<%= f.input :pays %>
+		<%= f.input :info_compl_adresse %>
+		<%= f.input :surface %>
+		<%= f.input :nb_pieces %>
+		<%= f.input :nb_sdb %>
+		<%= f.input :nb_etages %>
+		<%= f.input :num_etage %>
+		<%= f.input :annee_construction %>
+		<%= f.input :prix_acquisition %>
+		<%= f.input :date_acquisition, as: :date, order: [:day, :month, :year] %>
+		<%= f.input :frais_achat_notaire %>
+		<%= f.input :frais_achat_agence %>
+		<%= f.input :frais_achat_travaux %>
+		<%= f.input :frais_achat_autres %>
+	  <%= f.input :photo, as: :file %>
+	  <%= f.submit "Créer un Bien", class: "btn btn-primary mb-5" %>
+	<% end %>
+
+</div>
