@@ -1,0 +1,34 @@
+.kpi-card {
+    width: 30%;
+    height: 60px;
+
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+}
+
+.kpi-big-number {
+    width: 60%;
+
+    font-size: 32px;
+
+    padding-left: 8px;
+    margin: 0;
+
+    text-align: center;
+
+    .kpi-little-symbol {
+        font-size: 24px;
+    }
+}
+
+
+.kpi-metric-name {
+    width: 40%;
+
+    font-size: 16px;
+
+    padding-left: 8px;
+    padding-right: 8px;
+    margin: 0;
+}
