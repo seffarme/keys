@@ -84,6 +84,7 @@
 								<p>Valider le loyer</p>
 								<%= link_to "", bien_loyers_path(bien_id: bien.id), method: :post %>
 							</div>
+
 						<% elsif bien.loyers.last.date_paiement.month != Date.today.month %>
 							<div class="block-base block-btn block-btn-loyer">
 								<p>Valider le loyer</p>
