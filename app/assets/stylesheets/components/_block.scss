@@ -68,6 +68,24 @@
     }
 }
 
+.block-btn-save-loyer {
+    background-color: $green;
+    margin-bottom: 12px;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.block-btn-save-depense {
+
+}
+
 .block-btn-add-bien {
     background-color: transparent;
 

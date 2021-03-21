@@ -29,13 +29,13 @@
 
     <!-- ADD LOYER -->
     <div class="section-card-add-loyer">
-      <p class="">Avez-vous reçu le loyer de <%= @bien.montant_loyer %> de la part de <%= @bien.locataires.first.prenom %> <%= @bien.locataires.first.nom %> ?</p>
-      <%= link_to "J'ai reçu le loyer 💰", bien_loyers_path(bien_id: @bien.id), method: :post, class:"btn btn-primary" %>
+      <p class="">Avez-vous reçu le loyer du mois de mars de <%= @bien.montant_loyer %>€ de la part de <%= @bien.locataires.first.prenom %> <%= @bien.locataires.first.nom %> ?</p>
+      <%= link_to "J'ai reçu le loyer 💰", bien_loyers_path(bien_id: @bien.id), method: :post, class:"block-base block-btn block-btn-save-loyer" %>
     </div>
 
     <!-- ADD DEPENSE -->
     <div class="section-card-add-depense">
-      <h4>Ajouter une dépense</h4>
+      <p>Ajouter une dépense</p>
 
       <%= form_for @bien do |f| %>
         <%= f.simple_fields_for :depenses, @bien.depenses.build do |ff| %>
@@ -50,7 +50,7 @@
               <%= ff.input :date_paiement, label: false, as: :date, order: [:day, :month, :year], input_html: {class: "form-input"} %>
             </div>
             <% end %>
-            <%= f.submit "Enregistrer", class: "btn btn-primary" %>
+            <%= f.submit "Enregistrer", class: "block-base block-btn block-btn-save-depense" %>
           </div>
       <% end %>
 
@@ -58,60 +58,68 @@
 
   </section>
 
+  <!-- GRAPH & FINANCIAL OVERVIEW -->
+  <section class="section-dual-equiv-items-centered">
 
-  <!-- TABLEAU SYNTHESE -->
-  <div class="responsive-table">
-    <table class="tableau-synthese">
-      <thead>
-        <tr>
-          <th> </th>
-          <th>Encaissé</th>
-          <th>A venir</th>
-        </tr>
-      <thead>
-      <tbody>
-        <tr>
-          <td>Loyers</td>
-          <td><%= @loyers_received %></td>
-          <td><%=  %>- € </td>
-        </tr>
-        <tr>
-          <td>Taxe Foncière</td>
-          <td><%= @taxe_fonciere_paid %>€</td>
-          <td><%= @taxe_fonciere_tbp %>€</td>
-        </tr>
-        <tr>
-          <td>Copropriété</td>
-          <td><%= @copropriete_paid %>€</p></td>
-          <td><%= @copropriete_tbp %>€</td>
-        </tr>
-        <tr>
-          <td>Assurances</p></td>
-          <td><%= @assurances_paid %>€</td>
-          <td><%= @assurances_tbp %>€</td>
-        </tr>
-        <tr>
-          <td>Travaux</p></td>
-          <td><%= @travaux_paid %>€</td>
-          <td><%= @travaux_tbp %>€</td>
-        </tr>
-        <tr>
-          <td>Autres</p></td>
-          <td><%= @autres_paid %>€</td>
-          <td><%= @autres_tbp %>€</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+    <!-- GRAPH -->
 
 
-  <!-- TABLEAU OPERATIONS -->
-  <div class="tableau_depenses">
-    <h2>Dernières transactions </h2>
+    <!-- TABLEAU SYNTHESE -->
+    <div class="responsive-table">
+      <table class="tableau-synthese">
+        <thead>
+          <tr>
+            <th> </th>
+            <th>Encaissé</th>
+            <th>A venir</th>
+          </tr>
+        <thead>
+        <tbody>
+          <tr>
+            <td>Loyers</td>
+            <td><%= @loyers_received %></td>
+            <td><%=  %>- € </td>
+          </tr>
+          <tr>
+            <td>Taxe Foncière</td>
+            <td><%= @taxe_fonciere_paid %>€</td>
+            <td><%= @taxe_fonciere_tbp %>€</td>
+          </tr>
+          <tr>
+            <td>Copropriété</td>
+            <td><%= @copropriete_paid %>€</p></td>
+            <td><%= @copropriete_tbp %>€</td>
+          </tr>
+          <tr>
+            <td>Assurances</p></td>
+            <td><%= @assurances_paid %>€</td>
+            <td><%= @assurances_tbp %>€</td>
+          </tr>
+          <tr>
+            <td>Travaux</p></td>
+            <td><%= @travaux_paid %>€</td>
+            <td><%= @travaux_tbp %>€</td>
+          </tr>
+          <tr>
+            <td>Autres</p></td>
+            <td><%= @autres_paid %>€</td>
+            <td><%= @autres_tbp %>€</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </section>
+
+
+  <!-- LAST OPERATIONS TABLE -->
+  <section class="section-last-operations">
+
+    <p>Dernières transactions</p>
     <ul class="responsive-table">
       <li class="table-header">
         <div class="col col-1">Date</div>
-        <div class="col col-2">Categorie</div>
+        <div class="col col-2">Catégorie</div>
         <div class="col col-3">Libellé</div>
         <div class="col col-4">Montant</div>
       </li>
@@ -124,7 +132,8 @@
         <div class="col col-4" data-label="Montant"><b><%= transaction['montant'] %> €</b></div>
       </li>
     <% end %>
-  </div>
+
+  </section>
 
 
   <!-- FOOTER -->
