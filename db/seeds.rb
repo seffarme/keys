@@ -647,7 +647,7 @@ puts "[6/6] - Seeding the Loyers DB..."
 end
 
 # 2021
-4.times do |i, loyer| 
+3.times do |i, loyer| 
     loyer = Loyer.new({
         montant: appartement_pigalle.montant_loyer,
         date_paiement: "01/0#{i}/2021"
@@ -674,7 +674,7 @@ end
 end
 
 # 2021
-4.times do |i, loyer| 
+3.times do |i, loyer| 
     loyer = Loyer.new({
         montant: appartement_rue_des_dames.montant_loyer,
         date_paiement: "01/0#{i}/2021"
@@ -700,7 +700,7 @@ end
 end
 
 # 2021
-4.times do |i, loyer| 
+3.times do |i, loyer| 
     loyer = Loyer.new({
         montant: maison_gennevilliers.montant_loyer,
         date_paiement: "01/0#{i}/2021"
@@ -726,7 +726,7 @@ end
 end
 
 # 2021
-4.times do |i, loyer| 
+3.times do |i, loyer| 
     loyer = Loyer.new({
         montant: appartement_clichy.montant_loyer,
         date_paiement: "01/0#{i}/2021"
