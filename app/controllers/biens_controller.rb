@@ -13,11 +13,10 @@ class BiensController < ApplicationController
         lng: bien.longitude,
         infoWindow: render_to_string(partial: "info_window", locals: { bien: bien })
       }
-
     end
     # @sum_depenses = current_user.sum_depenses_biens
 
-    @cfbiens = @biens.map {|bien| bien.cash_flow_bien}
+    @cfbiens = @biens.map {|bien| bien.cash_flow_bien_to_date}
 
     @cfbiens_months = current_user.cash_flow_biens
 
@@ -28,11 +27,10 @@ class BiensController < ApplicationController
         @cfbiens_months[0..index].sum
       end
     end
-    
+
     @months_display = (0..11).map { |i| (Date.today - i.month).end_of_month.strftime('%b %y') }.reverse
 
     @apartments_display = current_user.biens.map { |bien| bien.nom }
-
 
   end
 
@@ -44,7 +42,7 @@ class BiensController < ApplicationController
       transaction.attributes
     end
     @lasts_transactions.sort_by! { |t| t['date_paiement'] }.reverse!
-    
+
     @depenses = @bien.sum_depenses
   end
 
