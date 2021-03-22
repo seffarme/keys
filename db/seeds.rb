@@ -140,7 +140,7 @@ maison_gennevilliers = Bien.new({
     frais_achat_agence: "15000",
     frais_achat_travaux: "5000",
     frais_achat_autres: "12500",
-    montant_loyer: "3500"
+    montant_loyer: "2500"
 })
 
 maison_gennevilliers.user = mathieu_eustachy
