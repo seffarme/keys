@@ -39,8 +39,8 @@ class Bien < ApplicationRecord
   end
 
   def sum_depenses_to_date
-     a = Time.now.beginning_of_month + 1.month
-     self.depenses.where("date_paiement < ?", a).sum(:montant)
+   a = Time.now.beginning_of_month + 1.month
+   self.depenses.where("date_paiement < ?", a).sum(:montant)
   end
 
   def cash_flow_bien_to_date
