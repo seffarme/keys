@@ -1,5 +1,5 @@
 <div class="container">
-  
+
 	<!-- WELCOME MESSAGE
 	<div class="section-introduction">
 		<p>Bonjour <%= current_user.prenom %>, ravi de vous revoir parmi nous !</p>
@@ -23,19 +23,19 @@
 		<!-- NET CF SINCE BEGINNING -->
 		<div class="section-card kpi-card" style="background-color: #152F70;">
 			<p class="kpi-big-number">+XX XXX<span class="kpi-little-symbol">€</span></p>
-			<p class="kpi-metric-name">nets générés au total</p>
+			<p class="kpi-metric-name">Nets générés au total</p>
 		</div>
 
 		<!-- ESTIMATED ANNUAL PERFORMANCE -->
 		<div class="section-card kpi-card" style="background-color: #152F70;">
 			<p class="kpi-big-number">X,X<span class="kpi-little-symbol">%</span></p>
-			<p class="kpi-metric-name">rentabilité annuelle moyenne</p>
+			<p class="kpi-metric-name">Rentabilité annuelle moyenne</p>
 		</div>
 
 		<!-- ESTIMATED VALUE OF GLOBAL REAL ESTATE -->
 		<div class="section-card kpi-card" style="background-color: #152F70;">
 			<p class="kpi-big-number">X XXX XXX<span class="kpi-little-symbol">€</span></p>
-			<p class="kpi-metric-name">valeur estimée de vos biens</p>
+			<p class="kpi-metric-name">Valeur estimée de vos biens</p>
 		</div>
 	</section>
 
@@ -80,15 +80,19 @@
 
 						<!-- LOYER PAID ? -->
 						<% if bien.loyers.empty? %>
-							<div class="block-base block-btn block-btn-loyer">
-								<p>Valider le loyer</p>
-								<%= link_to "", bien_loyers_path(bien_id: bien.id), method: :post %>
+							<div>
+								<%# <p>Valider le loyer</p> %>
+								<%= link_to bien_loyers_path(bien_id: bien.id), method: :post do %>
+									<i class="fas fa-cash-register" title="Valider le loyer"></i>
+								<% end %>
 							</div>
 
 						<% elsif bien.loyers.last.date_paiement.month != Date.today.month %>
-							<div class="block-base block-btn block-btn-loyer">
-								<p>Valider le loyer</p>
-								<%= link_to "", bien_loyers_path(bien_id: bien.id), method: :post %>
+							<div>
+								<%# <p>Valider le loyer</p> %>
+								<%= link_to bien_loyers_path(bien_id: bien.id), method: :post do %>
+									<i class="fas fa-cash-register" title="Valider le loyer"></i>
+								<% end %>
 							</div>
 						<% else %>
 							<div class="block-base block-paid-success" style="color: white;">
@@ -98,21 +102,27 @@
 
 						<!-- RELANCE TO DO ? -->
 						<% if bien.loyers.empty? %>
-							<div class="block-base block-btn block-btn-relance">
-								<p>Faire une relance</p>
-								<%= link_to "", bien_loyers_path(bien_id: bien.id), method: :post %>
+							<div>
+								<%# <p>Faire une relance</p> %>
+								<%= link_to bien_loyers_path(bien_id: bien.id), method: :post do %>
+									<i class="far fa-envelope-open" title="Faire une relance"></i>
+								<% end %>
 							</div>
 						<% elsif bien.loyers.last.date_paiement.month != Date.today.month %>
-							<div class="block-base block-btn block-btn-relance">
-								<p>Faire une relance</p>
-								<%= link_to "", bien_loyers_path(bien_id: bien.id), method: :post %>
+							<div>
+								<%# <p>Faire une relance</p> %>
+								<%= link_to bien_loyers_path(bien_id: bien.id), method: :post do %>
+									<i class="far fa-envelope-open" title="Faire une relance"></i>
+								<% end %>
 							</div>
 						<% end %>
 
 						<!-- ADD A DEPENSE -->
-						<div class="block-base btn btn-secondary block-btn block-btn-add-depense">
-							<p>Ajouter une dépense</p>
-							<%= link_to "", bien_path(bien) %>
+						<div>
+							<%# <p>Ajouter une dépense</p> %>
+							<%= link_to bien_path(bien) do %>
+								<i class="fas fa-cart-plus" title="Ajouter une dépense"></i>
+							<% end %>
 						</div>
 					</div>
 				</div>
@@ -120,7 +130,7 @@
 		</div>
 
 		<!-- ADD A BIEN -->
-		<div class="card-product-new-bien">
+		<div class="card-product-new-bien" style="padding-top: 20px;">
 			<div class="large-block-base block-btn block-btn-add-bien">
 				<i class="far fa-plus-square"></i>
 				<p>Ajouter un nouveau bien</p>
