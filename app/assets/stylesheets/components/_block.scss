@@ -3,7 +3,7 @@
     width: 100px;
     height: 40px;
     border-radius: 3px;
-    
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -98,16 +98,23 @@
 }
 
 .block-btn-retour-biens {
-    background-color: transparent;
-    
+    background-color: #152F70;
+
     border: 1px solid $dark-grey;
 
+
     p {
-        color: $dark-grey;
+        color: white;
         text-align: center;
         font-size: 12px;
         font-weight: 300;
+				margin-top: 10px;
+				justify-content: center;
     }
+}
+
+.block-btn-retour-biens:hover {
+	opacity: 0.9;
 }
 
 // STATE

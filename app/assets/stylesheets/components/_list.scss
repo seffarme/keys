@@ -17,7 +17,7 @@
 .card-product i {
     font-size: 28px;
     padding: 16px;
-    color: $dark-grey;
+    color: white;
 }
 
 
@@ -35,7 +35,9 @@
             width: 100%;
             font-weight: 500;
             text-decoration: none;
+						color: white;
         }
+				a:hover { color: blue;}
     }
 }
 
@@ -45,6 +47,7 @@
     display: flex;
     justify-content: flex-end;
     padding-right: 20px;
+		// color: white;
 }
 
 // Other
@@ -62,6 +65,6 @@
     i {
         font-size: 16px;
         margin-right: 8px;
-        color: $font-light-grey;
+        // color: white;
     }
 }

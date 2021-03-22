@@ -3,9 +3,10 @@
   <!-- TITLE -->
   <section class="section-title">
     <!-- BACK TO LIST BTN -->
-    <div class="block-base block-btn block-btn-retour-biens">
-      <p>Retour aux biens</p>
-      <%= link_to "", biens_path %>
+    <div class="block-base block-btn block-btn-retour-biens ">
+      <%= link_to biens_path do %>
+      	<p>Retour aux biens</p>
+			<% end %>
     </div>
     <!-- ICON -->
     <i class="card-product-icon fas fa-house-user"></i>
@@ -57,7 +58,7 @@
 
   </section>
 
-    
+
   <section class="section-dual-equiv-items-centered ">
 
     <!-- descriptif bien / locataire -->

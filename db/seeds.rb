@@ -112,7 +112,7 @@ appartement_rue_des_dames = Bien.new({
     frais_achat_agence: "0",
     frais_achat_travaux: "3500",
     frais_achat_autres: "1500",
-    montant_loyer: "1000"
+    montant_loyer: "900"
 })
 
 appartement_rue_des_dames.user = mathieu_eustachy
