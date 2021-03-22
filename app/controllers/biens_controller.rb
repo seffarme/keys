@@ -13,27 +13,22 @@ class BiensController < ApplicationController
         lng: bien.longitude,
         infoWindow: render_to_string(partial: "info_window", locals: { bien: bien })
       }
-
     end
     # @sum_depenses = current_user.sum_depenses_biens
 
-    @cfbiens = @biens.map {|bien| bien.cash_flow_bien}
-
+    @cfbiens = @biens.map { |bien| bien.cash_flow_bien }
     @cfbiens_months = current_user.cash_flow_biens
 
     @cash_flow_courbe = @cfbiens_months.each_with_index.map do |n, index|
-      if index == 0
+      if index.zero?
         n
       else
         @cfbiens_months[0..index].sum
       end
     end
-    
+
     @months_display = (0..11).map { |i| (Date.today - i.month).end_of_month.strftime('%b %y') }.reverse
-
     @apartments_display = current_user.biens.map { |bien| bien.nom }
-
-
   end
 
   def show
@@ -44,7 +39,7 @@ class BiensController < ApplicationController
       transaction.attributes
     end
     @lasts_transactions.sort_by! { |t| t['date_paiement'] }.reverse!
-    
+
     @depenses = @bien.sum_depenses
   end
 
@@ -71,8 +66,6 @@ class BiensController < ApplicationController
       render :new
     end
   end
-
-
 
   private
 
@@ -115,8 +108,8 @@ class BiensController < ApplicationController
   end
 
   def sum_cashflow_courbe
-     b = @cfbiens_months.each with_index.map do |n, index|
-      if index == 0
+    b = @cfbiens_months.each with_index.map do |n, index|
+      if index.zero?
         n
       else tab[0..index].sum
       end
@@ -125,18 +118,6 @@ class BiensController < ApplicationController
 
   def set_bien
     @bien = Bien.find(params[:id])
-
-    # @markers = @biens.geocoded.map do |bien|
-    #   {
-    #     lat: bien.latitude,
-    #     lng: bien.longitude
-    #   }
-    # end
-    @depenses = Depense.all
-    @frais_recurrent = FraisRecurrent.new
-    @depense = Depense.new
-
-    @collected_loyers = @bien.loyers.in_interval(Date.new(CURRENT_YEAR), Date.today)
   end
 
   def set_biens
@@ -224,8 +205,6 @@ class BiensController < ApplicationController
   #   @sum_depenses
   #     raise
   #   end
-
-
 
   # def sum_loyers
   #   @bien = Bien.find(params[:id])
