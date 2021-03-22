@@ -8,16 +8,18 @@ const initChartCourbe = () => {
 
     const depensesDiv = document.querySelector('#depenses')
     const depensesValue =JSON.parse(depensesDiv.dataset.depenses)
-    console.log(depensesValue);
 
     const monthsDisplay = JSON.parse(depensesDiv.dataset.months)
     console.log(monthsDisplay);
+
+    const cashFlowCourbe = JSON.parse(depensesDiv.dataset.courbe)
+    console.log(cashFlowCourbe);
 
     const myChart = new Chart(ctx, {
       type: 'bar',
       data: {
         datasets: [{
-            label: 'Bar CashFlow',
+            label: 'CashFlow',
             data: depensesValue,
             backgroundColor: [
                   'rgba(54, 162, 235, 0.2)',
@@ -50,7 +52,7 @@ const initChartCourbe = () => {
               borderWidth: 1
         }, {
             label: 'Line CashFlow',
-            // data: [10, 17, 40, 50],
+            data: cashFlowCourbe,
 
             // Changes this dataset to become a line
             type: 'line',
@@ -70,7 +72,8 @@ const initChartCourbe = () => {
                   'rgba(153, 102, 255, 1)',
                   'rgba(255, 159, 64, 1)'
               ],
-              borderWidth: 1
+              borderWidth: 1,
+              pointStyle: 'line'
         }],
         labels: monthsDisplay,
       },
@@ -86,7 +89,15 @@ const initChartCourbe = () => {
                     }
                   }
               }]
-          }
+          },
+          legend: {
+            display: true,
+            position: 'top',
+            labels: {
+                useLineStyle: true,
+                usePointStyle: true
+            }
+        },
         // responsive: true,
         // maintainAspectRatio: false
       }
@@ -143,7 +154,8 @@ const initChartBiens = () => {
                 fontSize: 10,
                 callback: function(value, index, values) {
                         return value + ' €';
-                    }
+                    },
+                    fontFamily: 'FontAwesome'
               }
             }],
             xAxes: [{

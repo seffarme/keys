@@ -21,13 +21,18 @@ class BiensController < ApplicationController
 
     @cfbiens_months = current_user.cash_flow_biens
 
-    a = @cfbiens_months.map { |i| i+=i }
-
+    @cash_flow_courbe = @cfbiens_months.each_with_index.map do |n, index|
+      if index == 0
+        n
+      else
+        @cfbiens_months[0..index].sum
+      end
+    end
 
 
     @months_display = (0..11).map { |i| (Date.today - i.month).end_of_month.strftime('%b %y') }.reverse
 
-    @apartments_display = current_user.biens.map { |bien| bien.nom}
+    @apartments_display = current_user.biens.map { |bien| bien.nom }
 
   end
 
@@ -99,6 +104,15 @@ class BiensController < ApplicationController
 
   def months_display_12
     @months_display = (0..11).map { |i| (Date.today - i.month).end_of_month.strftime('%b') }
+  end
+
+  def sum_cashflow_courbe
+     b = @cfbiens_months.each with_index.map do |n, index|
+      if index == 0
+        n
+      else tab[0..index].sum
+      end
+    end
   end
 
   def set_bien

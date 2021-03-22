@@ -5,7 +5,7 @@
 <!-- <div id="depenses" data-depenses= <%=@depenses %>></div> -->
 <div class="row justify-content-around p-5">
   <div class="card" class="col-6">
-      <div id="depenses" data-depenses="<%= @cfbiens_months %>" data-months="<%= @months_display %>" class="card-body" style="width: 450px;">
+      <div id="depenses" data-depenses="<%= @cfbiens_months %>" data-months="<%= @months_display %>" data-courbe="<%= @cash_flow_courbe %>" class="card-body" style="width: 450px;">
           <canvas id="myChartCourbe"></canvas>
       </div>
   </div>
