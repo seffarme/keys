@@ -6,17 +6,51 @@ const initChartCourbe = () => {
 
   if (ctx) {
 
-    // data = document.querySelector('#depense')
+    const depensesDiv = document.querySelector('#depenses')
+    const depensesValue =JSON.parse(depensesDiv.dataset.depenses)
+    console.log(depensesValue);
+
+    const monthsDisplay = JSON.parse(depensesDiv.dataset.months)
+    console.log(monthsDisplay);
 
     const myChart = new Chart(ctx, {
       type: 'bar',
       data: {
         datasets: [{
             label: 'Bar CashFlow',
-            data: [10, 20, 30, 40]
+            data: depensesValue,
+            backgroundColor: [
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(54, 162, 235, 0.2)'
+              ],
+              borderColor: [
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 235, 1)'
+              ],
+              borderWidth: 1
         }, {
             label: 'Line CashFlow',
-            data: [10, 17, 40, 50],
+            // data: [10, 17, 40, 50],
 
             // Changes this dataset to become a line
             type: 'line',
@@ -38,7 +72,7 @@ const initChartCourbe = () => {
               ],
               borderWidth: 1
         }],
-        labels: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre']
+        labels: monthsDisplay,
       },
       options: {
           scales: {
@@ -46,7 +80,10 @@ const initChartCourbe = () => {
                   ticks: {
                       beginAtZero: false,
                       padding: 4,
-                      fontSize: 10
+                      fontSize: 10,
+                      callback: function(value, index, values) {
+                        return value + ' €';
+                    }
                   }
               }]
           }
@@ -63,15 +100,19 @@ const initChartBiens = () => {
 
   if (ctx) {
 
-    // data = document.querySelector('#depense')
+    const cfbien = document.querySelector('#cfbien')
+    const cfbienValue = JSON.parse(cfbien.dataset.cfbien)
+    console.log(cfbienValue);
+    const labelValue = JSON.parse(cfbien.dataset.label)
+    console.log(labelValue);
 
     const myChart = new Chart(ctx, {
       type: 'bar',
       data: {
-          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          labels: labelValue,
           datasets: [{
-              label: '# of Votes',
-              data: [12, 19, 7, 5, 2, 15],
+              label: 'CashFlow',
+              data: cfbienValue,
               backgroundColor: [
                   'rgba(255, 99, 132, 0.2)',
                   'rgba(54, 162, 235, 0.2)',
@@ -93,12 +134,25 @@ const initChartBiens = () => {
       },
       options: {
           scales: {
-              yAxes: [{
+            yAxes: [{
+              ticks: {
+              // type: 'logarithmic'
+                min: -5000,
+                max: 5000,
+                padding: 4,
+                fontSize: 10,
+                callback: function(value, index, values) {
+                        return value + ' €';
+                    }
+              }
+            }],
+            xAxes: [{
                   ticks: {
-                      beginAtZero: true
+                      padding: 4,
+                      fontSize: 10
                   }
               }]
-          }
+        }
         // responsive: true,
         // maintainAspectRatio: false
       }

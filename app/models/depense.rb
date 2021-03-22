@@ -31,4 +31,10 @@ class Depense < ApplicationRecord
     end
     depenses
   end
+
+def sun_depenses(depenses)
+
+end
+
+
 end

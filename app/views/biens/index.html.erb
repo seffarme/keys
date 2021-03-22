@@ -5,12 +5,12 @@
 <!-- <div id="depenses" data-depenses= <%=@depenses %>></div> -->
 <div class="row justify-content-around p-5">
   <div class="card" class="col-6">
-      <div class="card-body" style="width: 450px;">
+      <div id="depenses" data-depenses="<%= @cfbiens_months %>" data-months="<%= @months_display %>" class="card-body" style="width: 450px;">
           <canvas id="myChartCourbe"></canvas>
       </div>
   </div>
   <div class="card" class="col-6">
-      <div class="card-body" style="width: 450px;">
+      <div id="cfbien" data-cfbien="<%= @cfbiens %>" data-label="<%= @apartments_display %>" class="card-body" style="width: 450px;">
           <canvas id="myChartBiens"></canvas>
       </div>
   </div>
@@ -38,7 +38,7 @@
     <div>
       <%= link_to "Ajoutez un nouveau bien 🚀", new_bien_path%>
     </div>
-=======
+
 
 <h1 style="text-align:center; margin-top: 20px;">Mes locations</h1>
 
