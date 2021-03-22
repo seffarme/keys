@@ -13,10 +13,27 @@ class BiensController < ApplicationController
         lng: bien.longitude,
         infoWindow: render_to_string(partial: "info_window", locals: { bien: bien })
       }
-    end
 
-    # sum_depenses
-    # raise
+    end
+    # @sum_depenses = current_user.sum_depenses_biens
+
+    @cfbiens = @biens.map {|bien| bien.cash_flow_bien}
+
+    @cfbiens_months = current_user.cash_flow_biens
+
+    @cash_flow_courbe = @cfbiens_months.each_with_index.map do |n, index|
+      if index == 0
+        n
+      else
+        @cfbiens_months[0..index].sum
+      end
+    end
+    
+    @months_display = (0..11).map { |i| (Date.today - i.month).end_of_month.strftime('%b %y') }.reverse
+
+    @apartments_display = current_user.biens.map { |bien| bien.nom }
+
+
   end
 
   def show
@@ -27,6 +44,8 @@ class BiensController < ApplicationController
       transaction.attributes
     end
     @lasts_transactions.sort_by! { |t| t['date_paiement'] }.reverse!
+    
+    @depenses = @bien.sum_depenses
   end
 
   def update
@@ -52,6 +71,8 @@ class BiensController < ApplicationController
       render :new
     end
   end
+
+
 
   private
 
@@ -87,6 +108,19 @@ class BiensController < ApplicationController
           date_paiement
         ]
       )
+  end
+
+  def months_display_12
+    @months_display = (0..11).map { |i| (Date.today - i.month).end_of_month.strftime('%b') }
+  end
+
+  def sum_cashflow_courbe
+     b = @cfbiens_months.each with_index.map do |n, index|
+      if index == 0
+        n
+      else tab[0..index].sum
+      end
+    end
   end
 
   def set_bien
@@ -169,13 +203,29 @@ class BiensController < ApplicationController
 
   # def sum_depenses
   #   @biens = current_user.biens
-  #   raise
-  #   @depenses = @biens.depenses
-  #   @depenses.each do |depense|
-  #     @sum_depenses = 0
+  #   @sum_depenses = 0
+  #   @biens.each do |bien|
+  #     bien.depenses.each do |depense|
+
   #     @sum_depenses += depense.montant
+  #     end
   #   end
+  #   @sum_depenses
+  #     raise
+
   # end
+
+  # def sum_depenses_bien
+  #   @bien = Bien.find(19)
+  #   @bien.depenses.each do |depense|
+  #   @sum_depenses = 0
+  #   @sum_depenses += depense.montant
+  #     end
+  #   @sum_depenses
+  #     raise
+  #   end
+
+
 
   # def sum_loyers
   #   @bien = Bien.find(params[:id])
