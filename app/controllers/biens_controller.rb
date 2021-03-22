@@ -58,7 +58,6 @@ class BiensController < ApplicationController
 
   end
 
-
   def update
     @bien.attributes = bien_params
     if @bien.save
