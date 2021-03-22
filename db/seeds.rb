@@ -84,7 +84,7 @@ appartement_pigalle = Bien.new({
     frais_achat_agence: "10000",
     frais_achat_travaux: "5000",
     frais_achat_autres: "2500",
-    montant_loyer: "950"
+    montant_loyer: "1150"
 })
 
 appartement_pigalle.user = mathieu_eustachy
@@ -112,7 +112,7 @@ appartement_rue_des_dames = Bien.new({
     frais_achat_agence: "0",
     frais_achat_travaux: "3500",
     frais_achat_autres: "1500",
-    montant_loyer: "800"
+    montant_loyer: "1000"
 })
 
 appartement_rue_des_dames.user = mathieu_eustachy
@@ -135,12 +135,12 @@ maison_gennevilliers = Bien.new({
     num_etage: "0",
     annee_construction: "01/01/2001",
     prix_acquisition: "400000",
-    date_acquisition: "01/01/2001",
+    date_acquisition: "01/01/2011",
     frais_achat_notaire: "30000",
     frais_achat_agence: "15000",
     frais_achat_travaux: "5000",
     frais_achat_autres: "12500",
-    montant_loyer: "2500"
+    montant_loyer: "3500"
 })
 
 maison_gennevilliers.user = mathieu_eustachy
@@ -167,7 +167,7 @@ appartement_clichy = Bien.new({
     frais_achat_agence: "20000",
     frais_achat_travaux: "35000",
     frais_achat_autres: "12500",
-    montant_loyer: "2200"
+    montant_loyer: "2700"
 })
 
 appartement_clichy.user = mathieu_eustachy
@@ -330,7 +330,7 @@ emprunt_maisongennevilliers = FraisRecurrent.new({
     montant: "2500",
     categorie: "Crédit",
     recurrence: "Mensuel",
-    date_debut: "01/01/2001",
+    date_debut: "01/01/2011",
     date_fin: "01/01/2016"
 })
 
@@ -344,7 +344,7 @@ taxe_fonciere_maisongennevilliers = FraisRecurrent.new({
     montant: "4500",
     categorie: "Taxe Foncière",
     recurrence: "Annuel",
-    date_debut: "05/10/2001",
+    date_debut: "05/10/2011",
     date_fin: "05/10/2050"
 })
 
@@ -358,7 +358,7 @@ assurance_pno_maisongennevilliers = FraisRecurrent.new({
     montant: "60",
     categorie: "Assurances",
     recurrence: "Mensuel",
-    date_debut: "01/03/2001",
+    date_debut: "01/03/2011",
     date_fin: "01/03/2050"
 })
 
@@ -371,7 +371,7 @@ assurance_gli_maisongennevilliers = FraisRecurrent.new({
     montant: "90",
     categorie: "Assurances",
     recurrence: "Mensuel",
-    date_debut: "01/03/2001",
+    date_debut: "01/03/2011",
     date_fin: "01/03/2050"
 })
 
@@ -634,11 +634,35 @@ puts "[6/6] - Seeding the Loyers DB..."
 
 ################### Appartement Pigalle ##################
 
+# 2018
+12.times do |i, loyer|
+    loyer = Loyer.new({
+        montant: appartement_pigalle.montant_loyer,
+        date_paiement: "02/0#{i}/2018"
+    })
+    i += 1
+    loyer.bien = appartement_pigalle
+    loyer.locataire = diane_garcia
+    loyer.save
+end
+
+# 2019
+12.times do |i, loyer|
+    loyer = Loyer.new({
+        montant: appartement_pigalle.montant_loyer,
+        date_paiement: "02/0#{i}/2019"
+    })
+    i += 1
+    loyer.bien = appartement_pigalle
+    loyer.locataire = diane_garcia
+    loyer.save
+end
+
 # 2020
 12.times do |i, loyer|
     loyer = Loyer.new({
         montant: appartement_pigalle.montant_loyer,
-        date_paiement: "01/0#{i}/2020"
+        date_paiement: "02/0#{i}/2020"
     })
     i += 1
     loyer.bien = appartement_pigalle
@@ -647,10 +671,10 @@ puts "[6/6] - Seeding the Loyers DB..."
 end
 
 # 2021
-4.times do |i, loyer| 
+3.times do |i, loyer| 
     loyer = Loyer.new({
         montant: appartement_pigalle.montant_loyer,
-        date_paiement: "01/0#{i}/2021"
+        date_paiement: "02/0#{i}/2021"
     })
     i += 1
     loyer.bien = appartement_pigalle
@@ -661,11 +685,71 @@ end
 
 ################### Appartement Rue des Dames ##################
 
+# 2015
+6.times do |i, loyer|
+    loyer = Loyer.new({
+        montant: appartement_rue_des_dames.montant_loyer,
+        date_paiement: "03/0#{6+i}/2020"
+    })
+    i += 1
+    loyer.bien = appartement_rue_des_dames
+    loyer.locataire = mathilde_reynes
+    loyer.save
+end
+
+# 2016
+12.times do |i, loyer|
+    loyer = Loyer.new({
+        montant: appartement_rue_des_dames.montant_loyer,
+        date_paiement: "03/0#{i}/2016"
+    })
+    i += 1
+    loyer.bien = appartement_rue_des_dames
+    loyer.locataire = mathilde_reynes
+    loyer.save
+end
+
+# 2017
+12.times do |i, loyer|
+    loyer = Loyer.new({
+        montant: appartement_rue_des_dames.montant_loyer,
+        date_paiement: "03/0#{i}/2017"
+    })
+    i += 1
+    loyer.bien = appartement_rue_des_dames
+    loyer.locataire = mathilde_reynes
+    loyer.save
+end
+
+# 2018
+12.times do |i, loyer|
+    loyer = Loyer.new({
+        montant: appartement_rue_des_dames.montant_loyer,
+        date_paiement: "03/0#{i}/2018"
+    })
+    i += 1
+    loyer.bien = appartement_rue_des_dames
+    loyer.locataire = mathilde_reynes
+    loyer.save
+end
+
+# 2019
+12.times do |i, loyer|
+    loyer = Loyer.new({
+        montant: appartement_rue_des_dames.montant_loyer,
+        date_paiement: "03/0#{i}/2019"
+    })
+    i += 1
+    loyer.bien = appartement_rue_des_dames
+    loyer.locataire = mathilde_reynes
+    loyer.save
+end
+
 # 2020
 12.times do |i, loyer|
     loyer = Loyer.new({
         montant: appartement_rue_des_dames.montant_loyer,
-        date_paiement: "01/0#{i}/2020"
+        date_paiement: "03/0#{i}/2020"
     })
     i += 1
     loyer.bien = appartement_rue_des_dames
@@ -674,10 +758,10 @@ end
 end
 
 # 2021
-4.times do |i, loyer| 
+3.times do |i, loyer| 
     loyer = Loyer.new({
         montant: appartement_rue_des_dames.montant_loyer,
-        date_paiement: "01/0#{i}/2021"
+        date_paiement: "03/0#{i}/2021"
     })
     i += 1
     loyer.bien = appartement_rue_des_dames
@@ -686,6 +770,115 @@ end
 end
 
 ################### Maison Gennevilliers ##################
+
+# 2011
+10.times do |i, loyer|
+    loyer = Loyer.new({
+        montant: maison_gennevilliers.montant_loyer,
+        date_paiement: "01/0#{2+i}/2011"
+    })
+    i += 1
+    loyer.bien = maison_gennevilliers
+    loyer.locataire = othman_igrouche
+    loyer.save
+end
+
+# 2012
+12.times do |i, loyer|
+    loyer = Loyer.new({
+        montant: maison_gennevilliers.montant_loyer,
+        date_paiement: "01/0#{i}/2012"
+    })
+    i += 1
+    loyer.bien = maison_gennevilliers
+    loyer.locataire = othman_igrouche
+    loyer.save
+end
+
+# 2013
+12.times do |i, loyer|
+    loyer = Loyer.new({
+        montant: maison_gennevilliers.montant_loyer,
+        date_paiement: "01/0#{i}/2013"
+    })
+    i += 1
+    loyer.bien = maison_gennevilliers
+    loyer.locataire = othman_igrouche
+    loyer.save
+end
+
+# 2014
+12.times do |i, loyer|
+    loyer = Loyer.new({
+        montant: maison_gennevilliers.montant_loyer,
+        date_paiement: "01/0#{i}/2014"
+    })
+    i += 1
+    loyer.bien = maison_gennevilliers
+    loyer.locataire = othman_igrouche
+    loyer.save
+end
+
+# 2015
+12.times do |i, loyer|
+    loyer = Loyer.new({
+        montant: maison_gennevilliers.montant_loyer,
+        date_paiement: "01/0#{i}/2015"
+    })
+    i += 1
+    loyer.bien = maison_gennevilliers
+    loyer.locataire = othman_igrouche
+    loyer.save
+end
+
+# 2016
+12.times do |i, loyer|
+    loyer = Loyer.new({
+        montant: maison_gennevilliers.montant_loyer,
+        date_paiement: "01/0#{i}/2016"
+    })
+    i += 1
+    loyer.bien = maison_gennevilliers
+    loyer.locataire = othman_igrouche
+    loyer.save
+end
+
+# 2017
+12.times do |i, loyer|
+    loyer = Loyer.new({
+        montant: maison_gennevilliers.montant_loyer,
+        date_paiement: "01/0#{i}/2017"
+    })
+    i += 1
+    loyer.bien = maison_gennevilliers
+    loyer.locataire = othman_igrouche
+    loyer.save
+end
+
+
+# 2018
+12.times do |i, loyer|
+    loyer = Loyer.new({
+        montant: maison_gennevilliers.montant_loyer,
+        date_paiement: "01/0#{i}/2018"
+    })
+    i += 1
+    loyer.bien = maison_gennevilliers
+    loyer.locataire = othman_igrouche
+    loyer.save
+end
+
+# 2019
+12.times do |i, loyer|
+    loyer = Loyer.new({
+        montant: maison_gennevilliers.montant_loyer,
+        date_paiement: "01/0#{i}/2019"
+    })
+    i += 1
+    loyer.bien = maison_gennevilliers
+    loyer.locataire = othman_igrouche
+    loyer.save
+end
 
 # 2020
 12.times do |i, loyer|
@@ -700,7 +893,7 @@ end
 end
 
 # 2021
-4.times do |i, loyer| 
+3.times do |i, loyer| 
     loyer = Loyer.new({
         montant: maison_gennevilliers.montant_loyer,
         date_paiement: "01/0#{i}/2021"
@@ -712,6 +905,103 @@ end
 end
 
 ################### Appartement Clichy ##################
+
+# 2012
+5.times do |i, loyer|
+    loyer = Loyer.new({
+        montant: appartement_clichy.montant_loyer,
+        date_paiement: "01/0#{7+i}/2012"
+    })
+    i += 1
+    loyer.bien = appartement_clichy
+    loyer.locataire = thierno_ba
+    loyer.save
+end
+
+# 2013
+12.times do |i, loyer|
+    loyer = Loyer.new({
+        montant: appartement_clichy.montant_loyer,
+        date_paiement: "01/0#{i}/2013"
+    })
+    i += 1
+    loyer.bien = appartement_clichy
+    loyer.locataire = thierno_ba
+    loyer.save
+end
+
+# 2014
+12.times do |i, loyer|
+    loyer = Loyer.new({
+        montant: appartement_clichy.montant_loyer,
+        date_paiement: "01/0#{i}/2014"
+    })
+    i += 1
+    loyer.bien = appartement_clichy
+    loyer.locataire = thierno_ba
+    loyer.save
+end
+
+# 2015
+12.times do |i, loyer|
+    loyer = Loyer.new({
+        montant: appartement_clichy.montant_loyer,
+        date_paiement: "01/0#{i}/2015"
+    })
+    i += 1
+    loyer.bien = appartement_clichy
+    loyer.locataire = thierno_ba
+    loyer.save
+end
+
+# 2016
+12.times do |i, loyer|
+    loyer = Loyer.new({
+        montant: appartement_clichy.montant_loyer,
+        date_paiement: "01/0#{i}/2016"
+    })
+    i += 1
+    loyer.bien = appartement_clichy
+    loyer.locataire = thierno_ba
+    loyer.save
+end
+
+# 2017
+12.times do |i, loyer|
+    loyer = Loyer.new({
+        montant: appartement_clichy.montant_loyer,
+        date_paiement: "01/0#{i}/2017"
+    })
+    i += 1
+    loyer.bien = appartement_clichy
+    loyer.locataire = thierno_ba
+    loyer.save
+end
+
+# 2018
+12.times do |i, loyer|
+    loyer = Loyer.new({
+        montant: appartement_clichy.montant_loyer,
+        date_paiement: "01/0#{i}/2018"
+    })
+    i += 1
+    loyer.bien = appartement_clichy
+    loyer.locataire = thierno_ba
+    loyer.save
+end
+
+
+# 2019
+12.times do |i, loyer|
+    loyer = Loyer.new({
+        montant: appartement_clichy.montant_loyer,
+        date_paiement: "01/0#{i}/2019"
+    })
+    i += 1
+    loyer.bien = appartement_clichy
+    loyer.locataire = thierno_ba
+    loyer.save
+end
 
 # 2020
 12.times do |i, loyer|
@@ -726,7 +1016,7 @@ end
 end
 
 # 2021
-4.times do |i, loyer| 
+3.times do |i, loyer| 
     loyer = Loyer.new({
         montant: appartement_clichy.montant_loyer,
         date_paiement: "01/0#{i}/2021"
