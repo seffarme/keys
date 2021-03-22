@@ -2,22 +2,18 @@ import Chart from "chart.js";
 
 const initChartCourbe = () => {
   const ctx = document.getElementById("myChartCourbe");
- 
+
   if (ctx) {
-    
+
   const deuxd = ctx.getContext('2d');
     // data = document.querySelector('#depense')
 
     const depensesDiv = document.querySelector('#depenses')
-    console.log(depensesDiv)
     const depensesValue =JSON.parse(depensesDiv.dataset.depenses)
 
     const monthsDisplay = JSON.parse(depensesDiv.dataset.months)
-    console.log(monthsDisplay);
 
     const cashFlowCourbe = JSON.parse(depensesDiv.dataset.courbe)
-    console.log(cashFlowCourbe);
-
 
     const myChart = new Chart(deuxd, {
       type: "bar",
@@ -128,9 +124,7 @@ const initChartBiens = () => {
   if (ctx) {
     const cfbien = document.querySelector("#cfbien");
     const cfbienValue = JSON.parse(cfbien.dataset.cfbien);
-    console.log(cfbienValue);
     const labelValue = JSON.parse(cfbien.dataset.label);
-    console.log(labelValue);
 
     const deuxd = ctx.getContext("2d");
     // data = document.querySelector('#depense')
@@ -233,27 +227,18 @@ const initChartBiens = () => {
   }
 };
 
-
 const initChartCourbeBien = () => {
 
   const ctx = document.getElementById('myChartCourbeBien')
-
-
-
 
   if (ctx ) {
   const deuxd = ctx.getContext('2d');
     // data = document.querySelector('#depense')
 
     const cfbm = document.querySelector('#cfbm')
-    console.log(cfbm)
     const cfbmValue =JSON.parse(cfbm.dataset.cfb)
-
     const monthsDisplay = JSON.parse(cfbm.dataset.months)
-    console.log(monthsDisplay);
-
     const cashFlowCourbe = JSON.parse(cfbm.dataset.courbe)
-    console.log(cashFlowCourbe);
 
     const myChart = new Chart(deuxd, {
       type: 'bar',
@@ -346,9 +331,6 @@ const initChartCourbeBien = () => {
                 usePointStyle: true
             }
         },
-        // responsive: true,
-        // maintainAspectRatio: false
-
       }
     });
   }

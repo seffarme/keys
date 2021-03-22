@@ -16,7 +16,7 @@ class BiensController < ApplicationController
     end
     # @sum_depenses = current_user.sum_depenses_biens
 
-    @cfbiens = @biens.map { |bien| bien.cash_flow_bien }
+    @cfbiens = @biens.map { |bien| bien.cash_flow_bien_to_date }
     @cfbiens_months = current_user.cash_flow_biens
 
     @cash_flow_courbe_biens = @cfbiens_months.each_with_index.map do |n, index|
