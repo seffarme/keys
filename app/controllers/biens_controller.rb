@@ -3,8 +3,8 @@ class BiensController < ApplicationController
   CURRENT_START_PERIOD = Date.new(CURRENT_YEAR)
   CURRENT_END_PERIOD = Date.new(CURRENT_YEAR + 1) - 1.day
 
-  before_action :set_biens, :any_loyer_missing_all_bien?, only: %i[index]
-  before_action :set_bien, :set_report, :any_loyer_missing_this_bien?, only: %i[show update]
+  before_action :set_biens, :any_loyer_missing?, only: [:index]
+  before_action :set_bien, :set_report, only: %i[show update]
 
   def index
     @markers = @biens.geocoded.map do |bien|
@@ -16,11 +16,12 @@ class BiensController < ApplicationController
     end
     # @sum_depenses = current_user.sum_depenses_biens
 
-    @cfbiens = @biens.map { |bien| bien.cash_flow_bien }
+    @cfbiens = @biens.map {|bien| bien.cash_flow_bien_to_date}
+
     @cfbiens_months = current_user.cash_flow_biens
 
     @cash_flow_courbe_biens = @cfbiens_months.each_with_index.map do |n, index|
-      if index.zero?
+      if index == 0
         n
       else
         @cfbiens_months[0..index].sum
@@ -28,7 +29,9 @@ class BiensController < ApplicationController
     end
 
     @months_display = (0..11).map { |i| (Date.today - i.month).end_of_month.strftime('%b %y') }.reverse
+
     @apartments_display = current_user.biens.map { |bien| bien.nom }
+
   end
 
   def show
@@ -52,7 +55,6 @@ class BiensController < ApplicationController
         @cash_flow_bien_month[0..index].sum
       end
     end
-
 
   end
 
@@ -122,8 +124,8 @@ class BiensController < ApplicationController
   end
 
   def sum_cashflow_courbe
-    b = @cfbiens_months.each with_index.map do |n, index|
-      if index.zero?
+     b = @cfbiens_months.each with_index.map do |n, index|
+      if index == 0
         n
       else tab[0..index].sum
       end
@@ -132,6 +134,18 @@ class BiensController < ApplicationController
 
   def set_bien
     @bien = Bien.find(params[:id])
+
+    # @markers = @biens.geocoded.map do |bien|
+    #   {
+    #     lat: bien.latitude,
+    #     lng: bien.longitude
+    #   }
+    # end
+    @depenses = Depense.all
+    @frais_recurrent = FraisRecurrent.new
+    @depense = Depense.new
+
+    @collected_loyers = @bien.loyers.in_interval(Date.new(CURRENT_YEAR), Date.today)
   end
 
   def set_biens
@@ -190,14 +204,10 @@ class BiensController < ApplicationController
     @autres_tbp = @autres_tbp_list.reduce(0) { |sum, autres| sum + autres }
   end
 
-  def any_loyer_missing_all_bien?
-    @any_loyer_missing_all_bien = @biens.any? do |bien|
+  def any_loyer_missing?
+    @any_loyer_missing = @biens.any? do |bien|
       bien.loyers.empty? || bien.loyers.last.date_paiement.month != Date.today.month
     end
-  end
-
-  def any_loyer_missing_this_bien?
-    @any_loyer_missing_this_bien = @bien.loyers.empty? || @bien.loyers.last.date_paiement.month != Date.today.month
   end
 
   # def sum_depenses
@@ -223,6 +233,8 @@ class BiensController < ApplicationController
   #   @sum_depenses
   #     raise
   #   end
+
+
 
   # def sum_loyers
   #   @bien = Bien.find(params[:id])
