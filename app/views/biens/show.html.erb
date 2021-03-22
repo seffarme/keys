@@ -117,9 +117,9 @@
 
               <ul class="item--description">
                 <li><%= @bien.categorie %></li>
-                <li>loyer : <%= @bien.montant_loyer %>€</li>
-                <li>acquis le : <%= @bien.date_acquisition %></li>
-                <li>Prix d'achat : <%= @bien.prix_acquisition%>€</li>
+                <li>Loyer mensuel : <%= number_with_delimiter(@bien.montant_loyer, delimiter: " ") %>€</li>
+                <li>Acquis le : <%= @bien.date_acquisition.strftime('%d/%m/%Y') %></li>
+                <li>Prix d'achat : <%= number_with_delimiter(@bien.prix_acquisition, delimiter: " ") %>€</li>
               </ul>
 
               <footer class="item--footer">
@@ -142,11 +142,10 @@
               </header>
 
               <ul class="item--description">
-                <li>Locataire Prenom</li>
-                <li>Locataire Nom</li>
-                <li><i class="fa fa-mobile-alt"></i> 06 01 21 31 34</li>
-                <li><i class="fa fa-envelope"></i> email@locataire.fr </li></li>
-                <li><i class="far fa-calendar-alt"></i>date debut location</li>
+                <li><%= @bien.locataires.first.prenom %> <%= @bien.locataires.first.nom.upcase %></li>
+                <li><i class="fa fa-mobile-alt"></i> 0<%= @bien.locataires.first.num_tel %></li>
+                <li><i class="fa fa-envelope"></i> <%= @bien.locataires.first.email %></li></li>
+                <li><i class="far fa-calendar-alt"></i> Début location : <%= @bien.locataires.first.date_debut_location.strftime('%d/%m/%Y') %></li>
                 <li></li>
               </ul>
 
@@ -168,9 +167,9 @@
               </header>
 
               <ul class="item--description">
-                <li> <%= @bien.adresse %></li>
+                <li><%= @bien.adresse %></li>
                 <li><%= @bien.code_postal %> <%= @bien.ville %></li>
-                <li><%= @bien.surface %>m2</li>
+                <li><%= @bien.surface %>m²</li>
                 <li><%= @bien.nb_pieces %> pièces</li>
                 <li><%= @bien.nb_sdb %> sdb</li>
               </ul>
@@ -214,7 +213,7 @@
         <table class="tableau-synthese">
           <thead>
             <tr>
-              <th> Année en cours </th>
+              <th>Année en cours</th>
               <th>Encaissé / Payé</th>
               <th>A venir</th>
             </tr>
@@ -222,33 +221,33 @@
           <tbody>
             <tr>
               <td>Loyers</td>
-              <td><%= @loyers_received %>€</td>
+              <td><%= number_with_delimiter(@loyers_received , delimiter: " ") %>€</td>
               <td><%=  %>0€ </td>
             </tr>
             <tr>
               <td>Taxe Foncière</td>
-              <td><%= @taxe_fonciere_paid %>€</td>
-              <td><%= @taxe_fonciere_tbp %>€</td>
+              <td><%= number_with_delimiter(@taxe_fonciere_paid , delimiter: " ") %>€</td>
+              <td><%= number_with_delimiter(@taxe_fonciere_tbp , delimiter: " ") %>€</td>
             </tr>
             <tr>
               <td>Copropriété</td>
-              <td><%= @copropriete_paid %>€</p></td>
-              <td><%= @copropriete_tbp %>€</td>
+              <td><%= number_with_delimiter(@copropriete_paid , delimiter: " ") %>€</p></td>
+              <td><%= number_with_delimiter(@copropriete_tbp , delimiter: " ") %>€</td>
             </tr>
             <tr>
               <td>Assurances</td>
-              <td><%= @assurances_paid %>€</td>
-              <td><%= @assurances_tbp %>€</td>
+              <td><%= number_with_delimiter(@assurances_paid , delimiter: " ") %>€</td>
+              <td><%= number_with_delimiter(@assurances_tbp , delimiter: " ") %>€</td>
             </tr>
             <tr>
               <td>Travaux</td>
-              <td><%= @travaux_paid %>€</td>
-              <td><%= @travaux_tbp %>€</td>
+              <td><%= number_with_delimiter(@travaux_paid , delimiter: " ") %>€</td>
+              <td><%= number_with_delimiter(@travaux_tbp , delimiter: " ") %>€</td>
             </tr>
             <tr>
               <td>Autres</td>
-              <td><%= @autres_paid %>€</td>
-              <td><%= @autres_tbp %>€</td>
+              <td><%= number_with_delimiter(@autres_paid , delimiter: " ") %>€</td>
+              <td><%= number_with_delimiter(@autres_tbp , delimiter: " ") %>€</td>
             </tr>
           </tbody>
         </table>
@@ -274,7 +273,7 @@
         <div class="col col-1" data-label="Date"><%= transaction['date_paiement'].strftime('%d/%m/%Y') %></div>
         <div class="col col-2" data-label="Categorie"><%= transaction['categorie'] || 'Loyer' %> </div>
         <div class="col col-3" data-label="Libellé"> <%= transaction['nom'] || 'Encaissé' %></div>
-        <div class="col col-4" data-label="Montant"><b><%= transaction['montant'] %> €</b></div>
+        <div class="col col-4" data-label="Montant"><b><%= number_with_delimiter(transaction['montant'] , delimiter: " ") %> €</b></div>
       </li>
     <% end %>
 
