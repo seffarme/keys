@@ -25,6 +25,8 @@ class Bien < ApplicationRecord
     sum_depenses
   end
 
+  # Bien.first.depenses.where("date_paiement < ?"  Time.now.end_of_month ).sum(:montant)
+
   def sum_loyers
     sum_loyers = 0
     self.loyers.each do |loyer|
@@ -35,6 +37,15 @@ class Bien < ApplicationRecord
 
   def cash_flow_bien
    self.sum_loyers - self.sum_depenses
+  end
+
+  def sum_depenses_to_date
+     a = Time.now.beginning_of_month + 1.month
+     self.depenses.where("date_paiement < ?", a).sum(:montant)
+  end
+
+  def cash_flow_bien_to_date
+   self.sum_loyers - self.sum_depenses_to_date
   end
 
   def months_depenses_to_date

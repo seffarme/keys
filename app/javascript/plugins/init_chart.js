@@ -161,7 +161,8 @@ const initChartBiens = () => {
                   'rgba(153, 102, 255, 1)',
                   'rgba(255, 159, 64, 1)'
               ],
-              borderWidth: 1
+              borderWidth: 1,
+              pointStyle: 'rect'
           }]
       },
       options: {
@@ -173,18 +174,16 @@ const initChartBiens = () => {
 					}
 				},
 				scales: {
-          scales: {
             yAxes: [{
               ticks: {
               // type: 'logarithmic'
-                min: -5000,
+                min: -500000,
                 max: 5000,
                 padding: 4,
                 fontSize: 10,
                 callback: function(value, index, values) {
                         return value + ' €';
                     },
-                    fontFamily: 'FontAwesome'
               }
             }],
             xAxes: [{
@@ -194,9 +193,15 @@ const initChartBiens = () => {
                       fontSize: 10
                   }
               }]
-        }
-
-      }
+      },
+      legend: {
+            display: true,
+            position: 'top',
+            labels: {
+                useLineStyle: true,
+                usePointStyle: true
+            }
+        },
   	}
 	});
   }
