@@ -15,7 +15,7 @@
   </section>
 
   <!-- LOYER POP UP; color depends on status -->
-	<% if @loyer_missing %>
+	<% if @any_loyer_missing_this_bien %>
     <section class="section-card section-pop-up section-alert">
       <p>Le loyer du mois de mars n'a pas été réglé !</p>
     </section>
@@ -28,14 +28,42 @@
   <!-- IMPORTANT ACTIONS -->
   <section class="section-important-actions">
 
-    <!-- ADD LOYER -->
-    <div class="section-card-add-loyer">
-      <p class="">Avez-vous reçu le loyer du mois de mars de <%= @bien.montant_loyer %>€ de la part de <%= @bien.locataires.first.prenom %> <%= @bien.locataires.first.nom %> ?</p>
-      <%= link_to "J'ai reçu le loyer 💰", bien_loyers_path(bien_id: @bien.id), method: :post, class:"block-base block-btn block-btn-save-loyer" %>
-    </div>
+    <!-- ADD LOYER & DEPENSE-->
 
-    <!-- ADD DEPENSE -->
-    <div class="section-card-add-depense">
+    <% if @any_loyer_missing_this_bien %>
+
+      <!-- ADD LOYER -->
+      <div class="section-card-add-loyer section-warning">
+        <p>Avez-vous reçu le loyer du mois de mars de <%= @bien.montant_loyer %>€ de la part de <%= @bien.locataires.first.prenom %> <%= @bien.locataires.first.nom %> ?</p>
+        <%= link_to "J'ai reçu le loyer 💰", bien_loyers_path(bien_id: @bien.id), method: :post, class:"block-base block-btn block-btn-save-loyer" %>
+      </div>
+
+      <!-- ADD DEPENSE -->
+      <div class="section-card-add-depense">
+        <p>Ajouter une dépense</p>
+  
+        <%= form_for @bien do |f| %>
+          <%= f.simple_fields_for :depenses, @bien.depenses.build do |ff| %>
+            <%= ff.hidden_field :id %>
+            <div class="form-depense">
+              <div id="depense-form-nom-montant-cat">
+                <%= ff.input :nom, label: false, placeholder: "Nom", input_html: {class: "form-input"} %>
+                <%= ff.input :montant, label: false, placeholder: "Montant", input_html: {class: "form-input"} %>
+                <%= ff.input :categorie, label: false, collection: Depense::CATEGORIE, prompt: "-- Catégorie --", input_html: {class: "form-input"}  %>
+              </div>
+              <div id="depense-form-date">
+                <%= ff.input :date_paiement, label: false, as: :date, order: [:day, :month, :year], input_html: {class: "form-input"} %>
+              </div>
+              <% end %>
+              <%= f.submit "Enregistrer", class: "block-base block-btn block-btn-save-depense" %>
+            </div>
+        <% end %>
+      </div>
+
+    <% else %>  
+
+    <!-- ADD DEPENSE only -->
+    <div class="section-card-add-depense w-100">
       <p>Ajouter une dépense</p>
 
       <%= form_for @bien do |f| %>
@@ -55,6 +83,8 @@
           </div>
       <% end %>
     </div>
+
+    <% end %>
 
   </section>
 

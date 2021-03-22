@@ -3,8 +3,8 @@ class BiensController < ApplicationController
   CURRENT_START_PERIOD = Date.new(CURRENT_YEAR)
   CURRENT_END_PERIOD = Date.new(CURRENT_YEAR + 1) - 1.day
 
-  before_action :set_biens, :any_loyer_missing?, only: [:index]
-  before_action :set_bien, :set_report, only: %i[show update]
+  before_action :set_biens, :any_loyer_missing_all_bien?, only: %i[index]
+  before_action :set_bien, :set_report, :any_loyer_missing_this_bien?, only: %i[show update]
 
   def index
     @markers = @biens.geocoded.map do |bien|
@@ -176,10 +176,14 @@ class BiensController < ApplicationController
     @autres_tbp = @autres_tbp_list.reduce(0) { |sum, autres| sum + autres }
   end
 
-  def any_loyer_missing?
-    @any_loyer_missing = @biens.any? do |bien|
+  def any_loyer_missing_all_bien?
+    @any_loyer_missing_all_bien = @biens.any? do |bien|
       bien.loyers.empty? || bien.loyers.last.date_paiement.month != Date.today.month
     end
+  end
+
+  def any_loyer_missing_this_bien?
+    @any_loyer_missing_this_bien = @bien.loyers.empty? || @bien.loyers.last.date_paiement.month != Date.today.month
   end
 
   # def sum_depenses
