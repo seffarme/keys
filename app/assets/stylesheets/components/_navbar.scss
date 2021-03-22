@@ -25,3 +25,12 @@
 .absolute-body {
 	position: static;
 }
+
+.navbar-body {
+	transition-property: margin-top,margin-right;
+  transition-duration: .5s,.1s;
+  transition-delay: 0;
+	position:sticky;
+	top:0;
+  z-index:1000;
+}

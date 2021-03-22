@@ -21,19 +21,19 @@
 	<section class="section-kpi">
 
 		<!-- NET CF SINCE BEGINNING -->
-		<div class="section-card kpi-card">
+		<div class="section-card kpi-card" style="background-color: #152F70;">
 			<p class="kpi-big-number">+XX XXX<span class="kpi-little-symbol">€</span></p>
 			<p class="kpi-metric-name">nets générés au total</p>
 		</div>
 
 		<!-- ESTIMATED ANNUAL PERFORMANCE -->
-		<div class="section-card kpi-card">
+		<div class="section-card kpi-card" style="background-color: #152F70;">
 			<p class="kpi-big-number">X,X<span class="kpi-little-symbol">%</span></p>
 			<p class="kpi-metric-name">rentabilité annuelle moyenne</p>
 		</div>
 
 		<!-- ESTIMATED VALUE OF GLOBAL REAL ESTATE -->
-		<div class="section-card kpi-card">
+		<div class="section-card kpi-card" style="background-color: #152F70;">
 			<p class="kpi-big-number">X XXX XXX<span class="kpi-little-symbol">€</span></p>
 			<p class="kpi-metric-name">valeur estimée de vos biens</p>
 		</div>
@@ -62,7 +62,7 @@
 		<div>
 			<% @biens.each do |bien| %>
 				<!-- BIEN LIST-CARD -->
-				<div class="card-product">
+				<div class="card-product" style="background-color: #152F70; border-radius: 5px;">
 
 					<!-- LEFT PART of the card -->
 					<div class="card-product-informations">
@@ -91,7 +91,7 @@
 								<%= link_to "", bien_loyers_path(bien_id: bien.id), method: :post %>
 							</div>
 						<% else %>
-							<div class="block-base block-paid-success">
+							<div class="block-base block-paid-success" style="color: white;">
 								<p>Loyer reçu ✅</p>
 							</div>
 						<% end %>
@@ -110,7 +110,7 @@
 						<% end %>
 
 						<!-- ADD A DEPENSE -->
-						<div class="block-base block-btn block-btn-add-depense">
+						<div class="block-base btn btn-secondary block-btn block-btn-add-depense">
 							<p>Ajouter une dépense</p>
 							<%= link_to "", bien_path(bien) %>
 						</div>
@@ -130,7 +130,7 @@
 
 	</section>
 
-	
+
 	<!-- BIENS MAP -->
 	<section class="section-card section-mapbox">
 		<h3>Localisation de vos <%= @biens.count %> biens</h3>
@@ -142,7 +142,7 @@
 
 	</section>
 
-	
+
 	<!-- FOOTER -->
 	<div class="footer-set-height">
 		<%= render 'shared/footer_body' unless @home %>
