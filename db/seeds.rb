@@ -51,7 +51,7 @@ puts "[1/6] - Seeding the User DB..."
 mathieu_eustachy = User.new({
     prenom: "Mathieu",
     nom: "Eustachy",
-    email: "mathieu.eustachy@gmail.com",
+    email: "julie.laloy@gmail.com",
     num_tel: "0614714703",
     password: "123456",
     admin: true
@@ -140,7 +140,7 @@ maison_gennevilliers = Bien.new({
     frais_achat_agence: "15000",
     frais_achat_travaux: "5000",
     frais_achat_autres: "12500",
-    montant_loyer: "3500"
+    montant_loyer: "2500"
 })
 
 maison_gennevilliers.user = mathieu_eustachy
@@ -221,7 +221,7 @@ charges_pigalle.bien = appartement_pigalle
 charges_pigalle.save
 charges_pigalle.populate_depenses(appartement_pigalle)
 
-# Assurances 
+# Assurances
 assurance_pno_pigalle = FraisRecurrent.new({
     nom: "Assurance PNO",
     montant: "15",
@@ -293,7 +293,7 @@ charges_ruedesdames.bien = appartement_rue_des_dames
 charges_ruedesdames.save
 charges_ruedesdames.populate_depenses(appartement_rue_des_dames)
 
-# Assurances 
+# Assurances
 assurance_pno_ruedesdames = FraisRecurrent.new({
     nom: "Assurance PNO",
     montant: "15",
@@ -352,7 +352,7 @@ taxe_fonciere_maisongennevilliers.bien = maison_gennevilliers
 taxe_fonciere_maisongennevilliers.save
 taxe_fonciere_maisongennevilliers.populate_depenses(maison_gennevilliers)
 
-# Assurances 
+# Assurances
 assurance_pno_maisongennevilliers = FraisRecurrent.new({
     nom: "Assurance PNO",
     montant: "60",
@@ -424,7 +424,7 @@ charges_clichy.bien = appartement_clichy
 charges_clichy.save
 charges_clichy.populate_depenses(appartement_clichy)
 
-# Assurances 
+# Assurances
 assurance_pno_clichy = FraisRecurrent.new({
     nom: "Assurance PNO",
     montant: "35",
@@ -571,7 +571,7 @@ puts "[5/6] - Seeding the Locataires DB..."
 diane_garcia = Locataire.new({
     prenom: "Diane",
     nom: "Garcia",
-    email: "diane.garcia@gmail.com",
+    email: "julie.laloy@gmail.com",
     num_tel: "0614514503",
     adresse: "Capitole",
     ville: "Toulouse",
@@ -586,7 +586,7 @@ diane_garcia.save
 mathilde_reynes = Locataire.new({
     prenom: "Mathilde",
     nom: "Reynes",
-    email: "mathilde.reynes@outlook.com",
+    email: "julie.laloy@gmail.com",
     num_tel: "0756328745",
     adresse: "Capitole",
     ville: "Toulouse",
@@ -601,7 +601,7 @@ mathilde_reynes.save
 othman_igrouche = Locataire.new({
     prenom: "Othman",
     nom: "Igrouche",
-    email: "othman.igrouche@gmail.com",
+    email: "julie.laloy@gmail.com",
     num_tel: "0654238709",
     adresse: "Gauthier",
     ville: "Casablanca",
@@ -616,7 +616,7 @@ othman_igrouche.save
 thierno_ba = Locataire.new({
     prenom: "Thierno",
     nom: "Ba",
-    email: "thierno.ba@gmail.com",
+    email: "julie.laloy@gmail.com",
     num_tel: "0614514507",
     adresse: "15, place des Terreaux",
     ville: "Lyon",
@@ -671,7 +671,7 @@ end
 end
 
 # 2021
-3.times do |i, loyer| 
+3.times do |i, loyer|
     loyer = Loyer.new({
         montant: appartement_pigalle.montant_loyer,
         date_paiement: "02/0#{i}/2021"
@@ -758,7 +758,7 @@ end
 end
 
 # 2021
-3.times do |i, loyer| 
+3.times do |i, loyer|
     loyer = Loyer.new({
         montant: appartement_rue_des_dames.montant_loyer,
         date_paiement: "03/0#{i}/2021"
@@ -893,7 +893,7 @@ end
 end
 
 # 2021
-3.times do |i, loyer| 
+3.times do |i, loyer|
     loyer = Loyer.new({
         montant: maison_gennevilliers.montant_loyer,
         date_paiement: "01/0#{i}/2021"
@@ -1016,7 +1016,7 @@ end
 end
 
 # 2021
-3.times do |i, loyer| 
+3.times do |i, loyer|
     loyer = Loyer.new({
         montant: appartement_clichy.montant_loyer,
         date_paiement: "01/0#{i}/2021"
@@ -1029,7 +1029,7 @@ end
 
 
 puts "
-~ All seeds created: 
+~ All seeds created:
 - #{User.all.count} users
 - #{Bien.all.count} biens
 - #{FraisRecurrent.all.count} frais recurrents

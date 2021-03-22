@@ -18,12 +18,13 @@ class Bien < ApplicationRecord
 # second graph
 
   def sum_depenses
-      sum_depenses = 0
+    sum_depenses = 0
     self.depenses.each do |depense|
       sum_depenses += depense.montant
     end
     sum_depenses
   end
+
 
   def sum_loyers
     sum_loyers = 0
@@ -35,6 +36,15 @@ class Bien < ApplicationRecord
 
   def cash_flow_bien
    self.sum_loyers - self.sum_depenses
+  end
+
+  def sum_depenses_to_date
+   a = Time.now.beginning_of_month + 1.month
+   self.depenses.where("date_paiement < ?", a).sum(:montant)
+  end
+
+  def cash_flow_bien_to_date
+   self.sum_loyers - self.sum_depenses_to_date
   end
 
   def months_depenses_to_date

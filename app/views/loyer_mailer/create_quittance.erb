@@ -1,0 +1,37 @@
+<style>
+  h3 {
+    font-family: sans-serif;
+  }
+  p {
+    font-family:sans-serif;
+  }
+</style>
+
+<h3>Quittance <%= @bien.nom %> - <%= Date.today.strftime("%B %Y")%> </h3>
+
+<p>
+  <br>Bonjour <%= @locataire.prenom %> <%= @locataire.nom %>,
+  <br>
+  <br>Nous vous remercions pour le règlement du loyer du mois de <%= Date.today.strftime("%B %Y")%>.
+  <br>
+  <br>Veuillez trouver ci-dessous la quittance de ce mois-ci.
+</p>
+<p>
+  <br><b>---------------- QUITTANCE ----------------</b>
+  <br>
+  <br><%= @bien.nom %>
+  <br><%= @bien.adresse %>
+  <br><%= @bien.code_postal %> <%= @bien.ville %>
+  <br> loyer à régler : <%= @bien.montant_loyer %> €
+  <br>-------------------------------------------
+  <br>
+  <br><b>Montant Réglé : <%= @bien.montant_loyer %> €</b>
+  <br>A <%= @bien.user.prenom %> <%= @bien.user.nom %>
+  <br>-------------------------------------------
+  <br>
+  <br>N'h&eacute;sitez pas &agrave; me contacter en cas de question.
+  <br>
+  <br><%= @bien.user.prenom %> <%= @bien.user.nom %>
+
+<br>
+</p>

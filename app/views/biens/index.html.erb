@@ -7,7 +7,7 @@
 
 
 	<!-- LOYERS POP UP; color depends on status -->
-	<% if @any_loyer_missing %>
+	<% if @any_loyer_missing_all_bien %>
 		<section class="section-card section-pop-up section-alert">
 			<p>Un ou plusieurs loyers du mois de mars n'ont pas été réglés !</p>
 		</section>
@@ -43,7 +43,7 @@
 	<section class="section-graph">
 
 		<!-- DETAILED CF PER MONTH with CUMULATIVE CF GRAPH -->
-    <div id="depenses" data-depenses="<%= @cfbiens_months %>" data-months="<%= @months_display %>" data-courbe="<%= @cash_flow_courbe %>" class="graph-card" style="width: 450px;">
+    <div id="depenses" data-depenses="<%= @cfbiens_months %>" data-months="<%= @months_display %>" data-courbe="<%= @cash_flow_courbe_biens %>" class="graph-card" style="width: 450px;">
           <canvas class="graph" id="myChartCourbe"></canvas>
     </div>
 
@@ -102,6 +102,7 @@
 
 						<!-- RELANCE TO DO ? -->
 						<% if bien.loyers.empty? %>
+
 							<div>
 								<%# <p>Faire une relance</p> %>
 								<%= link_to bien_loyers_path(bien_id: bien.id), method: :post do %>
@@ -114,6 +115,8 @@
 								<%= link_to bien_loyers_path(bien_id: bien.id), method: :post do %>
 									<i class="far fa-envelope-open" title="Faire une relance"></i>
 								<% end %>
+
+			
 							</div>
 						<% end %>
 

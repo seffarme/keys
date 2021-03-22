@@ -21,7 +21,8 @@ require("channels")
 // Note(lewagon): ABOVE IS RAILS DEFAULT CONFIGURATION
 // WRITE YOUR OWN JS STARTING FROM HERE 👇
 // ----------------------------------------------------
-import { initChartCourbe, initChartBiens } from '../plugins/init_chart';
+import { initChartCourbe, initChartBiens, initChartCourbeBien } from '../plugins/init_chart';
+
 // External imports
 import "bootstrap";
 
@@ -32,7 +33,8 @@ import { initMapbox } from '../plugins/init_mapbox';
 document.addEventListener('turbolinks:load', () => {
   initMapbox();
   initChartCourbe();
-  initChartBiens()
+  initChartBiens();
+  initChartCourbeBien();
 })
 
 
