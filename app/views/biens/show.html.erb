@@ -25,6 +25,17 @@
     </section>
   <% end %>
 
+  <!-- GRAPHS OVER LAST 12 MONTHS-->
+
+
+
+    <!-- DETAILED CF PER MONTH with CUMULATIVE CF GRAPH -->
+    <div id="cfbm" data-cfb="<%= @cash_flow_bien_month %>" data-months="<%= @months_display %>" data-courbe="<%= @cash_flow_courbe_bien %>" class="graph-card" style="width: 450px;">
+          <canvas class="graph" id="myChartCourbeBien"></canvas>
+    </div>
+
+
+
   <!-- IMPORTANT ACTIONS -->
   <section class="section-important-actions">
 

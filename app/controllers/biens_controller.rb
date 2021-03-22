@@ -20,7 +20,7 @@ class BiensController < ApplicationController
 
     @cfbiens_months = current_user.cash_flow_biens
 
-    @cash_flow_courbe = @cfbiens_months.each_with_index.map do |n, index|
+    @cash_flow_courbe_biens = @cfbiens_months.each_with_index.map do |n, index|
       if index == 0
         n
       else
@@ -37,14 +37,28 @@ class BiensController < ApplicationController
   def show
     ## MERGE tableaux transactions ##
     @lasts_transactions = (@bien.loyers.where('date_paiement < ?',
-                                              DateTime.now).order(date_paiement: :desc).limit(10).to_a + @bien.depenses.where('date_paiement < ?',
-                                                                                                                              DateTime.now).order(date_paiement: :desc).limit(10).to_a).map do |transaction|
+    DateTime.now).order(date_paiement: :desc).limit(10).to_a + @bien.depenses.where('date_paiement < ?',
+    DateTime.now).order(date_paiement: :desc).limit(10).to_a).map do |transaction|
       transaction.attributes
     end
     @lasts_transactions.sort_by! { |t| t['date_paiement'] }.reverse!
-
     @depenses = @bien.sum_depenses
+
+    @cash_flow_bien_month = @bien.cash_flow_month
+
+    @months_display = (0..11).map { |i| (Date.today - i.month).end_of_month.strftime('%b %y') }.reverse
+
+    @cash_flow_courbe_bien = @cash_flow_bien_month.each_with_index.map do |n, index|
+      if index == 0
+        n
+      else
+        @cash_flow_bien_month[0..index].sum
+      end
+    end
+
+
   end
+
 
   def update
     @bien.attributes = bien_params
@@ -69,8 +83,6 @@ class BiensController < ApplicationController
       render :new
     end
   end
-
-
 
   private
 

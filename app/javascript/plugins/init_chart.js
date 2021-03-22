@@ -6,7 +6,13 @@ const initChartCourbe = () => {
 
 
 
+
+  if (ctx) {
+  const deuxd = ctx.getContext('2d');
+    // data = document.querySelector('#depense')
+
     const depensesDiv = document.querySelector('#depenses')
+    console.log(depensesDiv)
     const depensesValue =JSON.parse(depensesDiv.dataset.depenses)
 
     const monthsDisplay = JSON.parse(depensesDiv.dataset.months)
@@ -14,11 +20,6 @@ const initChartCourbe = () => {
 
     const cashFlowCourbe = JSON.parse(depensesDiv.dataset.courbe)
     console.log(cashFlowCourbe);
-
-  if (ctx) {
-  const deuxd = ctx.getContext('2d');
-    // data = document.querySelector('#depense')
-
 
     const myChart = new Chart(deuxd, {
       type: 'bar',
@@ -177,8 +178,8 @@ const initChartBiens = () => {
             yAxes: [{
               ticks: {
               // type: 'logarithmic'
-                min: -500000,
-                max: 5000,
+                suggestedMin: -5000,
+                suggestedMax: 5000,
                 padding: 4,
                 fontSize: 10,
                 callback: function(value, index, values) {
@@ -206,4 +207,126 @@ const initChartBiens = () => {
 	});
   }
 };
-export { initChartCourbe, initChartBiens };
+
+
+const initChartCourbeBien = () => {
+
+  const ctx = document.getElementById('myChartCourbeBien')
+
+
+
+
+  if (ctx ) {
+  const deuxd = ctx.getContext('2d');
+    // data = document.querySelector('#depense')
+
+    const cfbm = document.querySelector('#cfbm')
+    console.log(cfbm)
+    const cfbmValue =JSON.parse(cfbm.dataset.cfb)
+
+    const monthsDisplay = JSON.parse(cfbm.dataset.months)
+    console.log(monthsDisplay);
+
+    const cashFlowCourbe = JSON.parse(cfbm.dataset.courbe)
+    console.log(cashFlowCourbe);
+
+    const myChart = new Chart(deuxd, {
+      type: 'bar',
+      data: {
+        datasets: [{
+            label: 'CashFlow',
+            data: cfbmValue,
+            backgroundColor: [
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(54, 162, 235, 0.2)'
+              ],
+              borderColor: [
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 235, 1)'
+              ],
+              borderWidth: 1
+        }, {
+            label: 'Line CashFlow',
+            data: cashFlowCourbe,
+
+            // Changes this dataset to become a line
+            type: 'line',
+            backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+                  'rgba(255, 159, 64, 0.2)'
+              ],
+              borderColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)'
+              ],
+              borderWidth: 1,
+              pointStyle: 'line'
+        }],
+        labels: monthsDisplay,
+      },
+      options: {
+          legend: {
+            display: true,
+            labels: {
+                fontColor: 'rgb(255, 99, 132)',
+                fontSize: 20,
+            }
+          },
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero: false,
+                      padding: 4,
+
+                      fontSize: 10,
+                      callback: function(value, index, values) {
+                        return value + ' €';
+                    }
+                  }
+              }]
+          },
+          legend: {
+            display: true,
+            position: 'top',
+            labels: {
+                useLineStyle: true,
+                usePointStyle: true
+            }
+        },
+        // responsive: true,
+        // maintainAspectRatio: false
+
+      }
+    });
+  }
+};
+
+export { initChartCourbe, initChartBiens, initChartCourbeBien };
