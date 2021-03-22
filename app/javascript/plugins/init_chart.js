@@ -94,7 +94,6 @@ const initChartCourbe = () => {
               ticks: {
                 beginAtZero: false,
                 padding: 4,
-
                 fontSize: 10,
                 callback: function(value, index, values) {
                   return value + " €";
@@ -111,8 +110,6 @@ const initChartCourbe = () => {
             usePointStyle: true,
           },
         },
-        // responsive: true,
-        // maintainAspectRatio: false
       },
     });
   }
@@ -127,7 +124,6 @@ const initChartBiens = () => {
     const labelValue = JSON.parse(cfbien.dataset.label);
 
     const deuxd = ctx.getContext("2d");
-    // data = document.querySelector('#depense')
 
     const myChart = new Chart(deuxd, {
       type: "bar",
@@ -194,33 +190,6 @@ const initChartBiens = () => {
                 useLineStyle: true,
                 usePointStyle: true
             }
-        },
-        scales: {
-          scales: {
-            yAxes: [
-              {
-                ticks: {
-                  // type: 'logarithmic'
-                  min: -5000,
-                  max: 5000,
-                  padding: 4,
-                  fontSize: 10,
-                  callback: function(value, index, values) {
-                    return value + " €";
-                  },
-                  fontFamily: "FontAwesome",
-                },
-              },
-            ],
-            xAxes: [
-              {
-                ticks: {
-                  padding: 4,
-                  fontSize: 10,
-                },
-              },
-            ],
-          },
         },
       },
     });
