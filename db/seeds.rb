@@ -48,15 +48,15 @@ puts "Starting the seeding process..."
 # User
 puts "[1/6] - Seeding the User DB..."
 
-queen_elizabeth = User.new({
-    prenom: "Elizabeth",
-    nom: "Windsor",
-    email: "julie.laloy@gmail.com",
-    num_tel: "0614514502",
+mathieu_eustachy = User.new({
+    prenom: "Mathieu",
+    nom: "Eustachy",
+    email: "mathieu.eustachy@gmail.com",
+    num_tel: "0614714703",
     password: "123456",
     admin: true
 })
-queen_elizabeth.save
+mathieu_eustachy.save
 
 
 ## - # - ###########################################################################
@@ -87,7 +87,7 @@ buckingham_palace_en_correze = Bien.new({
     montant_loyer: "500"
 })
 
-buckingham_palace_en_correze.user = queen_elizabeth
+buckingham_palace_en_correze.user = mathieu_eustachy
 buckingham_palace_en_correze.save
 
 
@@ -95,7 +95,7 @@ buckingham_palace_en_correze.save
 chateau_de_sedieres = Bien.new({
     nom: "Château de Sédières - Clergoux",
     categorie: "Maison",
-    adresse: "sedières",
+    adresse: "Sédières",
     ville: "Clergoux",
     code_postal: "19320",
     pays: "France",
@@ -115,16 +115,16 @@ chateau_de_sedieres = Bien.new({
     montant_loyer: "700"
 })
 
-chateau_de_sedieres.user = queen_elizabeth
+chateau_de_sedieres.user = mathieu_eustachy
 chateau_de_sedieres.save
 
 
 # Bien 3
 maison_lignerac = Bien.new({
-    nom: "Maison Lignerac - Clergoux",
+    nom: "Maison Ligneyrac - Clergoux",
     categorie: "Maison",
     adresse: "Le bourg",
-    ville: "lignerac",
+    ville: "Ligneyrac",
     code_postal: "19500",
     pays: "France",
     info_compl_adresse: "A seulement 15 min de Brive se trouve cette belle grange rénovée avec goût et des matériaux de qualité. En situation dominante, sur plus de 2 ha de terrain, elle vous offre le confort d'une maison moderne à l'intérieur et le charme des vielles pierres à l'extérieur. Le Rez de chaussée se compose d'un séjour de 85m² avec sa cuisine ouverte, une suite parentale avec salle de bain. Très lumineux grâce à des baies vitrées ouvertes sur la terrasse et le jardin.",
@@ -143,7 +143,7 @@ maison_lignerac = Bien.new({
     montant_loyer: "330"
 })
 
-maison_lignerac.user = queen_elizabeth
+maison_lignerac.user = mathieu_eustachy
 maison_lignerac.save
 
 # Bien 4
@@ -151,8 +151,8 @@ villa_stprivat = Bien.new({
     nom: "Villa - Saint Privat",
     categorie: "Maison",
     adresse: "Le bourg",
-    ville: "saint-privat",
-    code_postal: "19320",
+    ville: "Saint-Privat",
+    code_postal: "19220",
     pays: "France",
     info_compl_adresse: "Au coeur d'un village historique de la Corrèze, cette maison unique avec un jardin magnifiquement aménagé et une piscine intérieure est à vendre. La résidence date du XIXe siècle, mais elle a été entièrement rénovée en 2009 et a été achevée et restaurée à la perfection. ",
     surface: "406",
@@ -170,7 +170,7 @@ villa_stprivat = Bien.new({
     montant_loyer: "1250"
 })
 
-villa_stprivat.user = queen_elizabeth
+villa_stprivat.user = mathieu_eustachy
 villa_stprivat.save
 
 
@@ -342,6 +342,21 @@ julien_dore = Locataire.new({
 julien_dore.bien = maison_lignerac
 julien_dore.save
 
+# Locataire 4
+
+amel_bent = Locataire.new({
+    prenom: "Amel",
+    nom: "Bent",
+    email: "amel.bent@gmail.com",
+    num_tel: "0614514502",
+    adresse: "15, place des Terreaux",
+    ville: "Lyon",
+    code_postal: "69001",
+    pays: "France",
+    date_debut_location: "01/01/2020"
+})
+amel_bent.bien = villa_stprivat
+amel_bent.save
 
 ## - # - ###########################################################################
 # Loyers

@@ -1,9 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Keys</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+    <title><%= meta_title %></title>
+    <meta name="description" content="<%= meta_description %>">
+
+    <!-- Facebook Open Graph data -->
+    <meta property="og:title" content="<%= meta_title %>" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="<%= request.original_url %>" />
+    <meta property="og:image" content="<%= meta_image %>" />
+    <meta property="og:description" content="<%= meta_description %>" />
+    <meta property="og:site_name" content="<%= meta_title %>" />
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="<%= DEFAULT_META["twitter_account"] %>">
+    <meta name="twitter:title" content="<%= meta_title %>">
+    <meta name="twitter:description" content="<%= meta_description %>">
+    <meta name="twitter:creator" content="<%= DEFAULT_META["twitter_account"] %>">
+    <meta name="twitter:image:src" content="<%= meta_image %>">
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -11,17 +26,32 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
     <%= stylesheet_pack_tag 'application' %>
     <link rel="icon" type="image/png" sizes="16x16" href="<%= image_path "logo_fond_bleu.ico" %>">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-LT2Z4YN23Q"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
+      gtag('config', 'G-LT2Z4YN23Q');
+    </script> -->
   </head>
 
   <body>
 
+    <!-- NAVBAR -->
     <%= render 'shared/navbar_home' if @home %>
 		<%= render 'shared/navbar_body' unless @home %>
+
+    
+    <!-- CONTENT -->
+    <%= yield %>
+    
+    <!-- FLASHES -->
     <%= render 'shared/flashes' %>
 
+    <!-- FOOTER home -->
+    <%= render 'shared/footer_home' if @home %>
 
-    <%= yield %>
-    <%= render "shared/footer_white" %>
   </body>
 </html>

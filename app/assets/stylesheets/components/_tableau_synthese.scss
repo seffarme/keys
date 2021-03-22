@@ -1,0 +1,39 @@
+
+// table style
+
+.tableau-synthese	{
+  border-spacing: 1;
+  border-collapse: collapse;
+  background:white;
+  border-radius:3px;
+  overflow:hidden;
+  max-width:800px;
+  width:100%;
+  margin:0 auto;
+  position:relative;
+  font-size: 14px;;
+
+
+  *               { position:relative }
+
+  td,th           { padding-left:8px}
+
+  thead tr        {
+    height:60px;
+    background:#152F70;
+    color:white;
+    font-size:16px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  tbody tr        { height:30px; border-bottom:1px solid rgb(233, 233, 233) ;
+    &:last-child  { border:0; }
+  }
+
+ 	td,th 					{ text-align:left;
+		&.l 					{ text-align:right }
+		&.c 					{ text-align:center }
+		&.r 					{ text-align:center }
+	}
+}

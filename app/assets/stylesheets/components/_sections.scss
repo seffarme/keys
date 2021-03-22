@@ -1,0 +1,169 @@
+
+// Base layout 
+.section-card {
+    background-color: white;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    border-radius: 3px;
+    margin-top: 16px;
+}
+
+
+// Style
+.section-pop-up {
+    display: flex;
+    justify-content: center;
+
+    padding: 12px;
+
+    p {
+        font-size: 14px;
+        margin: 0;
+    }    
+}
+
+.section-kpi {
+    display: flex;
+    justify-content: space-between;
+}
+
+.section-biens-list {
+    margin-top: 16px;
+}
+
+.section-graph {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 16px;
+}
+
+.section-mapbox {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    margin-bottom: 32px;
+
+    h3 {
+        font-size: 16px;
+        margin: 12px 0;
+    }
+}
+
+.section-important-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+
+    margin-top: 16px;
+    border-radius: 3px;
+
+    .section-card-add-loyer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+        background-color: white;
+        box-shadow: 0 0 8px rgba(0,0,0,0.1);
+        border-radius: 3px;
+
+        width: 35%;
+        height: 100%;
+
+        p {
+            padding: 8px;
+            margin: 0 0 8px 0;
+        }
+    }
+
+    .section-card-add-depense {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        height: auto;
+
+        background-color: white;
+        box-shadow: 0 0 8px rgba(0,0,0,0.1);
+        border-radius: 3px;
+
+        padding: 8px;
+
+        p {
+            font-size: 16px;
+        }
+    }
+}
+
+.section-dual-equiv-items-centered {
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 16px;
+}
+
+.section-last-operations {
+    margin-top: 16px;
+}
+
+
+// Other
+.section-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+    position: relative;
+    
+    margin-top: 12px;
+    margin-bottom: 12px;
+    padding: 16px;
+    
+    div {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    i {
+        color: $font-dark-grey;
+    }
+    
+    h1 {
+        margin-left: 12px;
+        font-size: 32px;
+    }
+}
+
+.section-introduction {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    margin-top: 16px;
+    
+    p {
+        font-size: 14px;
+        font-weight: 300;
+        color: $font-light-grey;
+        margin: 0;
+    }
+}
+
+
+// Event
+.section-alert {
+    background-color:$light-red;
+    color: $font-dark-grey;
+    font-weight: 700;
+}
+
+.section-success {
+    background-color: $light-green;
+    color:$font-light-grey;
+}

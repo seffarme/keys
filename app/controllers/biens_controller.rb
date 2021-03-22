@@ -3,10 +3,10 @@ class BiensController < ApplicationController
   CURRENT_START_PERIOD = Date.new(CURRENT_YEAR)
   CURRENT_END_PERIOD = Date.new(CURRENT_YEAR + 1) - 1.day
 
+  before_action :set_biens, :any_loyer_missing?, only: [:index]
   before_action :set_bien, :set_report, only: %i[show update]
 
   def index
-    @biens = current_user.biens
     @markers = @biens.geocoded.map do |bien|
       {
         lat: bien.latitude,
@@ -28,15 +28,23 @@ class BiensController < ApplicationController
         @cfbiens_months[0..index].sum
       end
     end
-
-
+    
     @months_display = (0..11).map { |i| (Date.today - i.month).end_of_month.strftime('%b %y') }.reverse
 
     @apartments_display = current_user.biens.map { |bien| bien.nom }
 
+
   end
 
   def show
+    ## MERGE tableaux transactions ##
+    @lasts_transactions = (@bien.loyers.where('date_paiement < ?',
+                                              DateTime.now).order(date_paiement: :desc).limit(10).to_a + @bien.depenses.where('date_paiement < ?',
+                                                                                                                              DateTime.now).order(date_paiement: :desc).limit(10).to_a).map do |transaction|
+      transaction.attributes
+    end
+    @lasts_transactions.sort_by! { |t| t['date_paiement'] }.reverse!
+    
     @depenses = @bien.sum_depenses
   end
 
@@ -129,9 +137,11 @@ class BiensController < ApplicationController
     @depense = Depense.new
 
     @collected_loyers = @bien.loyers.in_interval(Date.new(CURRENT_YEAR), Date.today)
-
   end
 
+  def set_biens
+    @biens = current_user.biens
+  end
 
   def set_report
     ############################ Generate the loyers paid & to be paid ###########################################
@@ -183,6 +193,12 @@ class BiensController < ApplicationController
 
     @autres_tbp_list = @bien.depenses.cat_autres.in_interval(Date.today, CURRENT_END_PERIOD)
     @autres_tbp = @autres_tbp_list.reduce(0) { |sum, autres| sum + autres }
+  end
+
+  def any_loyer_missing?
+    @any_loyer_missing = @biens.any? do |bien|
+      bien.loyers.empty? || bien.loyers.last.date_paiement.month != Date.today.month
+    end
   end
 
   # def sum_depenses

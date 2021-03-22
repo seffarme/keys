@@ -1,0 +1,37 @@
+.responsive-table {
+  padding: 0;
+
+  li {
+    border-radius: 3px;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid $light-grey;
+  }
+
+  .table-header {
+    background-color: #152F70;
+    color:white;
+    font-size: 16px;
+  }
+
+  .table-row {
+    background-color: white;
+  }
+
+  .col-1 {
+    flex-basis: 35%;
+  }
+
+  .col-2 {
+    flex-basis: 25%;
+  }
+
+  .col-3 {
+    flex-basis: 25%;
+  }
+
+  .col-4 {
+    flex-basis: 15%;
+  }
+}

@@ -1,0 +1,44 @@
+.form-depense-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.form-depense {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.form-group {
+    margin-bottom: 0 !important;
+}
+
+#depense-form-nom-montant-cat {
+    display: flex;
+    justify-content: space-between;
+
+    margin-right: 12px;
+
+    div > input {
+        font-size: 12px;
+    }
+
+    div > select {
+        font-size: 12px;
+    }
+}
+
+#depense-form-date {
+    display: flex;
+    justify-content: center;
+
+    margin-right: 12px;
+
+    div > select {
+        font-size: 12px;
+        margin: 0 !important;
+        padding-left: 4px;
+    }
+}

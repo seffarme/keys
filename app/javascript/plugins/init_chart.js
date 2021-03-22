@@ -2,9 +2,9 @@ import Chart from 'chart.js';
 
 const initChartCourbe = () => {
 
-  const ctx = document.getElementById('myChartCourbe').getContext('2d');
+  const ctx = document.getElementById('myChartCourbe')
 
-  if (ctx) {
+
 
     const depensesDiv = document.querySelector('#depenses')
     const depensesValue =JSON.parse(depensesDiv.dataset.depenses)
@@ -15,7 +15,12 @@ const initChartCourbe = () => {
     const cashFlowCourbe = JSON.parse(depensesDiv.dataset.courbe)
     console.log(cashFlowCourbe);
 
-    const myChart = new Chart(ctx, {
+  if (ctx) {
+  const deuxd = ctx.getContext('2d');
+    // data = document.querySelector('#depense')
+
+
+    const myChart = new Chart(deuxd, {
       type: 'bar',
       data: {
         datasets: [{
@@ -78,11 +83,19 @@ const initChartCourbe = () => {
         labels: monthsDisplay,
       },
       options: {
+					legend: {
+						display: true,
+						labels: {
+								fontColor: 'rgb(255, 99, 132)',
+								fontSize: 20,
+						}
+					},
           scales: {
               yAxes: [{
                   ticks: {
                       beginAtZero: false,
                       padding: 4,
+
                       fontSize: 10,
                       callback: function(value, index, values) {
                         return value + ' €';
@@ -100,6 +113,7 @@ const initChartCourbe = () => {
         },
         // responsive: true,
         // maintainAspectRatio: false
+
       }
     });
   }
@@ -107,9 +121,10 @@ const initChartCourbe = () => {
 
 const initChartBiens = () => {
 
-  const ctx = document.getElementById('myChartBiens').getContext('2d');
+  const ctx = document.getElementById('myChartBiens')
 
   if (ctx) {
+
 
     const cfbien = document.querySelector('#cfbien')
     const cfbienValue = JSON.parse(cfbien.dataset.cfbien)
@@ -117,13 +132,19 @@ const initChartBiens = () => {
     const labelValue = JSON.parse(cfbien.dataset.label)
     console.log(labelValue);
 
-    const myChart = new Chart(ctx, {
+    const deuxd = ctx.getContext('2d');
+    // data = document.querySelector('#depense')
+
+
+    const myChart = new Chart(deuxd, {
       type: 'bar',
       data: {
           labels: labelValue,
           datasets: [{
+
               label: 'CashFlow',
               data: cfbienValue,
+
               backgroundColor: [
                   'rgba(255, 99, 132, 0.2)',
                   'rgba(54, 162, 235, 0.2)',
@@ -144,6 +165,14 @@ const initChartBiens = () => {
           }]
       },
       options: {
+				legend: {
+					display: true,
+					labels: {
+							fontColor: 'rgb(255, 99, 132)',
+							fontSize: 20
+					}
+				},
+				scales: {
           scales: {
             yAxes: [{
               ticks: {
@@ -160,15 +189,16 @@ const initChartBiens = () => {
             }],
             xAxes: [{
                   ticks: {
+
                       padding: 4,
                       fontSize: 10
                   }
               }]
         }
-        // responsive: true,
-        // maintainAspectRatio: false
+
       }
-  });
+  	}
+	});
   }
 };
 export { initChartCourbe, initChartBiens };

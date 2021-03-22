@@ -1,36 +1,248 @@
-<h1>My first apartment</h1>
+<div class="container">
 
+  <!-- TITLE -->
+  <section class="section-title">
+    <!-- BACK TO LIST BTN -->
+    <div class="block-base block-btn block-btn-retour-biens">
+      <p>Retour aux biens</p>
+      <%= link_to "", biens_path %>
+    </div>
+    <!-- ICON -->
+    <i class="card-product-icon fas fa-house-user"></i>
+    <!-- TITLE NAME -->
+    <h1><%= @bien.nom %></h1>
+  </section>
 
-<h2>Suivi financier</h2>
-<h3>Recettes</h3>
-<p>Loyers collectés: <%= @loyers_received %>€ reçus / <%=  %>€ à venir</p>
-
-<h3>Dépenses</h3>
-<p>Crédit: <%= @credits_paid %>€ payés / <%= @credits_tbp %>€ à payer</p>
-<p>Taxe Foncière: <%= @taxe_fonciere_paid %>€ payés / <%= @taxe_fonciere_tbp %>€ à payer</p>
-<p>Copropriété: <%= @copropriete_paid %>€ payés / <%= @copropriete_tbp %>€ à payer</p>
-<p>Assurances: <%= @assurances_paid %>€ payés / <%= @assurances_tbp %>€ à payer</p>
-<p>Travaux: <%= @travaux_paid %>€ payés / <%= @travaux_tbp %>€ à payer</p>
-<p>Autres: <%= @autres_paid %>€ payés / <%= @autres_tbp %>€ à payer</p>
-
-
-<p>Autres</p>
-
-
-<p>Ajouter un loyer</p>
-<%= link_to "Ajouter un loyer", bien_loyers_path(bien_id: @bien.id), method: :post %>
-
-<!-- ADD DEPENSE -->
-<p>Ajouter une dépense</p>
-<%= form_for @bien do |f| %>
-  <%= f.simple_fields_for :depenses, @bien.depenses.build do |ff| %>
-    <%= ff.hidden_field :id %>
-    <%= ff.input :nom %>
-    <%= ff.input :montant %>
-    <%= ff.input :categorie, collection: Depense::CATEGORIE %>
-    <%= ff.input :date_paiement %>
+  <!-- LOYER POP UP; color depends on status -->
+	<% if @loyer_missing %>
+    <section class="section-card section-pop-up section-alert">
+      <p>Le loyer du mois de mars n'a pas été réglé !</p>
+    </section>
+  <% else %>
+    <section class="section-card section-pop-up section-success">
+      <p>Le loyer du mois de mars a été payé !</p>
+    </section>
   <% end %>
 
-  <%= f.submit "Enregistrer", class: "btn btn-primary" %>
-<% end %>
+  <!-- IMPORTANT ACTIONS -->
+  <section class="section-important-actions">
+
+    <!-- ADD LOYER -->
+    <div class="section-card-add-loyer">
+      <p class="">Avez-vous reçu le loyer du mois de mars de <%= @bien.montant_loyer %>€ de la part de <%= @bien.locataires.first.prenom %> <%= @bien.locataires.first.nom %> ?</p>
+      <%= link_to "J'ai reçu le loyer 💰", bien_loyers_path(bien_id: @bien.id), method: :post, class:"block-base block-btn block-btn-save-loyer" %>
+    </div>
+
+    <!-- ADD DEPENSE -->
+    <div class="section-card-add-depense">
+      <p>Ajouter une dépense</p>
+
+      <%= form_for @bien do |f| %>
+        <%= f.simple_fields_for :depenses, @bien.depenses.build do |ff| %>
+          <%= ff.hidden_field :id %>
+          <div class="form-depense">
+            <div id="depense-form-nom-montant-cat">
+              <%= ff.input :nom, label: false, placeholder: "Nom", input_html: {class: "form-input"} %>
+              <%= ff.input :montant, label: false, placeholder: "Montant", input_html: {class: "form-input"} %>
+              <%= ff.input :categorie, label: false, collection: Depense::CATEGORIE, prompt: "-- Catégorie --", input_html: {class: "form-input"}  %>
+            </div>
+            <div id="depense-form-date">
+              <%= ff.input :date_paiement, label: false, as: :date, order: [:day, :month, :year], input_html: {class: "form-input"} %>
+            </div>
+            <% end %>
+            <%= f.submit "Enregistrer", class: "block-base block-btn block-btn-save-depense" %>
+          </div>
+      <% end %>
+    </div>
+
+  </section>
+
+    
+  <section class="section-dual-equiv-items-centered ">
+
+    <!-- descriptif bien / locataire -->
+    <div>
+      <ul class="horizontal-bien">
+        <label for="one">
+          <li class="item">
+            <input checked type="radio" name="bien" id="one">
+
+            <div class="item--container">
+              <header class="item--header">
+                <span class="item--header--icon"><i class="fa fa-home"></i></span>
+                <h4 class="item--header--title"><%= @bien.nom %></h4>
+              </header>
+
+              <ul class="item--description">
+                <li><%= @bien.categorie %></li>
+                <li>loyer : <%= @bien.montant_loyer %>€</li>
+                <li>acquis le : <%= @bien.date_acquisition %></li>
+                <li>Prix d'achat : <%= @bien.prix_acquisition%>€</li>
+              </ul>
+
+              <footer class="item--footer">
+                <a href="#"><i class="fa fa-angle-right"></i>En savoir plus</a>
+              </footer>
+            </div>
+
+          </li>
+        </label>
+
+
+        <label for="two">
+          <li class="item">
+            <input type="radio" name="bien" id="two">
+
+            <div class="item--container">
+              <header class="item--header">
+                <span class="item--header--icon"><i class="fa fa-house-user"></i></span>
+                <h4 class="item--header--title">Locataire</h4>
+              </header>
+
+              <ul class="item--description">
+                <li>Locataire Prenom</li>
+                <li>Locataire Nom</li>
+                <li><i class="fa fa-mobile-alt"></i> 06 01 21 31 34</li>
+                <li><i class="fa fa-envelope"></i> email@locataire.fr </li></li>
+                <li><i class="far fa-calendar-alt"></i>date debut location</li>
+                <li></li>
+              </ul>
+
+              <footer class="item--footer">
+                <a href="#"><i class="fa fa-angle-right"></i>En savoir plus</a>
+              </footer>
+            </div>
+          </li>
+        </label>
+
+        <label for="three">
+          <li class="item">
+            <input type="radio" name="bien" id="three">
+
+            <div class="item--container">
+              <header class="item--header">
+                <span class="item--header--icon"><i class="fa fa-map-marker-alt"></i></span>
+                <h4 class="item--header--title">Adresse</h4>
+              </header>
+
+              <ul class="item--description">
+                <li> <%= @bien.adresse %></li>
+                <li><%= @bien.code_postal %> <%= @bien.ville %></li>
+                <li><%= @bien.surface %>m2</li>
+                <li><%= @bien.nb_pieces %> pièces</li>
+                <li><%= @bien.nb_sdb %> sdb</li>
+              </ul>
+
+              <footer class="item--footer">
+                <a href="#"><i class="fa fa-angle-right"></i>En savoir plus</a>
+              </footer>
+            </div>
+          </li>
+        </label>
+
+        <label for="four">
+          <li class="item">
+            <input type="radio" name="bien" id="four">
+
+            <div class="item--container">
+              <header class="item--header">
+                <span class="item--header--icon"><i class="fa fa-chart-line"></i></span>
+                <h4 class="item--header--title">CashFlow</h4>
+              </header>
+
+              <ul class="item--description">
+                <li>Ce mois-ci : €</li>
+                <li>Depuis le début de l'année : €</li>
+                <li>Emprunt : €</li>
+                <li>Remboursement restant: €</li>
+              </ul>
+
+              <footer class="item--footer">
+                <a href="#"><i class="fa fa-angle-right"></i>En savoir plus</a>
+              </footer>
+            </div>
+          </li>
+        </label>
+    </ul>
+    </div>
+
+    <!-- TABLEAU  SYNTHESE -->
+    <div class="flex-item-grow">
+      <div class="responsive-table">
+        <table class="tableau-synthese">
+          <thead>
+            <tr>
+              <th> Année en cours </th>
+              <th>Encaissé / Payé</th>
+              <th>A venir</th>
+            </tr>
+          <thead>
+          <tbody>
+            <tr>
+              <td>Loyers</td>
+              <td><%= @loyers_received %>€</td>
+              <td><%=  %>0€ </td>
+            </tr>
+            <tr>
+              <td>Taxe Foncière</td>
+              <td><%= @taxe_fonciere_paid %>€</td>
+              <td><%= @taxe_fonciere_tbp %>€</td>
+            </tr>
+            <tr>
+              <td>Copropriété</td>
+              <td><%= @copropriete_paid %>€</p></td>
+              <td><%= @copropriete_tbp %>€</td>
+            </tr>
+            <tr>
+              <td>Assurances</td>
+              <td><%= @assurances_paid %>€</td>
+              <td><%= @assurances_tbp %>€</td>
+            </tr>
+            <tr>
+              <td>Travaux</td>
+              <td><%= @travaux_paid %>€</td>
+              <td><%= @travaux_tbp %>€</td>
+            </tr>
+            <tr>
+              <td>Autres</td>
+              <td><%= @autres_paid %>€</td>
+              <td><%= @autres_tbp %>€</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- LAST OPERATIONS TABLE -->
+  <section class="section-last-operations">
+
+    <p>Dernières transactions</p>
+    <ul class="responsive-table">
+      <li class="table-header">
+        <div class="col col-1">Date</div>
+        <div class="col col-2">Catégorie</div>
+        <div class="col col-3">Libellé</div>
+        <div class="col col-4">Montant</div>
+      </li>
+
+    <% @lasts_transactions.first(5).each do |transaction| %>
+      <li class="table-row">
+        <div class="col col-1" data-label="Date"><%= transaction['date_paiement'].strftime('%d/%m/%Y') %></div>
+        <div class="col col-2" data-label="Categorie"><%= transaction['categorie'] || 'Loyer' %> </div>
+        <div class="col col-3" data-label="Libellé"> <%= transaction['nom'] || 'Encaissé' %></div>
+        <div class="col col-4" data-label="Montant"><b><%= transaction['montant'] %> €</b></div>
+      </li>
+    <% end %>
+
+  </section>
+
+
+  <!-- FOOTER -->
+	<div class="footer-set-height">
+		<%= render 'shared/footer_body' unless @home %>
+	</div>
+
+</div>
 
