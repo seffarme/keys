@@ -51,7 +51,7 @@ puts "[1/6] - Seeding the User DB..."
 mathieu_eustachy = User.new({
     prenom: "Mathieu",
     nom: "Eustachy",
-    email: "mathieu.eustachy@gmail.com",
+    email: "julie.laloy@gmail.com",
     num_tel: "0614714703",
     password: "123456",
     admin: true
@@ -140,7 +140,7 @@ maison_gennevilliers = Bien.new({
     frais_achat_agence: "15000",
     frais_achat_travaux: "5000",
     frais_achat_autres: "12500",
-    montant_loyer: "3500"
+    montant_loyer: "2500"
 })
 
 maison_gennevilliers.user = mathieu_eustachy
@@ -1029,7 +1029,7 @@ end
 
 
 puts "
-~ All seeds created: 
+~ All seeds created:
 - #{User.all.count} users
 - #{Bien.all.count} biens
 - #{FraisRecurrent.all.count} frais recurrents

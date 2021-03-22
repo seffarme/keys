@@ -5,7 +5,9 @@ Rails.application.routes.draw do
 
   authenticated :user do
     resources :biens do
-      resources :loyers, only: [:create, :destroy]
+      resources :loyers, only: [:create, :destroy] do
+        post :relance, on: :collection
+      end
       resources :locataires, only: [:create, :destroy]
       resources :frais_recurrents, only: [:create, :destroy]
       resources :depenses, only: [:create, :destroy]
