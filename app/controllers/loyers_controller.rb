@@ -1,5 +1,5 @@
 class LoyersController < ApplicationController
-  before_action :set_bien, only: %i[create]
+  before_action :set_bien, only: %i[create relance]
 
   def create
     @loyer = Loyer.new({
@@ -12,13 +12,22 @@ class LoyersController < ApplicationController
     previous_url = request.env["HTTP_REFERER"]
     index_url = url_for(action: 'index', controller: 'biens', only_path: false, protocol: 'http')
 
-    if @loyer.save
+    @loyer.save
+
+      LoyerMailer.create_quittance(@loyer).deliver_now
+
       if previous_url == index_url
         redirect_to biens_path(anchor: 'biens-list')
       else
         redirect_to bien_path(@bien)
       end
-    end
+
+  end
+
+  def relance
+
+    LoyerMailer.relance(@bien).deliver_now
+    redirect_to biens_path(anchor: 'biens-list')
   end
 
   private
