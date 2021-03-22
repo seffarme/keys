@@ -7,7 +7,7 @@
   }
 </style>
 
-<h3>Quittance de la <%= @bien.categorie %> de <%= @bien.nom %> - <%= Date.today.strftime("%B %Y")%> </h3>
+<h3>Quittance - <%= @bien.nom %> - <%= Date.today.strftime("%B %Y")%> </h3>
 
 <p>
   <br>Bonjour <%= @locataire.prenom %> <%= @locataire.nom %>,
