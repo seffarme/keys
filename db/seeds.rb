@@ -687,6 +687,18 @@ end
 
 ################### Maison Gennevilliers ##################
 
+# 2019
+12.times do |i, loyer|
+    loyer = Loyer.new({
+        montant: maison_gennevilliers.montant_loyer,
+        date_paiement: "01/0#{i}/2019"
+    })
+    i += 1
+    loyer.bien = maison_gennevilliers
+    loyer.locataire = othman_igrouche
+    loyer.save
+end
+
 # 2020
 12.times do |i, loyer|
     loyer = Loyer.new({
@@ -736,6 +748,8 @@ end
     loyer.locataire = thierno_ba
     loyer.save
 end
+
+
 
 
 puts "
