@@ -100,12 +100,12 @@
 						<% if bien.loyers.empty? %>
 							<div class="block-base block-btn block-btn-relance">
 								<p>Faire une relance</p>
-								<%= link_to "", bien_loyers_path(bien_id: bien.id), method: :post %>
+								<%= link_to "", relance_bien_loyers_path(bien_id: bien.id), method: :post %>
 							</div>
-						<% elsif bien.loyers.last.date_paiement.month != Date.today.month %>
+						<% else bien.loyers.last.date_paiement.month != Date.today.month %>
 							<div class="block-base block-btn block-btn-relance">
 								<p>Faire une relance</p>
-								<%= link_to "", bien_loyers_path(bien_id: bien.id), method: :post %>
+								<%= link_to "", relance_bien_loyers_path(bien_id: bien.id), method: :post %>
 							</div>
 						<% end %>
 
@@ -130,7 +130,7 @@
 
 	</section>
 
-	
+
 	<!-- BIENS MAP -->
 	<section class="section-card section-mapbox">
 		<h3>Localisation de vos <%= @biens.count %> biens</h3>
@@ -142,7 +142,7 @@
 
 	</section>
 
-	
+
 	<!-- FOOTER -->
 	<div class="footer-set-height">
 		<%= render 'shared/footer_body' unless @home %>

@@ -8,8 +8,14 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.with(user: user).welcome
   end
 
+  def quittanceloyer
+    loyer = Loyer.last
+    LoyerMailer.with(loyer: loyer).create_quittance
+  end
+
   def relance
-    locataire = locataire.last
-    UserMailer.with(user: locataire).relance
+    loyer = Loyer.last
+    LoyerMailer.with(loyer: loyer).relance
+  end
 
 end

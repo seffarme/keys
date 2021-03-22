@@ -65,7 +65,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'geocoder'
 
 gem 'letter_opener', group: :development
-gem 'postmark-rails'
 
   # Rails admin
   gem 'rails_admin', '~> 2.0'
