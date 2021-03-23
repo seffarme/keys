@@ -1,17 +1,20 @@
 .kpi-card {
     width: 30%;
-    height: 70px;
+    height: 100px;
 
     display: flex;
     justify-content:space-between;
+    flex-direction: column;
     align-items: center;
 		color: white;
+
 }
 
 .kpi-big-number {
     // width: 60%;
 
-    font-size: 24px;
+    font-size: 2rem;
+    font-weight: bolder;
 
     padding-left: 16px;
     margin: 0;

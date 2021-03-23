@@ -27,6 +27,7 @@ class LoyersController < ApplicationController
   def relance
 
     LoyerMailer.relance(@bien).deliver_now
+    LoyerMailer.copie_relance(@bien).deliver_now
     redirect_to biens_path(anchor: 'biens-list')
   end
 

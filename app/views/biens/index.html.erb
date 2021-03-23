@@ -67,7 +67,11 @@
 					<!-- LEFT PART of the card -->
 					<div class="card-product-informations">
 						<!-- ICON -->
-						<i class="card-product-icon fas fa-house-user"></i>
+            <% if bien.categorie =="Maison"%>
+              <i class="fas fa-house-user"></i>
+            <% else %>
+              <i class="fas fa-building"></i>
+            <% end %>
 						<!-- BASE INFO -->
 						<div class="card-product-text-infos">
 							<%= link_to bien.nom, bien_path(bien) %>
@@ -105,15 +109,15 @@
 
 							<div>
 								<%# <p>Faire une relance</p> %>
-								<%= link_to relance_bien_loyers_path(bien_id: bien.id), method: :post do %>
-									<i class="far fa-envelope-open" title="Faire une relance"></i>
+								<%= link_to relance_bien_loyers_path(bien_id: bien.id), method: :post, class: 'relance-enveloppe' do %>
+                  <i class="far fa-envelope-open" title="Faire une relance"></i>
 								<% end %>
 							</div>
 						<% elsif bien.loyers.last.date_paiement.month != Date.today.month %>
 							<div>
 								<%# <p>Faire une relance</p> %>
-								<%= link_to relance_bien_loyers_path(bien_id: bien.id), method: :post do %>
-									<i class="far fa-envelope-open" title="Faire une relance"></i>
+								<%= link_to relance_bien_loyers_path(bien_id: bien.id), method: :post, class: 'enveloppe-relance' do %>
+                  <i class="far fa-envelope-open" title="Faire une relance"></i>
 								<% end %>
 							</div>
 						<% end %>

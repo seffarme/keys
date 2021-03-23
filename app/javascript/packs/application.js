@@ -29,12 +29,14 @@ import "bootstrap";
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 import { initMapbox } from '../plugins/init_mapbox';
+import { initRelance } from '../plugins/init_relance';
 
 document.addEventListener('turbolinks:load', () => {
   initMapbox();
   initChartCourbe();
   initChartBiens();
   initChartCourbeBien();
+  initRelance();
 })
 
 
