@@ -83,19 +83,25 @@ const initChartCourbe = () => {
       options: {
         scales: {
           yAxes: [{
-              ticks: {
-                beginAtZero: false,
-                padding: 4,
-                fontSize: 10,
-                userCallback: function(value, index, values) {
-                  value = value.toString();
-                  value = value.split(/(?=(?:...)*$)/);
-                  value = value.join(' ');
-                  return   value + ' €';
-                }
-              },
-            }],
+            gridLines: {
+             lineWidth: 0
+            },
+            ticks: {
+              beginAtZero: false,
+              padding: 4,
+              fontSize: 10,
+              userCallback: function(value, index, values) {
+                value = value.toString();
+                value = value.split(/(?=(?:...)*$)/);
+                value = value.join(' ');
+                return   value + ' €';
+              }
+            },
+          }],
             xAxes: [{
+              gridLines: {
+                  lineWidth: 0
+                },
               ticks: {
                   padding: 4,
                   fontSize: 12,
@@ -169,6 +175,9 @@ const initChartCourbe = () => {
         options: {
   				scales: {
               yAxes: [{
+                gridLines: {
+                  lineWidth: 0
+                },
                 ticks: {
                 // type: 'logarithmic'
                   suggestedMin: -5000,
@@ -185,10 +194,12 @@ const initChartCourbe = () => {
                 }
               }],
               xAxes: [{
+                gridLines: {
+                  lineWidth: 0
+                },
                     ticks: {
-
-                        padding: 4,
-                        fontSize: 10
+                      padding: 4,
+                      fontSize: 10
                     }
                 }]
         },
@@ -274,7 +285,7 @@ const initChartCourbeBien = () => {
                   'rgba(54, 162, 235, 1)',
                   'rgba(54, 162, 235, 1)'
               ],
-              borderWidth: 1
+              borderWidth: 1,
         }, {
             label: 'Line CashFlow',
             data: cashFlowCourbe,
@@ -306,20 +317,26 @@ const initChartCourbeBien = () => {
 
           scales: {
               yAxes: [{
-                  ticks: {
-                      beginAtZero: false,
-                      padding: 4,
-                      fontSize: 12,
-                      stepSize: 5000,
-                      userCallback: function(value, index, values) {
-                        value = value.toString();
-                        value = value.split(/(?=(?:...)*$)/);
-                        value = value.join(' ');
-                        return   value + ' €';
-                      }
+                gridLines: {
+                  lineWidth: 0
+                },
+                ticks: {
+                  beginAtZero: false,
+                  padding: 4,
+                  fontSize: 12,
+                  stepSize: 5000,
+                  userCallback: function(value, index, values) {
+                    value = value.toString();
+                    value = value.split(/(?=(?:...)*$)/);
+                    value = value.join(' ');
+                    return   value + ' €';
                   }
+                }
               }],
                 xAxes: [{
+                  gridLines: {
+                  lineWidth: 0
+                },
               ticks: {
                   padding: 4,
                   fontSize: 12,
@@ -334,6 +351,8 @@ const initChartCourbeBien = () => {
                 useLineStyle: true,
                 usePointStyle: true,
                 fontSize: 13,
+                // offsetGridLines: false,
+
             }
         },
         title: {
