@@ -170,16 +170,6 @@ const initChartBiens = () => {
           },
         ],
       },
-      options: {
-        maintainAspectRatio: false,
-        responsive: true,
-        legend: {
-          display: true,
-          labels: {
-            fontColor: "rgb(255, 99, 132)",
-            fontSize: 20,
-          },
-        },
         options: {
   				scales: {
               yAxes: [{
@@ -226,12 +216,6 @@ const initChartBiens = () => {
             fontSize: 20,
             padding: 15,
           },
-        },
-        title: {
-          display: true,
-          text: "Résultat net depuis achat",
-          fontSize: 20,
-        },
       },
     });
 
