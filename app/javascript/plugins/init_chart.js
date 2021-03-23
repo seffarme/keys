@@ -20,7 +20,7 @@ const initChartCourbe = () => {
       data: {
         datasets: [
           {
-            label: "CashFlow",
+            label: "CF/mois",
             data: depensesValue,
             backgroundColor: [
               "rgba(54, 162, 235, 0.2)",
@@ -53,7 +53,7 @@ const initChartCourbe = () => {
             borderWidth: 1,
           },
           {
-            label: "Line CashFlow",
+            label: "CF Cumulé",
             data: cashFlowCourbe,
 
             // Changes this dataset to become a line
@@ -94,7 +94,6 @@ const initChartCourbe = () => {
               ticks: {
                 beginAtZero: false,
                 padding: 4,
-
                 fontSize: 10,
                 callback: function(value, index, values) {
                   return value + " €";
@@ -111,9 +110,12 @@ const initChartCourbe = () => {
             usePointStyle: true,
           },
         },
-        // responsive: true,
-        // maintainAspectRatio: false
+        title: {
+          display: true,
+          text: "Cash-Flow Mensuel",
+        },
       },
+
     });
   }
 };
@@ -127,7 +129,6 @@ const initChartBiens = () => {
     const labelValue = JSON.parse(cfbien.dataset.label);
 
     const deuxd = ctx.getContext("2d");
-    // data = document.querySelector('#depense')
 
     const myChart = new Chart(deuxd, {
       type: "bar",
@@ -163,6 +164,7 @@ const initChartBiens = () => {
 					display: true,
 					labels: {
 							fontColor: 'rgb(255, 99, 132)',
+							fontSize: 20,
 					}
 				},
 				scales: {
@@ -193,31 +195,9 @@ const initChartBiens = () => {
                 usePointStyle: true
             }
         },
-        scales: {
-          scales: {
-            yAxes: [
-              {
-                ticks: {
-                  // type: 'logarithmic'
-                  min: -5000,
-                  max: 5000,
-                  padding: 4,
-                  callback: function(value, index, values) {
-                    return value + " €";
-                  },
-                  fontFamily: "FontAwesome",
-                },
-              },
-            ],
-            xAxes: [
-              {
-                ticks: {
-                  padding: 4,
-                  fontSize: 10,
-                },
-              },
-            ],
-          },
+        title: {
+          display: true,
+          text: "Cash-Flow Annuel",
         },
       },
     });
