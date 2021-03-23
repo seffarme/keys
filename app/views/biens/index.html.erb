@@ -95,8 +95,8 @@
 								<% end %>
 							</div>
 						<% else %>
-							<div class="block-base block-paid-success" style="color: white;">
-								<p>Loyer reçu ✅</p>
+							<div >
+								 <i class="fas fa-check" title="Loyer reçu"></i>
 							</div>
 						<% end %>
 
@@ -105,18 +105,16 @@
 
 							<div>
 								<%# <p>Faire une relance</p> %>
-								<%= link_to bien_loyers_path(bien_id: bien.id), method: :post do %>
+								<%= link_to relance_bien_loyers_path(bien_id: bien.id), method: :post do %>
 									<i class="far fa-envelope-open" title="Faire une relance"></i>
 								<% end %>
 							</div>
 						<% elsif bien.loyers.last.date_paiement.month != Date.today.month %>
 							<div>
 								<%# <p>Faire une relance</p> %>
-								<%= link_to bien_loyers_path(bien_id: bien.id), method: :post do %>
+								<%= link_to relance_bien_loyers_path(bien_id: bien.id), method: :post do %>
 									<i class="far fa-envelope-open" title="Faire une relance"></i>
 								<% end %>
-
-			
 							</div>
 						<% end %>
 
