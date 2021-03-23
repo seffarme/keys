@@ -8,8 +8,18 @@
       	<p>Retour aux biens</p>
 			<% end %>
     </div>
+
     <!-- ICON -->
-    <i class="card-product-icon fas fa-house-user"></i>
+ <h1>
+    <% if @bien.categorie == "Maison" %>
+        <i class="fas fa-home"></i>
+    <% else %>
+        <i class="fas fa-building"></i>
+    <% end %>
+  </h1>
+
+   
+
     <!-- TITLE NAME -->
     <h1><%= @bien.nom %></h1>
   </section>
@@ -55,7 +65,7 @@
       <!-- ADD DEPENSE -->
       <div class="section-card-add-depense">
         <p>Ajouter une dépense</p>
-  
+
         <%= form_for @bien do |f| %>
           <%= f.simple_fields_for :depenses, @bien.depenses.build do |ff| %>
             <%= ff.hidden_field :id %>
@@ -74,7 +84,7 @@
         <% end %>
       </div>
 
-    <% else %>  
+    <% else %>
 
     <!-- ADD DEPENSE only -->
     <div class="section-card-add-depense w-100">
