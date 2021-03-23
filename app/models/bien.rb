@@ -49,6 +49,9 @@ class Bien < ApplicationRecord
   def total_cash_flow
     self.biens.each { |bien| bien.cash_flow_bien_to_date }.sum
   end
+  def total
+    cash_flow_bien_to_date
+  end
 
   def months_depenses_to_date
     months_depenses = (0..11).to_a.map do |i|
