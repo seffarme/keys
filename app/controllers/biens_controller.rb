@@ -7,13 +7,7 @@ class BiensController < ApplicationController
   before_action :set_bien, :set_report, :any_loyer_missing_this_bien?, only: %i[show update]
 
   def index
-    @markers = @biens.geocoded.map do |bien|
-      {
-        lat: bien.latitude,
-        lng: bien.longitude,
-        infoWindow: render_to_string(partial: "info_window", locals: { bien: bien })
-      }
-    end
+		@markers = create_map_markers(@biens)
     # @sum_depenses = current_user.sum_depenses_biens
 
     @cfbiens = @biens.map { |bien| bien.cash_flow_bien_to_date }
@@ -27,15 +21,14 @@ class BiensController < ApplicationController
     @apartments_id = current_user.biens.map { |bien| bien.id }
 
     @total_cash_flow = total_cash_flow
-
-
+    
   end
 
   def show
     ## MERGE tableaux transactions ##
     @lasts_transactions = (@bien.loyers.where('date_paiement < ?',
-    DateTime.now).order(date_paiement: :desc).limit(10).to_a + @bien.depenses.where('date_paiement < ?',
-    DateTime.now).order(date_paiement: :desc).limit(10).to_a).map do |transaction|
+                                              DateTime.now).order(date_paiement: :desc).limit(10).to_a + @bien.depenses.where('date_paiement < ?',
+                                                                                                                              DateTime.now).order(date_paiement: :desc).limit(10).to_a).map do |transaction|
       transaction.attributes
     end
     @lasts_transactions.sort_by! { |t| t['date_paiement'] }.reverse!
@@ -52,10 +45,7 @@ class BiensController < ApplicationController
         @cash_flow_bien_month[0..index].sum
       end
     end
-
-
   end
-
 
   def update
     @bien.attributes = bien_params
@@ -82,6 +72,18 @@ class BiensController < ApplicationController
   end
 
   private
+
+	def create_map_markers(biens)
+    biens.map do |bien|
+			bien.categorie == "Maison" ? @image_url = helpers.asset_url('house-user-solid.svg') : @image_url = helpers.asset_url('building-solid.svg')
+      {
+				lat: bien.latitude,
+				lng: bien.longitude,
+				infoWindow: render_to_string(partial: "info_window", locals: { bien: bien }),
+        image_url: @image_url
+      }
+    end
+  end
 
   def bien_params
     params
@@ -144,7 +146,7 @@ class BiensController < ApplicationController
     @loyers_received = @loyers_received_list.reduce(0) { |sum, loyer| sum + loyer }
 
     # Simulate future loyers
-    @test = (12 - @loyers_received_list.count)
+    @loyers_tbr = 0
 
     ############################ Generate the depenses paid & to be paid ###########################################
     # CREDIT
@@ -188,6 +190,10 @@ class BiensController < ApplicationController
 
     @autres_tbp_list = @bien.depenses.cat_autres.in_interval(Date.today, CURRENT_END_PERIOD)
     @autres_tbp = @autres_tbp_list.reduce(0) { |sum, autres| sum + autres }
+
+    ############################ Generate the total for suivi fin ###########################################
+    @total_paid = @loyers_received + @credits_paid + @taxe_fonciere_paid + @copropriete_paid + @assurances_paid + @travaux_paid + @autres_paid
+    @total_tbp = @loyers_tbr + @credits_tbp + @taxe_fonciere_tbp + @copropriete_tbp + @assurances_tbp + @travaux_tbp + @autres_tbp
   end
 
   def any_loyer_missing_all_bien?

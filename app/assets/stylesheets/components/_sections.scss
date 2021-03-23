@@ -1,10 +1,11 @@
 
-// Base layout 
+// Base layout
 .section-card {
     background-color: white;
     box-shadow: 0 0 8px rgba(0,0,0,0.1);
     border-radius: 3px;
     margin-top: 16px;
+    vertical-align: middle;
 }
 
 
@@ -18,12 +19,13 @@
     p {
         font-size: 14px;
         margin: 0;
-    }    
+    }
 }
 
 .section-kpi {
     display: flex;
     justify-content: space-between;
+
 }
 
 .section-biens-list {
@@ -60,12 +62,13 @@
 
 .section-important-actions {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
+    flex-grow: 1;
     align-items: center;
-    background-color: white;
 
-    margin-top: 16px;
     border-radius: 3px;
+    margin-right: 36px;
 
     .section-card-add-loyer {
         display: flex;
@@ -74,12 +77,14 @@
         align-items: center;
         text-align: center;
 
+        width: 100%;
+
         background-color: white;
         box-shadow: 0 0 8px rgba(0,0,0,0.1);
         border-radius: 3px;
 
-        width: 35%;
-        height: 100%;
+        margin-bottom: 36px;
+        padding: 8px;
 
         p {
             padding: 8px;
@@ -92,6 +97,7 @@
         flex-direction: column;
         align-items: center;
 
+        width: 100%;
         height: auto;
 
         background-color: white;
@@ -109,8 +115,18 @@
 .section-dual-equiv-items-centered {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
 
-    margin-top: 16px;
+    margin-top: 36px;
+    margin-bottom: 36px;
+
+    .section-dual-first-el {
+        flex-grow: 1;
+    }
+
+    .section-dual-second-el {
+        flex-grow: 1;
+    }
 }
 
 .section-last-operations {
@@ -124,13 +140,13 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    
+
     position: relative;
-    
+
     margin-top: 12px;
     margin-bottom: 12px;
     padding: 16px;
-    
+
     div {
         position: absolute;
         top: 0;
@@ -140,7 +156,7 @@
     i {
         color: $font-dark-grey;
     }
-    
+
     h1 {
         margin-left: 12px;
         font-size: 32px;
@@ -151,9 +167,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
     margin-top: 16px;
-    
+
     p {
         font-size: 14px;
         font-weight: 300;
