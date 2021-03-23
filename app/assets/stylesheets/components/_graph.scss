@@ -1,25 +1,21 @@
 .graph-card {
-    height: auto;
-    min-width: 400px;
     flex: 1 1 auto;
     background-color: white;
     border-radius: 3px;
+
+    canvas {
+        width: 100px;
+    }
 }
 
 .graph-card-show {
     margin-left: 16px;
-    max-width: auto;
 }
 
 .graph {
-    width: auto;
-    height: 250px;
     padding: 8px;
 }
 
 .graph-show {
-    max-width: auto;
-    width: auto;
-    max-height: 250px;
     padding: 8px;
 }
