@@ -95,16 +95,19 @@ const initChartCourbe = () => {
                 beginAtZero: false,
                 padding: 4,
                 fontSize: 10,
-                callback: function(value, index, values) {
-                  return value + " €";
-                },
+                userCallback: function(value, index, values) {
+                  value = value.toString();
+                  value = value.split(/(?=(?:...)*$)/);
+                  value = value.join(' ');
+                  return   value + ' €';
+                }
               },
             },
           ],
         },
         legend: {
           display: true,
-          position: "top",
+          position: "bottom",
           labels: {
             useLineStyle: true,
             usePointStyle: true,
@@ -113,6 +116,7 @@ const initChartCourbe = () => {
         title: {
           display: true,
           text: "Cash-Flow Mensuel",
+          fontSize: 20,
         },
       },
 
@@ -176,9 +180,14 @@ const initChartCourbe = () => {
                   suggestedMin: -5000,
                   suggestedMax: 5000,
                   padding: 4,
-                  callback: function(value, index, values) {
-                          return value + ' €';
-                      },
+                  fontSize: 10,
+                  // stepSize: 30000,
+                  userCallback: function(value, index, values) {
+                    value = value.toString();
+                    value = value.split(/(?=(?:...)*$)/);
+                    value = value.join(' ');
+                    return   value + ' €';
+                  }
                 }
               }],
               xAxes: [{
@@ -191,7 +200,7 @@ const initChartCourbe = () => {
         },
         legend: {
               display: true,
-              position: 'top',
+              position: 'bottom',
               labels: {
                   useLineStyle: true,
                   usePointStyle: true
@@ -199,7 +208,9 @@ const initChartCourbe = () => {
           },
           title: {
             display: true,
-            text: "Résultat depuis Achat",
+            text: "Résultat net depuis achat",
+            fontSize: 20,
+
           },
         },
       });
@@ -219,30 +230,6 @@ const initChartCourbe = () => {
       });
     }
   };
-
-
-
-//   $("#myChartBiens").click(
-//           function(event){
-//               var activepoints = myChart.getElementsAtEvent(event);
-//               if(activepoints.length > 0){
-//                 alert("yes!")
-//                   //get the index of the slice
-//                  // var clickedIndex = activepoints[0]["_index"];
-
-//                  // var socialMedia = myChart.data.labels[clickedIndex];
-
-//                  // var users = myChart.data.datasets[0].data[clickedIndex];
-
-//                  // window.location.href = "file:///C:/Users/barbi/Desktop/Chartjs-demo/clickable-charts/chart2.html?socialmedia=" + socialMedia + "&users=" + users
-
-//               }
-//               else{
-//                 alert("no!")
-//               }
-//           }
-//       )
-// })
 
 const initChartCourbeBien = () => {
 
@@ -332,19 +319,29 @@ const initChartCourbeBien = () => {
                   ticks: {
                       beginAtZero: false,
                       padding: 4,
-                      callback: function(value, index, values) {
-                        return value + ' €';
-                    }
+                      fontSize: 12,
+                      stepSize: 5000,
+                      userCallback: function(value, index, values) {
+                        value = value.toString();
+                        value = value.split(/(?=(?:...)*$)/);
+                        value = value.join(' ');
+                        return   value + ' €';
+                      }
                   }
               }]
           },
           legend: {
             display: true,
-            position: 'top',
+            position: 'bottom',
             labels: {
                 useLineStyle: true,
                 usePointStyle: true
             }
+        },
+        title: {
+            display: true,
+            text: "Cash-Flow Mensuel",
+            fontSize: 20,
         },
       }
     });
