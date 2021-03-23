@@ -120,89 +120,129 @@ const initChartCourbe = () => {
   }
 };
 
-const initChartBiens = () => {
-  const ctx = document.getElementById("myChartBiens");
+// jQuery(function(){
+  const initChartBiens = () => {
+    const ctx = document.getElementById("myChartBiens");
 
-  if (ctx) {
-    const cfbien = document.querySelector("#cfbien");
-    const cfbienValue = JSON.parse(cfbien.dataset.cfbien);
-    const labelValue = JSON.parse(cfbien.dataset.label);
+    if (ctx) {
+      const cfbien = document.querySelector("#cfbien");
+      const cfbienValue = JSON.parse(cfbien.dataset.cfbien);
+      const labelValue = JSON.parse(cfbien.dataset.label);
+      const bienId = JSON.parse(cfbien.dataset.bienId);
 
-    const deuxd = ctx.getContext("2d");
+      const deuxd = ctx.getContext("2d");
 
-    const myChart = new Chart(deuxd, {
-      type: "bar",
-      data: {
-        labels: labelValue,
-        datasets: [
-          {
-            label: "CashFlow",
-            data: cfbienValue,
+      const myChart = new Chart(deuxd, {
+        type: "bar",
+        data: {
+          labels: labelValue,
+          datasets: [
+            {
+              label: "CashFlow",
+              data: cfbienValue,
 
-            backgroundColor: [
-           'rgba(54, 162, 235, 0.2)',
-           'rgba(54, 162, 235, 0.2)',
-           'rgba(54, 162, 235, 0.2)',
-           'rgba(54, 162, 235, 0.2)',
-           'rgba(54, 162, 235, 0.2)',
-           'rgba(54, 162, 235, 0.2)',
-            ],
-            borderColor: [
-              "rgba(54, 162, 235, 1)",
-              "rgba(54, 162, 235, 1)",
-              "rgba(54, 162, 235, 1)",
-              "rgba(54, 162, 235, 1)",
-              "rgba(54, 162, 235, 1)",
-              "rgba(54, 162, 235, 1)",
-            ],
-            borderWidth: 1,
-          },
-        ],
-      },
-      options: {
-				legend: {
-					display: true,
-					labels: {
-							fontColor: 'rgb(255, 99, 132)',
-							fontSize: 20,
-					}
-				},
-				scales: {
-            yAxes: [{
-              ticks: {
-              // type: 'logarithmic'
-                suggestedMin: -5000,
-                suggestedMax: 5000,
-                padding: 4,
-                callback: function(value, index, values) {
-                        return value + ' €';
-                    },
+              backgroundColor: [
+             'rgba(54, 162, 235, 0.2)',
+             'rgba(54, 162, 235, 0.2)',
+             'rgba(54, 162, 235, 0.2)',
+             'rgba(54, 162, 235, 0.2)',
+             'rgba(54, 162, 235, 0.2)',
+             'rgba(54, 162, 235, 0.2)',
+              ],
+              borderColor: [
+                "rgba(54, 162, 235, 1)",
+                "rgba(54, 162, 235, 1)",
+                "rgba(54, 162, 235, 1)",
+                "rgba(54, 162, 235, 1)",
+                "rgba(54, 162, 235, 1)",
+                "rgba(54, 162, 235, 1)",
+              ],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+  				legend: {
+  					display: true,
+  					labels: {
+  							fontColor: 'rgb(255, 99, 132)',
+  							fontSize: 20,
+  					}
+  				},
+  				scales: {
+              yAxes: [{
+                ticks: {
+                // type: 'logarithmic'
+                  suggestedMin: -5000,
+                  suggestedMax: 5000,
+                  padding: 4,
+                  callback: function(value, index, values) {
+                          return value + ' €';
+                      },
+                }
+              }],
+              xAxes: [{
+                    ticks: {
+
+                        padding: 4,
+                        fontSize: 10
+                    }
+                }]
+        },
+        legend: {
+              display: true,
+              position: 'top',
+              labels: {
+                  useLineStyle: true,
+                  usePointStyle: true
               }
-            }],
-            xAxes: [{
-                  ticks: {
-
-                      padding: 4,
-                      fontSize: 10
-                  }
-              }]
-      },
-      legend: {
+          },
+          title: {
             display: true,
-            position: 'top',
-            labels: {
-                useLineStyle: true,
-                usePointStyle: true
-            }
+            text: "Cash-Flow Annuel",
+          },
         },
-        title: {
-          display: true,
-          text: "Cash-Flow Annuel",
-        },
-      },
-    });
-  }
-};
+      });
+
+      ctx.addEventListener('click', (event) => {
+        console.log(event)
+        const activepoints = myChart.getElementsAtEvent(event);
+        console.log(activepoints)
+        if(activepoints.length > 0){
+          const clickedIndex = activepoints[0]["_index"];
+
+          const clickedId = bienId[clickedIndex]
+          console.log(clickedId)
+
+          window.location.href = `http://localhost:3000/biens/${clickedId}`
+        }
+      });
+    }
+  };
+
+
+
+//   $("#myChartBiens").click(
+//           function(event){
+//               var activepoints = myChart.getElementsAtEvent(event);
+//               if(activepoints.length > 0){
+//                 alert("yes!")
+//                   //get the index of the slice
+//                  // var clickedIndex = activepoints[0]["_index"];
+
+//                  // var socialMedia = myChart.data.labels[clickedIndex];
+
+//                  // var users = myChart.data.datasets[0].data[clickedIndex];
+
+//                  // window.location.href = "file:///C:/Users/barbi/Desktop/Chartjs-demo/clickable-charts/chart2.html?socialmedia=" + socialMedia + "&users=" + users
+
+//               }
+//               else{
+//                 alert("no!")
+//               }
+//           }
+//       )
+// })
 
 const initChartCourbeBien = () => {
 
