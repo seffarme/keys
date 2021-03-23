@@ -17,15 +17,9 @@ class BiensController < ApplicationController
     # @sum_depenses = current_user.sum_depenses_biens
 
     @cfbiens = @biens.map { |bien| bien.cash_flow_bien_to_date }
-    @cfbiens_months = current_user.cash_flow_biens
+    @cfbiens_months = current_user.cash_flow_biens.reverse
 
-    @cash_flow_courbe_biens = @cfbiens_months.each_with_index.map do |n, index|
-      if index.zero?
-        n
-      else
-        @cfbiens_months[0..index].sum
-      end
-    end
+    cash_flow_courbe_biens
 
     @months_display = (0..11).map { |i| (Date.today - i.month).end_of_month.strftime('%b %y') }.reverse
     @apartments_display = current_user.biens.map { |bien| bien.nom }
@@ -43,7 +37,7 @@ class BiensController < ApplicationController
     @lasts_transactions.sort_by! { |t| t['date_paiement'] }.reverse!
     @depenses = @bien.sum_depenses
 
-    @cash_flow_bien_month = @bien.cash_flow_month
+    @cash_flow_bien_month = @bien.cash_flow_month.reverse
 
     @months_display = (0..11).map { |i| (Date.today - i.month).end_of_month.strftime('%b %y') }.reverse
 
@@ -203,36 +197,14 @@ class BiensController < ApplicationController
     @any_loyer_missing_this_bien = @bien.loyers.empty? || @bien.loyers.last.date_paiement.month != Date.today.month
   end
 
-  # def sum_depenses
-  #   @biens = current_user.biens
-  #   @sum_depenses = 0
-  #   @biens.each do |bien|
-  #     bien.depenses.each do |depense|
 
-  #     @sum_depenses += depense.montant
-  #     end
-  #   end
-  #   @sum_depenses
-  #     raise
-
-  # end
-
-  # def sum_depenses_bien
-  #   @bien = Bien.find(19)
-  #   @bien.depenses.each do |depense|
-  #   @sum_depenses = 0
-  #   @sum_depenses += depense.montant
-  #     end
-  #   @sum_depenses
-  #     raise
-  #   end
-
-  # def sum_loyers
-  #   @bien = Bien.find(params[:id])
-  #   @loyers = @bien.loyers
-  #   @loyers.each do |loyer|
-  #     @sum_loyers = 0
-  #     @sum_loyers += loyer.montant
-  #   end
-  # end
+  def cash_flow_courbe_biens
+     @cash_flow_courbe_biens = @cfbiens_months.each_with_index.map do |n, index|
+      if index.zero?
+        n
+      else
+        @cfbiens_months[0..index].sum
+      end
+    end
+  end
 end
