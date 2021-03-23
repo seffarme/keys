@@ -29,6 +29,9 @@ class BiensController < ApplicationController
 
     @months_display = (0..11).map { |i| (Date.today - i.month).end_of_month.strftime('%b %y') }.reverse
     @apartments_display = current_user.biens.map { |bien| bien.nom }
+
+    @apartments_id = current_user.biens.map { |bien| bien.id }
+
   end
 
   def show
