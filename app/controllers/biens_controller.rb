@@ -3,7 +3,7 @@ class BiensController < ApplicationController
   CURRENT_START_PERIOD = Date.new(CURRENT_YEAR)
   CURRENT_END_PERIOD = Date.new(CURRENT_YEAR + 1) - 1.day
 
-  before_action :set_biens, :any_loyer_missing_all_bien?, only: %i[index]
+  before_action :set_biens, :any_loyer_missing_all_bien?, only: %i[index total_cash_flow]
   before_action :set_bien, :set_report, :any_loyer_missing_this_bien?, only: %i[show update]
 
   def index
@@ -19,6 +19,9 @@ class BiensController < ApplicationController
     @apartments_display = current_user.biens.map { |bien| bien.nom }
 
     @apartments_id = current_user.biens.map { |bien| bien.id }
+
+    @total_cash_flow = total_cash_flow
+    
   end
 
   def show
@@ -212,5 +215,9 @@ class BiensController < ApplicationController
         @cfbiens_months[0..index].sum
       end
     end
+  end
+
+  def total_cash_flow
+    @biens.map { |bien| bien.cash_flow_bien_to_date }.sum
   end
 end

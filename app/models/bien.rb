@@ -25,7 +25,6 @@ class Bien < ApplicationRecord
     sum_depenses
   end
 
-
   def sum_loyers
     sum_loyers = 0
     self.loyers.each do |loyer|
@@ -45,6 +44,13 @@ class Bien < ApplicationRecord
 
   def cash_flow_bien_to_date
    self.sum_loyers - self.sum_depenses_to_date
+  end
+
+  def total_cash_flow
+    self.biens.each { |bien| bien.cash_flow_bien_to_date }.sum
+  end
+  def total
+    cash_flow_bien_to_date
   end
 
   def months_depenses_to_date

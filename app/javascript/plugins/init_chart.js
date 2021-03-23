@@ -58,20 +58,20 @@ const initChartCourbe = () => {
             // Changes this dataset to become a line
             type: "line",
             backgroundColor: [
+              "rgba(255, 159, 64, 0.2)",
+              "rgba(75, 192, 192, 0.2)",
               "rgba(255, 99, 132, 0.2)",
               "rgba(54, 162, 235, 0.2)",
               "rgba(255, 206, 86, 0.2)",
-              "rgba(75, 192, 192, 0.2)",
               "rgba(153, 102, 255, 0.2)",
-              "rgba(255, 159, 64, 0.2)",
             ],
             borderColor: [
+              "rgba(255, 159, 64, 1)",
+              "rgba(75, 192, 192, 1)",
               "rgba(255, 99, 132, 1)",
               "rgba(54, 162, 235, 1)",
               "rgba(255, 206, 86, 1)",
-              "rgba(75, 192, 192, 1)",
               "rgba(153, 102, 255, 1)",
-              "rgba(255, 159, 64, 1)",
             ],
             borderWidth: 1,
             pointStyle: "line",
@@ -80,29 +80,32 @@ const initChartCourbe = () => {
         labels: monthsDisplay,
       },
       options: {
-        legend: {
-          display: true,
-          labels: {
-            fontColor: "rgb(255, 99, 132)",
-            fontSize: 20,
-          },
-        },
         scales: {
-          yAxes: [
-            {
-              ticks: {
-                beginAtZero: false,
-                padding: 4,
-                fontSize: 10,
-                userCallback: function(value, index, values) {
-                  value = value.toString();
-                  value = value.split(/(?=(?:...)*$)/);
-                  value = value.join(" ");
-                  return value + " €";
-                },
-              },
+          yAxes: [{
+            gridLines: {
+             lineWidth: 0
             },
-          ],
+            ticks: {
+              beginAtZero: false,
+              padding: 4,
+              fontSize: 10,
+              userCallback: function(value, index, values) {
+                value = value.toString();
+                value = value.split(/(?=(?:...)*$)/);
+                value = value.join(' ');
+                return   value + ' €';
+              }
+            },
+          }],
+            xAxes: [{
+              gridLines: {
+                  lineWidth: 0
+                },
+              ticks: {
+                  padding: 4,
+                  fontSize: 12,
+              }
+            }]
         },
         legend: {
           display: true,
@@ -110,12 +113,16 @@ const initChartCourbe = () => {
           labels: {
             useLineStyle: true,
             usePointStyle: true,
+            fontSize: 13,
+
+
           },
         },
         title: {
           display: true,
           text: "Cash-Flow Mensuel",
           fontSize: 20,
+          padding: 15,
         },
       },
     });
@@ -173,40 +180,51 @@ const initChartBiens = () => {
             fontSize: 20,
           },
         },
-        scales: {
-          yAxes: [
-            {
-              ticks: {
-                // type: 'logarithmic'
-                suggestedMin: -5000,
-                suggestedMax: 5000,
-                padding: 4,
-                fontSize: 10,
-                // stepSize: 30000,
-                userCallback: function(value, index, values) {
-                  value = value.toString();
-                  value = value.split(/(?=(?:...)*$)/);
-                  value = value.join(" ");
-                  return value + " €";
+        options: {
+  				scales: {
+              yAxes: [{
+                gridLines: {
+                  lineWidth: 0
                 },
-              },
-            },
-          ],
-          xAxes: [
-            {
-              ticks: {
-                padding: 4,
-                fontSize: 10,
-              },
-            },
-          ],
+                ticks: {
+                // type: 'logarithmic'
+                  suggestedMin: -5000,
+                  suggestedMax: 5000,
+                  padding: 4,
+                  fontSize: 10,
+                  // stepSize: 30000,
+                  userCallback: function(value, index, values) {
+                    value = value.toString();
+                    value = value.split(/(?=(?:...)*$)/);
+                    value = value.join(' ');
+                    return   value + ' €';
+                  }
+                }
+              }],
+              xAxes: [{
+                gridLines: {
+                  lineWidth: 0
+                },
+                    ticks: {
+                      padding: 4,
+                      fontSize: 10
+                    }
+                }]
         },
         legend: {
-          display: true,
-          position: "bottom",
-          labels: {
-            useLineStyle: true,
-            usePointStyle: true,
+              display: true,
+              position: 'bottom',
+              labels: {
+                  useLineStyle: true,
+                  usePointStyle: true,
+                  fontSize: 13,
+              }
+          },
+          title: {
+            display: true,
+            text: "Résultat net depuis achat",
+            fontSize: 20,
+            padding: 15,
           },
         },
         title: {
@@ -254,100 +272,109 @@ const initChartCourbeBien = () => {
             label: "CashFlow",
             data: cfbmValue,
             backgroundColor: [
-              "rgba(54, 162, 235, 0.2)",
-              "rgba(54, 162, 235, 0.2)",
-              "rgba(54, 162, 235, 0.2)",
-              "rgba(54, 162, 235, 0.2)",
-              "rgba(54, 162, 235, 0.2)",
-              "rgba(54, 162, 235, 0.2)",
-              "rgba(54, 162, 235, 0.2)",
-              "rgba(54, 162, 235, 0.2)",
-              "rgba(54, 162, 235, 0.2)",
-              "rgba(54, 162, 235, 0.2)",
-              "rgba(54, 162, 235, 0.2)",
-              "rgba(54, 162, 235, 0.2)",
-            ],
-            borderColor: [
-              "rgba(54, 162, 235, 1)",
-              "rgba(54, 162, 235, 1)",
-              "rgba(54, 162, 235, 1)",
-              "rgba(54, 162, 235, 1)",
-              "rgba(54, 162, 235, 1)",
-              "rgba(54, 162, 235, 1)",
-              "rgba(54, 162, 235, 1)",
-              "rgba(54, 162, 235, 1)",
-              "rgba(54, 162, 235, 1)",
-              "rgba(54, 162, 235, 1)",
-              "rgba(54, 162, 235, 1)",
-              "rgba(54, 162, 235, 1)",
-            ],
-            borderWidth: 1,
-          },
-          {
-            label: "Line CashFlow",
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(54, 162, 235, 0.2)'
+              ],
+              borderColor: [
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 235, 1)'
+              ],
+              borderWidth: 1,
+        }, {
+            label: 'Line CashFlow',
+
             data: cashFlowCourbe,
 
             // Changes this dataset to become a line
             type: "line",
             backgroundColor: [
-              "rgba(255, 99, 132, 0.2)",
-              "rgba(54, 162, 235, 0.2)",
-              "rgba(255, 206, 86, 0.2)",
-              "rgba(75, 192, 192, 0.2)",
-              "rgba(153, 102, 255, 0.2)",
-              "rgba(255, 159, 64, 0.2)",
-            ],
-            borderColor: [
-              "rgba(255, 99, 132, 1)",
-              "rgba(54, 162, 235, 1)",
-              "rgba(255, 206, 86, 1)",
-              "rgba(75, 192, 192, 1)",
-              "rgba(153, 102, 255, 1)",
-              "rgba(255, 159, 64, 1)",
-            ],
-            borderWidth: 1,
-            pointStyle: "line",
-          },
-        ],
+                  'rgba(255, 159, 64, 0.2)',
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+              ],
+              borderColor: [
+                  'rgba(255, 159, 64, 1)',
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+              ],
+              borderWidth: 1,
+              pointStyle: 'line'
+        }],
         labels: monthsDisplay,
       },
       options: {
-        legend: {
-          display: true,
-          labels: {
-            fontColor: "rgb(255, 99, 132)",
-          },
-        },
-        scales: {
-          yAxes: [
-            {
-              ticks: {
-                beginAtZero: false,
-                padding: 4,
-                fontSize: 12,
-                stepSize: 5000,
-                userCallback: function(value, index, values) {
-                  value = value.toString();
-                  value = value.split(/(?=(?:...)*$)/);
-                  value = value.join(" ");
-                  return value + " €";
+
+          scales: {
+              yAxes: [{
+                gridLines: {
+                  lineWidth: 0
                 },
-              },
-            },
-          ],
-        },
-        legend: {
-          display: true,
-          position: "bottom",
-          labels: {
-            useLineStyle: true,
-            usePointStyle: true,
+                ticks: {
+                  beginAtZero: false,
+                  padding: 4,
+                  fontSize: 12,
+                  stepSize: 5000,
+                  userCallback: function(value, index, values) {
+                    value = value.toString();
+                    value = value.split(/(?=(?:...)*$)/);
+                    value = value.join(' ');
+                    return   value + ' €';
+                  }
+                }
+              }],
+                xAxes: [{
+                  gridLines: {
+                  lineWidth: 0
+                },
+              ticks: {
+                  padding: 4,
+                  fontSize: 12,
+              }
+            }]
           },
+          legend: {
+            display: true,
+            position: 'bottom',
+            fontSize: 20,
+            labels: {
+                useLineStyle: true,
+                usePointStyle: true,
+                fontSize: 13,
+                // offsetGridLines: false,
+
+            }
         },
         title: {
-          display: true,
-          text: "Cash-Flow Mensuel",
-          fontSize: 20,
+            display: true,
+            text: "Cash-Flow Mensuel",
+            fontSize: 20,
+            padding: 15,
         },
       },
     });
