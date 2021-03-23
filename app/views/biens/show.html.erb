@@ -154,14 +154,12 @@
 
     <!-- GRAPHS OVER LAST 12 MONTHS-->
     <div class="section-dual-second-el">
-      <section class="">
 
         <!-- DETAILED CF PER MONTH with CUMULATIVE CF GRAPH -->
         <div class="graph-card graph-card-show" id="cfbm" data-cfb="<%= @cash_flow_bien_month %>" data-months="<%= @months_display %>" data-courbe="<%= @cash_flow_courbe_bien %>" >
               <canvas class="graph-show" id="myChartCourbeBien"></canvas>
         </div>
 
-      </section>
     </div>
 
   </section>
@@ -224,9 +222,9 @@
               </div>
               <div id="depense-form-date">
                 <%= ff.input :date_paiement, label: false, as: :date, order: [:day, :month, :year], input_html: {class: "form-input"} %>
+                <% end %>
+                <%= f.submit "Enregistrer", class: "block-base block-btn block-btn-save-depense" %>
               </div>
-              <% end %>
-              <%= f.submit "Enregistrer", class: "block-base block-btn block-btn-save-depense" %>
             </div>
         <% end %>
       </div>
