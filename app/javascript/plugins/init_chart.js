@@ -199,7 +199,7 @@ const initChartCourbe = () => {
           },
           title: {
             display: true,
-            text: "Cash-Flow Annuel",
+            text: "Résultat depuis Achat",
           },
         },
       });
