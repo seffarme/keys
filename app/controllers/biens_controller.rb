@@ -7,13 +7,7 @@ class BiensController < ApplicationController
   before_action :set_bien, :set_report, :any_loyer_missing_this_bien?, only: %i[show update]
 
   def index
-    @markers = @biens.geocoded.map do |bien|
-      {
-        lat: bien.latitude,
-        lng: bien.longitude,
-        infoWindow: render_to_string(partial: "info_window", locals: { bien: bien })
-      }
-    end
+		@markers = create_map_markers(@biens)
     # @sum_depenses = current_user.sum_depenses_biens
 
     @cfbiens = @biens.map { |bien| bien.cash_flow_bien_to_date }
@@ -75,6 +69,18 @@ class BiensController < ApplicationController
   end
 
   private
+
+	def create_map_markers(biens)
+    biens.map do |bien|
+			bien.categorie == "Maison" ? @image_url = helpers.asset_url('house-user-solid.svg') : @image_url = helpers.asset_url('building-solid.svg')
+      {
+				lat: bien.latitude,
+				lng: bien.longitude,
+				infoWindow: render_to_string(partial: "info_window", locals: { bien: bien }),
+        image_url: @image_url
+      }
+    end
+  end
 
   def bien_params
     params
