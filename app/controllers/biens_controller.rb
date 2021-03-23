@@ -17,7 +17,7 @@ class BiensController < ApplicationController
     # @sum_depenses = current_user.sum_depenses_biens
 
     @cfbiens = @biens.map { |bien| bien.cash_flow_bien_to_date }
-    @cfbiens_months = current_user.cash_flow_biens
+    @cfbiens_months = current_user.cash_flow_biens.reverse
 
     @cash_flow_courbe_biens = @cfbiens_months.each_with_index.map do |n, index|
       if index.zero?
@@ -44,7 +44,7 @@ class BiensController < ApplicationController
     @lasts_transactions.sort_by! { |t| t['date_paiement'] }.reverse!
     @depenses = @bien.sum_depenses
 
-    @cash_flow_bien_month = @bien.cash_flow_month
+    @cash_flow_bien_month = @bien.cash_flow_month.reverse
 
     @months_display = (0..11).map { |i| (Date.today - i.month).end_of_month.strftime('%b %y') }.reverse
 
