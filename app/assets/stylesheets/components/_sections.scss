@@ -60,11 +60,12 @@
 
 .section-important-actions {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
+    flex-grow: 1;
     align-items: center;
     background-color: white;
 
-    margin-top: 16px;
     border-radius: 3px;
 
     .section-card-add-loyer {
@@ -78,8 +79,7 @@
         box-shadow: 0 0 8px rgba(0,0,0,0.1);
         border-radius: 3px;
 
-        width: 35%;
-        height: 100%;
+        padding: 8px;
 
         p {
             padding: 8px;
