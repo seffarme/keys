@@ -123,4 +123,8 @@ Rails.application.configure do
     :enable_starttls_auto => true
   }
 
+  config.hosts << "www.keyz.work"
+  config.hosts << "https://keyzimmo.herokuapp.com/"
+
+
 end
