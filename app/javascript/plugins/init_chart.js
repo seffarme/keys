@@ -138,7 +138,7 @@ const initChartCourbe = () => {
           labels: labelValue,
           datasets: [
             {
-              label: "CashFlow",
+              label: "",
               data: cfbienValue,
 
               backgroundColor: [
@@ -163,7 +163,7 @@ const initChartCourbe = () => {
         },
         options: {
   				legend: {
-  					display: true,
+  					display: false,
   					labels: {
   							fontColor: 'rgb(255, 99, 132)',
   							fontSize: 20,
@@ -189,17 +189,17 @@ const initChartCourbe = () => {
                     }
                 }]
         },
-        legend: {
-              display: true,
-              position: 'top',
-              labels: {
-                  useLineStyle: true,
-                  usePointStyle: true
-              }
-          },
+        // legend: {
+        //       display: true,
+        //       position: 'bottom',
+        //       labels: {
+        //           useLineStyle: true,
+        //           usePointStyle: true
+        //       }
+        //   },
           title: {
             display: true,
-            text: "Cash-Flow Annuel",
+            text: "Résultat depuis Achat",
           },
         },
       });
