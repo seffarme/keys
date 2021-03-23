@@ -12,4 +12,10 @@ class LoyerMailer < ApplicationMailer
     @locataire = @bien.locataires.first
     mail(to: @locataire.email, subject:  "RELANCE - Avis d'échéance : #{@bien.nom}")
   end
+
+  def copie_relance(bien)
+    @bien = bien
+    @locataire = @bien.locataires.first
+    mail(to: @bien.user.email, subject:  "// COPIE // RELANCE - Avis d'échéance : #{@bien.nom}")
+  end
 end

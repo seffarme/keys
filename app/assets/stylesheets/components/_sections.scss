@@ -1,10 +1,11 @@
 
-// Base layout 
+// Base layout
 .section-card {
     background-color: white;
     box-shadow: 0 0 8px rgba(0,0,0,0.1);
     border-radius: 3px;
     margin-top: 16px;
+    vertical-align: middle;
 }
 
 
@@ -18,12 +19,13 @@
     p {
         font-size: 14px;
         margin: 0;
-    }    
+    }
 }
 
 .section-kpi {
     display: flex;
     justify-content: space-between;
+
 }
 
 .section-biens-list {
@@ -124,13 +126,13 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    
+
     position: relative;
-    
+
     margin-top: 12px;
     margin-bottom: 12px;
     padding: 16px;
-    
+
     div {
         position: absolute;
         top: 0;
@@ -140,7 +142,7 @@
     i {
         color: $font-dark-grey;
     }
-    
+
     h1 {
         margin-left: 12px;
         font-size: 32px;
@@ -151,9 +153,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
     margin-top: 16px;
-    
+
     p {
         font-size: 14px;
         font-weight: 300;

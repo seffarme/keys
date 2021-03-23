@@ -30,6 +30,7 @@
         min-width: 280px;
         display: flex;
         align-items: center;
+        font-size: 1.2rem;
 
         a {
             width: 100%;
@@ -37,7 +38,7 @@
             text-decoration: none;
 						color: white;
         }
-				a:hover { color: blue;}
+				a:hover { color: rgb(125, 125, 128);}
     }
 }
 
