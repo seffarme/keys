@@ -239,7 +239,7 @@
         <table class="tableau-synthese">
           <thead>
             <tr>
-              <th>Année en cours</th>
+              <th>Année 2021</th>
               <th>Encaissé / Payé</th>
               <th>A venir</th>
             </tr>
@@ -249,6 +249,11 @@
               <td>Loyers</td>
               <td><%= number_with_delimiter(@loyers_received , delimiter: " ") %>€</td>
               <td><%= number_with_delimiter(@loyers_tbr , delimiter: " ") %>€</td>
+            </tr>
+            <tr>
+              <td>Crédit</td>
+              <td><%= number_with_delimiter(@credits_paid , delimiter: " ") %>€</td>
+              <td><%= number_with_delimiter(@credits_tbp , delimiter: " ") %>€</td>
             </tr>
             <tr>
               <td>Taxe Foncière</td>
