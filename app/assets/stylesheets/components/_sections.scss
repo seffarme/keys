@@ -64,9 +64,9 @@
     justify-content: space-between;
     flex-grow: 1;
     align-items: center;
-    background-color: white;
 
     border-radius: 3px;
+    margin-right: 36px;
 
     .section-card-add-loyer {
         display: flex;
@@ -75,10 +75,13 @@
         align-items: center;
         text-align: center;
 
+        width: 100%;
+
         background-color: white;
         box-shadow: 0 0 8px rgba(0,0,0,0.1);
         border-radius: 3px;
 
+        margin-bottom: 36px;
         padding: 8px;
 
         p {
@@ -92,6 +95,7 @@
         flex-direction: column;
         align-items: center;
 
+        width: 100%;
         height: auto;
 
         background-color: white;
@@ -111,7 +115,8 @@
     justify-content: space-between;
     align-items: flex-start;
 
-    margin-top: 16px;
+    margin-top: 36px;
+    margin-bottom: 36px;
 
     .section-dual-first-el {
         flex-grow: 1;
