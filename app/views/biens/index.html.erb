@@ -34,7 +34,7 @@
 
 		<!-- ESTIMATED VALUE OF GLOBAL REAL ESTATE -->
 		<div class="section-card kpi-card" style="background-color: #152F70;">
-			<p class="kpi-big-number">X XXX XXX<span class="kpi-little-symbol">€</span></p>
+			<p class="kpi-big-number"><%= number_with_delimiter(@biens.reduce(0) { |sum, bien| sum + bien.prix_acquisition} , delimiter: " ") %><span class="kpi-little-symbol">€</span></p>
 			<p class="kpi-metric-name">Valeur estimée de vos biens</p>
 		</div>
 	</section>

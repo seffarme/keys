@@ -14,6 +14,9 @@
     <h1><%= @bien.nom %></h1>
   </section>
 
+
+
+
   <!-- LOYER POP UP; color depends on status -->
 	<% if @any_loyer_missing_this_bien %>
     <section class="section-card section-pop-up section-alert">
@@ -26,88 +29,16 @@
   <% end %>
 
 
-  <!-- GRAPHS OVER LAST 12 MONTHS-->
-  <section class="section-graph-show">
-
-    <!-- DETAILED CF PER MONTH with CUMULATIVE CF GRAPH -->
-    <div class="graph-card graph-card-show" id="cfbm" data-cfb="<%= @cash_flow_bien_month %>" data-months="<%= @months_display %>" data-courbe="<%= @cash_flow_courbe_bien %>" >
-          <canvas class="graph graph-show" id="myChartCourbeBien"></canvas>
-    </div>
-
-  </section>
 
 
-
-
-  <!-- IMPORTANT ACTIONS -->
-  <section class="section-important-actions">
-
-    <!-- ADD LOYER & DEPENSE-->
-
-    <% if @any_loyer_missing_this_bien %>
-
-      <!-- ADD LOYER -->
-      <div class="section-card-add-loyer section-warning">
-        <p>Avez-vous reçu le loyer du mois de mars de <%= @bien.montant_loyer %>€ de la part de <%= @bien.locataires.first.prenom %> <%= @bien.locataires.first.nom %> ?</p>
-        <%= link_to "J'ai reçu le loyer 💰", bien_loyers_path(bien_id: @bien.id), method: :post, class:"block-base block-btn block-btn-save-loyer" %>
-      </div>
-
-      <!-- ADD DEPENSE -->
-      <div class="section-card-add-depense">
-        <p>Ajouter une dépense</p>
-  
-        <%= form_for @bien do |f| %>
-          <%= f.simple_fields_for :depenses, @bien.depenses.build do |ff| %>
-            <%= ff.hidden_field :id %>
-            <div class="form-depense">
-              <div id="depense-form-nom-montant-cat">
-                <%= ff.input :nom, label: false, placeholder: "Nom", input_html: {class: "form-input"} %>
-                <%= ff.input :montant, label: false, placeholder: "Montant", input_html: {class: "form-input"} %>
-                <%= ff.input :categorie, label: false, collection: Depense::CATEGORIE, prompt: "-- Catégorie --", input_html: {class: "form-input"}  %>
-              </div>
-              <div id="depense-form-date">
-                <%= ff.input :date_paiement, label: false, as: :date, order: [:day, :month, :year], input_html: {class: "form-input"} %>
-              </div>
-              <% end %>
-              <%= f.submit "Enregistrer", class: "block-base block-btn block-btn-save-depense" %>
-            </div>
-        <% end %>
-      </div>
-
-    <% else %>  
-
-    <!-- ADD DEPENSE only -->
-    <div class="section-card-add-depense w-100">
-      <p>Ajouter une dépense</p>
-
-      <%= form_for @bien do |f| %>
-        <%= f.simple_fields_for :depenses, @bien.depenses.build do |ff| %>
-          <%= ff.hidden_field :id %>
-          <div class="form-depense">
-            <div id="depense-form-nom-montant-cat">
-              <%= ff.input :nom, label: false, placeholder: "Nom", input_html: {class: "form-input"} %>
-              <%= ff.input :montant, label: false, placeholder: "Montant", input_html: {class: "form-input"} %>
-              <%= ff.input :categorie, label: false, collection: Depense::CATEGORIE, prompt: "-- Catégorie --", input_html: {class: "form-input"}  %>
-            </div>
-            <div id="depense-form-date">
-              <%= ff.input :date_paiement, label: false, as: :date, order: [:day, :month, :year], input_html: {class: "form-input"} %>
-            </div>
-            <% end %>
-            <%= f.submit "Enregistrer", class: "block-base block-btn block-btn-save-depense" %>
-          </div>
-      <% end %>
-    </div>
-
-    <% end %>
-
-  </section>
-
-
+  <!-- BLUE BLOCK + GRAPH CASH FLOWS -->
   <section class="section-dual-equiv-items-centered ">
 
-    <!-- descriptif bien / locataire -->
-    <div>
+    <!-- BIEN DESCRIPTION AND INFORMATION as blue block -->
+    <div class="section-dual-first-el">
       <ul class="horizontal-bien">
+
+        <!-- [1/4] BIEN INFORMATION -->
         <label for="one">
           <li class="item">
             <input checked type="radio" name="bien" id="one">
@@ -133,7 +64,7 @@
           </li>
         </label>
 
-
+        <!-- [2/4] LOCATAIRE -->
         <label for="two">
           <li class="item">
             <input type="radio" name="bien" id="two">
@@ -159,6 +90,7 @@
           </li>
         </label>
 
+        <!-- [3/4] LOCALISATION -->
         <label for="three">
           <li class="item">
             <input type="radio" name="bien" id="three">
@@ -184,7 +116,8 @@
           </li>
         </label>
 
-        <label for="four">
+        <!-- [4/4] CASH FLOW -->
+        <!-- <label for="four">
           <li class="item">
             <input type="radio" name="bien" id="four">
 
@@ -206,11 +139,94 @@
               </footer>
             </div>
           </li>
-        </label>
+        </label> -->
     </ul>
     </div>
 
-    <!-- TABLEAU  SYNTHESE -->
+    <!-- GRAPHS OVER LAST 12 MONTHS-->
+    <div class="section-dual-second-el">
+      <section class="">
+
+        <!-- DETAILED CF PER MONTH with CUMULATIVE CF GRAPH -->
+        <div class="graph-card graph-card-show" id="cfbm" data-cfb="<%= @cash_flow_bien_month %>" data-months="<%= @months_display %>" data-courbe="<%= @cash_flow_courbe_bien %>" >
+              <canvas class="graph-show" id="myChartCourbeBien"></canvas>
+        </div>
+
+      </section>
+    </div>
+
+  </section>
+
+
+
+
+  <!-- IMPORTANT ACTIONS (add loyer / depense) && SUIVI FINANCIER -->
+  <section class="section-dual-equiv-items-centered ">
+
+    <!-- IMPORTANT ACTIONS -->
+    <section class="section-important-actions">
+
+      <!-- ADD LOYER & DEPENSE-->
+
+      <% if @any_loyer_missing_this_bien %>
+
+        <!-- ADD LOYER -->
+        <div class="section-card-add-loyer section-warning">
+          <p>Avez-vous reçu le loyer du mois de mars de <%= @bien.montant_loyer %>€ de la part de <%= @bien.locataires.first.prenom %> <%= @bien.locataires.first.nom %> ?</p>
+          <%= link_to "J'ai reçu le loyer 💰", bien_loyers_path(bien_id: @bien.id), method: :post, class:"block-base block-btn block-btn-save-loyer" %>
+        </div>
+
+        <!-- ADD DEPENSE -->
+        <div class="section-card-add-depense">
+          <p>Ajouter une dépense</p>
+    
+          <%= form_for @bien do |f| %>
+            <%= f.simple_fields_for :depenses, @bien.depenses.build do |ff| %>
+              <%= ff.hidden_field :id %>
+              <div class="form-depense">
+                <div id="depense-form-nom-montant-cat">
+                  <%= ff.input :nom, label: false, placeholder: "Nom", input_html: {class: "form-input"} %>
+                  <%= ff.input :montant, label: false, placeholder: "Montant", input_html: {class: "form-input"} %>
+                  <%= ff.input :categorie, label: false, collection: Depense::CATEGORIE, prompt: "-- Catégorie --", input_html: {class: "form-input"}  %>
+                </div>
+                <div id="depense-form-date">
+                  <%= ff.input :date_paiement, label: false, as: :date, order: [:day, :month, :year], input_html: {class: "form-input"} %>
+                </div>
+                <% end %>
+                <%= f.submit "Enregistrer", class: "block-base block-btn block-btn-save-depense" %>
+              </div>
+          <% end %>
+        </div>
+
+      <% else %>  
+
+      <!-- ADD DEPENSE only -->
+      <div class="section-card-add-depense w-100">
+        <p>Ajouter une dépense</p>
+
+        <%= form_for @bien do |f| %>
+          <%= f.simple_fields_for :depenses, @bien.depenses.build do |ff| %>
+            <%= ff.hidden_field :id %>
+            <div class="form-depense">
+              <div id="depense-form-nom-montant-cat">
+                <%= ff.input :nom, label: false, placeholder: "Nom", input_html: {class: "form-input"} %>
+                <%= ff.input :montant, label: false, placeholder: "Montant", input_html: {class: "form-input"} %>
+                <%= ff.input :categorie, label: false, collection: Depense::CATEGORIE, prompt: "-- Catégorie --", input_html: {class: "form-input"}  %>
+              </div>
+              <div id="depense-form-date">
+                <%= ff.input :date_paiement, label: false, as: :date, order: [:day, :month, :year], input_html: {class: "form-input"} %>
+              </div>
+              <% end %>
+              <%= f.submit "Enregistrer", class: "block-base block-btn block-btn-save-depense" %>
+            </div>
+        <% end %>
+      </div>
+
+      <% end %>
+
+    </section>
+
+    <!-- SUIVI FINANCIER -->
     <div class="flex-item-grow">
       <div class="responsive-table">
         <table class="tableau-synthese">
@@ -225,7 +241,7 @@
             <tr>
               <td>Loyers</td>
               <td><%= number_with_delimiter(@loyers_received , delimiter: " ") %>€</td>
-              <td><%=  %>0€ </td>
+              <td><%= number_with_delimiter(@loyers_tbr , delimiter: " ") %>€</td>
             </tr>
             <tr>
               <td>Taxe Foncière</td>
@@ -234,7 +250,7 @@
             </tr>
             <tr>
               <td>Copropriété</td>
-              <td><%= number_with_delimiter(@copropriete_paid , delimiter: " ") %>€</p></td>
+              <td><%= number_with_delimiter(@copropriete_paid , delimiter: " ") %>€</td>
               <td><%= number_with_delimiter(@copropriete_tbp , delimiter: " ") %>€</td>
             </tr>
             <tr>
@@ -252,11 +268,19 @@
               <td><%= number_with_delimiter(@autres_paid , delimiter: " ") %>€</td>
               <td><%= number_with_delimiter(@autres_tbp , delimiter: " ") %>€</td>
             </tr>
+            <tr>
+              <td>TOTAL</td>
+              <td><%= number_with_delimiter(@total_paid , delimiter: " ") %>€</td>
+              <td><%= number_with_delimiter(@total_tbp , delimiter: " ") %>€</td>
+            </tr>
           </tbody>
         </table>
       </div>
     </div>
+
   </section>
+
+
 
 
   <!-- LAST OPERATIONS TABLE -->

@@ -109,8 +109,17 @@
 .section-dual-equiv-items-centered {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
 
     margin-top: 16px;
+
+    .section-dual-first-el {
+        flex-grow: 1;
+    }
+
+    .section-dual-second-el {
+        flex-grow: 1;
+    }
 }
 
 .section-last-operations {

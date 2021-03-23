@@ -31,14 +31,13 @@ class BiensController < ApplicationController
     @apartments_display = current_user.biens.map { |bien| bien.nom }
 
     @apartments_id = current_user.biens.map { |bien| bien.id }
-
   end
 
   def show
     ## MERGE tableaux transactions ##
     @lasts_transactions = (@bien.loyers.where('date_paiement < ?',
-    DateTime.now).order(date_paiement: :desc).limit(10).to_a + @bien.depenses.where('date_paiement < ?',
-    DateTime.now).order(date_paiement: :desc).limit(10).to_a).map do |transaction|
+                                              DateTime.now).order(date_paiement: :desc).limit(10).to_a + @bien.depenses.where('date_paiement < ?',
+                                                                                                                              DateTime.now).order(date_paiement: :desc).limit(10).to_a).map do |transaction|
       transaction.attributes
     end
     @lasts_transactions.sort_by! { |t| t['date_paiement'] }.reverse!
@@ -55,10 +54,7 @@ class BiensController < ApplicationController
         @cash_flow_bien_month[0..index].sum
       end
     end
-
-
   end
-
 
   def update
     @bien.attributes = bien_params
@@ -147,7 +143,7 @@ class BiensController < ApplicationController
     @loyers_received = @loyers_received_list.reduce(0) { |sum, loyer| sum + loyer }
 
     # Simulate future loyers
-    @test = (12 - @loyers_received_list.count)
+    @loyers_tbr = 0
 
     ############################ Generate the depenses paid & to be paid ###########################################
     # CREDIT
@@ -191,6 +187,10 @@ class BiensController < ApplicationController
 
     @autres_tbp_list = @bien.depenses.cat_autres.in_interval(Date.today, CURRENT_END_PERIOD)
     @autres_tbp = @autres_tbp_list.reduce(0) { |sum, autres| sum + autres }
+
+    ############################ Generate the total for suivi fin ###########################################
+    @total_paid = @loyers_received + @credits_paid + @taxe_fonciere_paid + @copropriete_paid + @assurances_paid + @travaux_paid + @autres_paid
+    @total_tbp = @loyers_tbr + @credits_tbp + @taxe_fonciere_tbp + @copropriete_tbp + @assurances_tbp + @travaux_tbp + @autres_tbp
   end
 
   def any_loyer_missing_all_bien?
