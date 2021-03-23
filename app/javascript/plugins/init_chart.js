@@ -81,16 +81,8 @@ const initChartCourbe = () => {
         labels: monthsDisplay,
       },
       options: {
-        legend: {
-          display: true,
-          labels: {
-            fontColor: "rgb(255, 99, 132)",
-            fontSize: 20,
-          },
-        },
         scales: {
-          yAxes: [
-            {
+          yAxes: [{
               ticks: {
                 beginAtZero: false,
                 padding: 4,
@@ -102,8 +94,13 @@ const initChartCourbe = () => {
                   return   value + ' €';
                 }
               },
-            },
-          ],
+            }],
+            xAxes: [{
+              ticks: {
+                  padding: 4,
+                  fontSize: 12,
+              }
+            }]
         },
         legend: {
           display: true,
@@ -111,6 +108,9 @@ const initChartCourbe = () => {
           labels: {
             useLineStyle: true,
             usePointStyle: true,
+            fontSize: 13,
+
+
           },
         },
         title: {
@@ -167,13 +167,6 @@ const initChartCourbe = () => {
           ],
         },
         options: {
-  				legend: {
-  					display: true,
-  					labels: {
-  							fontColor: 'rgb(255, 99, 132)',
-  							fontSize: 20,
-  					}
-  				},
   				scales: {
               yAxes: [{
                 ticks: {
@@ -204,7 +197,8 @@ const initChartCourbe = () => {
               position: 'bottom',
               labels: {
                   useLineStyle: true,
-                  usePointStyle: true
+                  usePointStyle: true,
+                  fontSize: 13,
               }
           },
           title: {
@@ -288,20 +282,20 @@ const initChartCourbeBien = () => {
             // Changes this dataset to become a line
             type: 'line',
             backgroundColor: [
+                  'rgba(255, 159, 64, 0.2)',
                   'rgba(255, 99, 132, 0.2)',
                   'rgba(54, 162, 235, 0.2)',
                   'rgba(255, 206, 86, 0.2)',
                   'rgba(75, 192, 192, 0.2)',
                   'rgba(153, 102, 255, 0.2)',
-                  'rgba(255, 159, 64, 0.2)'
               ],
               borderColor: [
+                  'rgba(255, 159, 64, 1)',
                   'rgba(255, 99, 132, 1)',
                   'rgba(54, 162, 235, 1)',
                   'rgba(255, 206, 86, 1)',
                   'rgba(75, 192, 192, 1)',
                   'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)'
               ],
               borderWidth: 1,
               pointStyle: 'line'
@@ -309,12 +303,7 @@ const initChartCourbeBien = () => {
         labels: monthsDisplay,
       },
       options: {
-          legend: {
-            display: true,
-            labels: {
-                fontColor: 'rgb(255, 99, 132)',
-            }
-          },
+
           scales: {
               yAxes: [{
                   ticks: {
@@ -329,20 +318,29 @@ const initChartCourbeBien = () => {
                         return   value + ' €';
                       }
                   }
-              }]
+              }],
+                xAxes: [{
+              ticks: {
+                  padding: 4,
+                  fontSize: 12,
+              }
+            }]
           },
           legend: {
             display: true,
             position: 'bottom',
+            fontSize: 20,
             labels: {
                 useLineStyle: true,
-                usePointStyle: true
+                usePointStyle: true,
+                fontSize: 13,
             }
         },
         title: {
             display: true,
             text: "Cash-Flow Mensuel",
             fontSize: 20,
+            padding: 15,
         },
       }
     });
