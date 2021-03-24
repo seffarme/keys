@@ -138,7 +138,7 @@ class BiensController < ApplicationController
   end
 
   def set_biens
-    @biens = current_user.biens
+    @biens = current_user.biens.includes(:loyers)
   end
 
   def set_report

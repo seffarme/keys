@@ -180,7 +180,7 @@
         <!-- ADD LOYER -->
         <div class="section-card-add-loyer section-warning">
           <p>Avez-vous reçu le loyer du mois de mars de <%= @bien.montant_loyer %>€ de la part de <%= @bien.locataires.first.prenom %> <%= @bien.locataires.first.nom %> ?</p>
-          <%= link_to "J'ai reçu le loyer 💰", bien_loyers_path(bien_id: @bien.id), method: :post, class:"block-base block-btn block-btn-save-loyer" %>
+          <%= link_to "J'ai reçu le loyer 💰", bien_loyers_path(bien_id: @bien.id, target: bien_path(@bien)), method: :post, class:"block-base block-btn block-btn-save-loyer" %>
         </div>
 
         <!-- ADD DEPENSE -->
