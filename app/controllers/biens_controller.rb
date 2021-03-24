@@ -20,8 +20,9 @@ class BiensController < ApplicationController
 
     @apartments_id = current_user.biens.map { |bien| bien.id }
 
+    # KPIS
     @total_cash_flow = total_cash_flow
-    
+    @rentability_ytd_all_biens = rentability_ytd_all_biens
   end
 
   def show
@@ -218,5 +219,21 @@ class BiensController < ApplicationController
 
   def total_cash_flow
     @biens.map { |bien| bien.cash_flow_bien_to_date }.sum
+  end
+
+  def rentability_ytd_all_biens
+    sum_loyers_ytd_all_biens = @biens.reduce(0) do |sum_loyers, bien|
+      sum_loyers + bien.months_loyers.sum
+    end
+
+    sum_depenses_ytd_all_biens = @biens.reduce(0) do |sum_depenses, bien|
+      sum_depenses + bien.months_depenses.sum
+    end
+
+    sum_loyers_depenses_ytd_all_biens = sum_loyers_ytd_all_biens - sum_depenses_ytd_all_biens
+
+    prix_acquisition_all_biens = @biens.reduce(0) { |sum, bien| sum + bien.prix_acquisition }
+
+    (sum_loyers_depenses_ytd_all_biens / prix_acquisition_all_biens.to_f) * 100
   end
 end
