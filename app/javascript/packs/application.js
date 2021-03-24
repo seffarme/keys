@@ -3,11 +3,10 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-require("@rails/ujs").start()
-require("turbolinks").start()
-require("@rails/activestorage").start()
-require("channels")
-
+require("@rails/ujs").start();
+require("turbolinks").start();
+require("@rails/activestorage").start();
+require("channels");
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
@@ -16,30 +15,36 @@ require("channels")
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-
 // ----------------------------------------------------
 // Note(lewagon): ABOVE IS RAILS DEFAULT CONFIGURATION
 // WRITE YOUR OWN JS STARTING FROM HERE 👇
 // ----------------------------------------------------
-import { initChartCourbe, initChartBiens, initChartCourbeBien } from '../plugins/init_chart';
+import {
+  initChartCourbe,
+  initChartBiens,
+  initChartCourbeBien,
+} from "../plugins/init_chart";
 
 // External imports
 import "bootstrap";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
-import { initMapbox } from '../plugins/init_mapbox';
-import { initRelance } from '../plugins/init_relance';
+import { initMapbox } from "../plugins/init_mapbox";
+import { initRelance } from "../plugins/init_relance";
 
-document.addEventListener('turbolinks:load', () => {
+var toastElList = [].slice.call(document.querySelectorAll(".toast"));
+var toastList = toastElList.map(function(toastEl) {
+  return new bootstrap.Toast(toastEl, option);
+});
+
+document.addEventListener("turbolinks:load", () => {
   initMapbox();
   initChartCourbe();
   initChartBiens();
   initChartCourbeBien();
   initRelance();
-})
-
-
+});
 
 // NAVBAR transparente
 // import { initUpdateNavbarOnScroll } from '../components/navbar';
