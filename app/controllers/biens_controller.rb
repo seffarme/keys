@@ -7,7 +7,7 @@ class BiensController < ApplicationController
   before_action :set_bien, :set_report, :any_loyer_missing_this_bien?, only: %i[show update]
 
   def index
-		@markers = create_map_markers(@biens)
+    @markers = create_map_markers(@biens)
     # @sum_depenses = current_user.sum_depenses_biens
 
     @cfbiens = @biens.map { |bien| bien.cash_flow_bien_to_date }
@@ -20,8 +20,9 @@ class BiensController < ApplicationController
 
     @apartments_id = current_user.biens.map { |bien| bien.id }
 
+    # KPIS
     @total_cash_flow = total_cash_flow
-    
+    @rentability_ytd_all_biens = rentability_ytd_all_biens
   end
 
   def show
@@ -73,13 +74,13 @@ class BiensController < ApplicationController
 
   private
 
-	def create_map_markers(biens)
+  def create_map_markers(biens)
     biens.map do |bien|
-			bien.categorie == "Maison" ? @image_url = helpers.asset_url('house-user-solid.svg') : @image_url = helpers.asset_url('building-solid.svg')
+      bien.categorie == "Maison" ? @image_url = helpers.asset_url('house-user-solid.svg') : @image_url = helpers.asset_url('building-solid.svg')
       {
-				lat: bien.latitude,
-				lng: bien.longitude,
-				infoWindow: render_to_string(partial: "info_window", locals: { bien: bien }),
+        lat: bien.latitude,
+        lng: bien.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { bien: bien }),
         image_url: @image_url
       }
     end
@@ -192,8 +193,8 @@ class BiensController < ApplicationController
     @autres_tbp = @autres_tbp_list.reduce(0) { |sum, autres| sum + autres }
 
     ############################ Generate the total for suivi fin ###########################################
-    @total_paid = @loyers_received + @credits_paid + @taxe_fonciere_paid + @copropriete_paid + @assurances_paid + @travaux_paid + @autres_paid
-    @total_tbp = @loyers_tbr + @credits_tbp + @taxe_fonciere_tbp + @copropriete_tbp + @assurances_tbp + @travaux_tbp + @autres_tbp
+    @total_paid = @loyers_received - (@credits_paid + @taxe_fonciere_paid + @copropriete_paid + @assurances_paid + @travaux_paid + @autres_paid)
+    @total_tbp = @loyers_tbr - (@credits_tbp + @taxe_fonciere_tbp + @copropriete_tbp + @assurances_tbp + @travaux_tbp + @autres_tbp)
   end
 
   def any_loyer_missing_all_bien?
@@ -206,9 +207,8 @@ class BiensController < ApplicationController
     @any_loyer_missing_this_bien = @bien.loyers.empty? || @bien.loyers.last.date_paiement.month != Date.today.month
   end
 
-
   def cash_flow_courbe_biens
-     @cash_flow_courbe_biens = @cfbiens_months.each_with_index.map do |n, index|
+    @cash_flow_courbe_biens = @cfbiens_months.each_with_index.map do |n, index|
       if index.zero?
         n
       else
@@ -219,5 +219,21 @@ class BiensController < ApplicationController
 
   def total_cash_flow
     @biens.map { |bien| bien.cash_flow_bien_to_date }.sum
+  end
+
+  def rentability_ytd_all_biens
+    sum_loyers_ytd_all_biens = @biens.reduce(0) do |sum_loyers, bien|
+      sum_loyers + bien.months_loyers.sum
+    end
+
+    sum_depenses_ytd_all_biens = @biens.reduce(0) do |sum_depenses, bien|
+      sum_depenses + bien.months_depenses.sum
+    end
+
+    sum_loyers_depenses_ytd_all_biens = sum_loyers_ytd_all_biens - sum_depenses_ytd_all_biens
+
+    prix_acquisition_all_biens = @biens.reduce(0) { |sum, bien| sum + bien.prix_acquisition }
+
+    (sum_loyers_depenses_ytd_all_biens / prix_acquisition_all_biens.to_f) * 100
   end
 end

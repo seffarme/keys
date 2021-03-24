@@ -3,11 +3,18 @@
 .section-card {
     background-color: white;
     box-shadow: 0 0 8px rgba(0,0,0,0.1);
-    border-radius: 3px;
+    border-radius: 10px;
     margin-top: 16px;
     vertical-align: middle;
 }
+.section-card-no_shadow {
+	background-color: white;
+	// box-shadow: 0 0 8px rgba(0,0,0,0.1);
+	border-radius: 10px;
+	margin-top: 16px;
+	vertical-align: middle;
 
+}
 
 // Style
 .section-pop-up {
@@ -30,13 +37,18 @@
 
 .section-biens-list {
     margin-top: 16px;
+    width: 60%;
+    margin-right: 16px;
 }
 
 .section-graph {
     display: flex;
     justify-content: space-around;
     width: 100%;
-    margin-top: 16px;
+    margin-top: 24px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+
 }
 
 .section-graph-show {
@@ -52,7 +64,8 @@
     justify-content: space-around;
     align-items: center;
 
-    margin-bottom: 32px;
+    margin-bottom: 8px;
+    width: 40%;
 
     h3 {
         font-size: 16px;
@@ -140,6 +153,15 @@
     margin-top: 16px;
 }
 
+.section-biens-mapbox{
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  flex: 1 0 auto;
+  align-items: stretch;
+  padding-bottom: 32px;
+  padding-top: 18px;
+}
 
 // Other
 .section-title {

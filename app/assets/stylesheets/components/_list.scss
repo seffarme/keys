@@ -3,7 +3,7 @@
     overflow: hidden;
     height: 80px;
     margin-bottom: 8px;
-    border-radius: 3px;
+    border-radius: 8px;
 
     background: white;
     box-shadow: 0 0 8px rgba(0,0,0,0.1);
@@ -13,13 +13,42 @@
     justify-content: space-between;
 }
 
+.card-product:hover{
+  box-shadow: 1px 3px 20px grey;
+ -webkit-transition: box-shadow .6s
+}
+
 // Left-part
 .card-product i {
     font-size: 28px;
-    padding: 16px;
-    color: white;
+    padding-left: 28px;
+    padding-right: 16px;
+    color: #152f70;
 }
 
+.card-product-icone-text{
+  font-size: 16px;
+  text-align: left;
+  color: #152f70;
+}
+
+.card-product-icone-text i{
+  font-size: 18px;
+  text-align: left;
+  color: #152f70;
+  width: 62px;
+}
+
+.card-product-icone-text a{
+  font-size: 16px;
+  text-align: center;
+  color: #152f70;
+}
+
+.card-product-icone-text a:hover{
+  text-decoration: none;
+  opacity: 0.5;
+}
 
 .card-product-informations {
     width: 25%;
@@ -30,13 +59,15 @@
         min-width: 280px;
         display: flex;
         align-items: center;
-        font-size: 1.2rem;
+        font-size: 1.3rem;
+        color: #152f70;
+        font-weight: bold;
 
         a {
             width: 100%;
             font-weight: 500;
             text-decoration: none;
-						color: white;
+						color: #152f70;
         }
 				a:hover { color: rgb(125, 125, 128);}
     }
@@ -47,7 +78,9 @@
     width: 35%;
     display: flex;
     justify-content: flex-end;
+    flex-direction: column;
     padding-right: 20px;
+
 		// color: white;
 		// .tool {
 			// display: none;
@@ -65,19 +98,23 @@
 
 // Other
 .card-product-new-bien {
-    height: 40px;
+    height: 80px;
     margin-bottom: 8px;
-    border-radius: 3px;
+    border-radius: 8px;
+    font-size: 28px;
 
-    background: transparent;
+    background: white;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
 
     display: flex;
     align-items: center;
     justify-content: center;
 
     i {
-        font-size: 16px;
+        font-size: 20px;
         margin-right: 8px;
+        color: grey;
         // color: white;
     }
 }
+
