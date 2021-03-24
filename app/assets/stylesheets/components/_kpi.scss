@@ -1,12 +1,15 @@
 .kpi-card {
     width: 30%;
-    height: 100px;
+    // height: 100px;
 
-    display: flex;
-    justify-content:space-between;
-    flex-direction: column;
+    // display: flex;
+    // justify-content:space-between;
+    // flex-direction: column;
     align-items: center;
-		color: white;
+		border-style: none;
+		text-align: center;
+		// padding-top: 10px;
+
 
 }
 
@@ -16,7 +19,8 @@
     font-size: 2rem;
     font-weight: bolder;
 
-    padding-left: 16px;
+    // padding-left: 16px;
+		// padding-top: 5px;
     margin: 0;
 
     text-align: center;
@@ -25,7 +29,47 @@
         font-size: 24px;
     }
 }
+.number-positive {
+	font-size: 2rem;
+	font-weight: bolder;
+	margin: 0;
+	text-align: center;
+	color: green;
+	font-size: 14px;
+	font-weight: bolder;
+}
+.number-negative {
+	font-size: 2rem;
+	font-weight: bolder;
+	margin: 0;
+	text-align: center;
+	color: red;
+	font-size: 14px;
+	font-weight: bolder;
+}
+.kpi-big-number-negative {
+	font-size: 2rem;
+	font-weight: bolder;
 
+	margin: 0;
+	text-align: center;
+	.kpi-little-symbol {
+	    font-size: 24px;
+	}
+	color: red;
+
+}
+.kpi-big-number-positive {
+	font-size: 2rem;
+	font-weight: bolder;
+	padding-left: 16px;
+	margin: 0;
+	text-align: center;
+	.kpi-little-symbol {
+	    font-size: 24px;
+	}
+	color: green;
+}
 
 .kpi-metric-name {
     // width: 40%;
@@ -35,5 +79,20 @@
     padding-left: 8px;
     padding-right: 8px;
     margin: 0;
+		// padding-bottom: 10px;
 		text-align: center;
+
+}
+
+.kpi {
+	border: 10px;
+	background-color: white;
+	display: flex;
+	justify-content: space-evenly;
+	margin-top: 20px;
+	padding-bottom: 15px;
+	text-align: center;
+
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  border-radius: 8px;
 }
