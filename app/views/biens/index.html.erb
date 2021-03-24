@@ -5,7 +5,6 @@
 		<p>Bonjour <%= current_user.prenom %>, ravi de vous revoir parmi nous !</p>
 	</div> -->
 
-
 	<!-- LOYERS POP UP; color depends on status -->
 	<% if @any_loyer_missing_all_bien %>
 		<section class="section-card section-pop-up section-alert">
@@ -33,8 +32,8 @@
 
 			<!-- ESTIMATED ANNUAL PERFORMANCE -->
 			<div class="section-card-no_shadow kpi-card">
-				<p class="kpi-big-number" style="color: green;">X,X<span class="kpi-little-symbol">%</span></p>
-				<p class="kpi-metric-name" style="color: blcak;">Rentabilité annuelle moyenne</p>
+				<p class="kpi-big-number" style="color: green;"><%= number_with_precision(@rentability_ytd_all_biens, :precision => 2, :delimiter => ',') %><span class="kpi-little-symbol">%</span></p>
+				<p class="kpi-metric-name" style="color: blcak;">Rentabilité annuelle YTD</p>
 			</div>
 
 			<!-- ESTIMATED VALUE OF GLOBAL REAL ESTATE -->
@@ -42,6 +41,7 @@
 				<p class="kpi-big-number" style="color: #152F70;"><%= number_with_delimiter(@biens.reduce(0) { |sum, bien| sum + bien.prix_acquisition} , delimiter: " ") %><span class="kpi-little-symbol">€</span></p>
 				<p class="kpi-metric-name" style="color: black;">Valeur estimée de vos biens</p>
 			</div>
+
 		</div>
 	<%# </section> %>
 
