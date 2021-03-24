@@ -49,6 +49,7 @@ class Bien < ApplicationRecord
   def total_cash_flow
     self.biens.each { |bien| bien.cash_flow_bien_to_date }.sum
   end
+
   def total
     cash_flow_bien_to_date
   end

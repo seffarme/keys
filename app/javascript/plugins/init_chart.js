@@ -322,8 +322,7 @@ const initChartCourbeBien = () => {
                 ticks: {
                   beginAtZero: false,
                   padding: 4,
-                  fontSize: 12,
-                  stepSize: 5000,
+                  fontSize: 10,
                   userCallback: function(value, index, values) {
                     value = value.toString();
                     value = value.split(/(?=(?:...)*$)/);

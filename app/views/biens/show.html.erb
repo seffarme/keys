@@ -58,16 +58,16 @@
                 <h4 class="item--header--title"><%= @bien.nom %></h4>
               </header>
 
-              <ul class="item--description">
-                <li><%= @bien.categorie %></li>
-                <li>Loyer mensuel : <%= number_with_delimiter(@bien.montant_loyer, delimiter: " ") %>€</li>
+              <ul class="item--description" >
+                <!-- <li><%= @bien.categorie %></li> -->
+                <li><%= number_with_delimiter(@bien.montant_loyer, delimiter: " ") %> € / mois</li>
                 <li>Acquis le : <%= @bien.date_acquisition.strftime('%d/%m/%Y') %></li>
-                <li>Prix d'achat : <%= number_with_delimiter(@bien.prix_acquisition, delimiter: " ") %>€</li>
+                <li>Prix d'achat : <%= number_with_delimiter(@bien.prix_acquisition, delimiter: " ") %> €</li>
               </ul>
 
-              <footer class="item--footer">
+              <!-- <footer class="item--footer">
                 <a href="#"><i class="fa fa-angle-right"></i>En savoir plus</a>
-              </footer>
+              </footer> -->
             </div>
 
           </li>
@@ -85,16 +85,16 @@
               </header>
 
               <ul class="item--description">
-                <li><%= @bien.locataires.first.prenom %> <%= @bien.locataires.first.nom.upcase %></li>
-                <li><i class="fa fa-mobile-alt"></i> 0<%= @bien.locataires.first.num_tel %></li>
-                <li><i class="fa fa-envelope"></i> <%= @bien.locataires.first.email %></li></li>
+                <li style="font-size:18px"><strong><%= @bien.locataires.first.prenom %> <%= @bien.locataires.first.nom.upcase %></strong></li>
+                <li><i class="fa fa-mobile-alt"></i><a href="tel:0<%= @bien.locataires.first.num_tel %>"> 0<%= @bien.locataires.first.num_tel %></a></li>
+                <li><i class="fa fa-envelope"></i><a href="mailto:<%= @bien.locataires.first.email %>"> <%= @bien.locataires.first.email %></a></li></li>
                 <li><i class="far fa-calendar-alt"></i> Début location : <%= @bien.locataires.first.date_debut_location.strftime('%d/%m/%Y') %></li>
                 <li></li>
               </ul>
 
-              <footer class="item--footer">
+              <!-- <footer class="item--footer">
                 <a href="#"><i class="fa fa-angle-right"></i>En savoir plus</a>
-              </footer>
+              </footer> -->
             </div>
           </li>
         </label>
@@ -118,9 +118,9 @@
                 <li><%= @bien.nb_sdb %> sdb</li>
               </ul>
 
-              <footer class="item--footer">
+              <!-- <footer class="item--footer">
                 <a href="#"><i class="fa fa-angle-right"></i>En savoir plus</a>
-              </footer>
+              </footer> -->
             </div>
           </li>
         </label>
@@ -186,7 +186,7 @@
         <!-- ADD DEPENSE -->
         <div class="section-card-add-depense">
           <p>Ajouter une dépense</p>
-    
+
           <%= form_for @bien do |f| %>
             <%= f.simple_fields_for :depenses, @bien.depenses.build do |ff| %>
               <%= ff.hidden_field :id %>
@@ -197,7 +197,7 @@
                   <%= ff.input :categorie, label: false, collection: Depense::CATEGORIE, prompt: "-- Catégorie --", input_html: {class: "form-input"}  %>
                 </div>
                 <div id="depense-form-date">
-                  <%= ff.input :date_paiement, label: false, as: :date, order: [:day, :month, :year], input_html: {class: "form-input"} %>
+                 <%= ff.input :date_paiement, label: false, placeholder: "sélectionner une date", as: :string, input_html: { class: "date-picker", id: "input-date"} %>
                 </div>
                 <% end %>
                 <%= f.submit "Enregistrer", class: "block-base block-btn block-btn-save-depense" %>
@@ -205,7 +205,7 @@
           <% end %>
         </div>
 
-      <% else %>  
+      <% else %>
 
       <!-- ADD DEPENSE only -->
       <div class="section-card-add-depense w-100">
@@ -221,7 +221,7 @@
                 <%= ff.input :categorie, label: false, collection: Depense::CATEGORIE, prompt: "-- Catégorie --", input_html: {class: "form-input"}  %>
               </div>
               <div id="depense-form-date">
-                <%= ff.input :date_paiement, label: false, as: :date, order: [:day, :month, :year], input_html: {class: "form-input"} %>
+                <%= ff.input :date_paiement, label: false, placeholder: "sélectionner une date", as: :string, input_html: {class: "date-picker", id: "input-date"} %>
                 <% end %>
                 <%= f.submit "Enregistrer", class: "block-base block-btn block-btn-save-depense" %>
               </div>
