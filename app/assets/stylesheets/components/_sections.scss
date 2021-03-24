@@ -133,8 +133,15 @@
     margin-top: 36px;
     margin-bottom: 36px;
 
+    // :hover {
+    //    opacity: 0.95;
+    //  };
+
     .section-dual-first-el {
         flex-grow: 1;
+        :hover {
+       opacity: 0.95;
+     };
     }
 
     .section-dual-second-el {

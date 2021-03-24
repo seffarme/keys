@@ -101,6 +101,11 @@ body {
 			width: 100px;
 			height: 100%;
 			padding: 0;
+      // vertical-align: text-middle;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+
 
 			background: $bien-color-light;
 
@@ -132,7 +137,7 @@ body {
 
 			.item--description {
 				opacity: 0;
-				position: absolute;
+				position: relative;
 				list-style: none;
 				padding-left: 0;
 				text-align: left;
