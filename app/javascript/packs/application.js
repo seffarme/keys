@@ -31,7 +31,7 @@ import "bootstrap";
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 import { initMapbox } from "../plugins/init_mapbox";
-import { initRelance } from "../plugins/init_relance";
+// import { initRelance } from "../plugins/init_relance";
 
 var toastElList = [].slice.call(document.querySelectorAll(".toast"));
 var toastList = toastElList.map(function(toastEl) {
@@ -43,7 +43,7 @@ document.addEventListener("turbolinks:load", () => {
   initChartCourbe();
   initChartBiens();
   initChartCourbeBien();
-  initRelance();
+  // initRelance();
 });
 
 // NAVBAR transparente
