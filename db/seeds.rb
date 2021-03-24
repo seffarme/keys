@@ -636,11 +636,11 @@ puts "[6/6] - Seeding the Loyers DB..."
 
 # 2018
 12.times do |i, loyer|
+    i += 1
     loyer = Loyer.new({
         montant: appartement_pigalle.montant_loyer,
         date_paiement: "02/#{i}/2018"
     })
-    i += 1
     loyer.bien = appartement_pigalle
     loyer.locataire = diane_garcia
     loyer.save
@@ -648,11 +648,11 @@ end
 
 # 2019
 12.times do |i, loyer|
+    i += 1
     loyer = Loyer.new({
         montant: appartement_pigalle.montant_loyer,
-        date_paiement: "02/0#{i}/2019"
+        date_paiement: "02/#{i}/2019"
     })
-    i += 1
     loyer.bien = appartement_pigalle
     loyer.locataire = diane_garcia
     loyer.save
@@ -660,23 +660,23 @@ end
 
 # 2020
 12.times do |i, loyer|
+    i += 1
     loyer = Loyer.new({
         montant: appartement_pigalle.montant_loyer,
-        date_paiement: "02/0#{i}/2020"
+        date_paiement: "02/#{i}/2020"
     })
-    i += 1
     loyer.bien = appartement_pigalle
     loyer.locataire = diane_garcia
     loyer.save
 end
 
 # 2021
-3.times do |i, loyer|
+2.times do |i, loyer|
+    i += 1
     loyer = Loyer.new({
         montant: appartement_pigalle.montant_loyer,
-        date_paiement: "02/0#{i}/2021"
+        date_paiement: "02/#{i}/2021"
     })
-    i += 1
     loyer.bien = appartement_pigalle
     loyer.locataire = diane_garcia
     loyer.save
@@ -758,7 +758,7 @@ end
 end
 
 # 2021
-3.times do |i, loyer|
+2.times do |i, loyer|
     i += 1
     loyer = Loyer.new({
         montant: appartement_rue_des_dames.montant_loyer,
@@ -893,7 +893,7 @@ end
 end
 
 # 2021
-3.times do |i, loyer|
+2.times do |i, loyer|
     i += 1
     loyer = Loyer.new({
         montant: maison_gennevilliers.montant_loyer,
@@ -1016,7 +1016,7 @@ end
 end
 
 # 2021
-3.times do |i, loyer|
+2.times do |i, loyer|
     i += 1
     loyer = Loyer.new({
         montant: appartement_clichy.montant_loyer,
