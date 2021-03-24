@@ -123,7 +123,7 @@ appartement_rue_des_dames.save
 maison_gennevilliers = Bien.new({
     nom: "Maison Gennevilliers",
     categorie: "Maison",
-    adresse: "17 Rue de l'Arbre Sec",
+    adresse: "41 Avenue Chenard et Walcker",
     ville: "Gennevilliers",
     code_postal: "92230",
     pays: "France",
