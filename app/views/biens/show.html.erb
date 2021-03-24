@@ -54,7 +54,14 @@
 
             <div class="item--container">
               <header class="item--header">
-                <span class="item--header--icon"><i class="fa fa-home"></i></span>
+								<% if @bien.categorie =="Maison" %>
+  							  <%# <i class="fas fa-house-user"></i> %>
+									<span class="item--header--icon"><i class="fa fa-home"></i></span>
+								<% else %>
+  							  <%# <i class="fas fa-building"></i> %>
+									<span class="item--header--icon"><i class="fa fa-building"></i></span>
+								<% end %>
+                <%# <span class="item--header--icon"><i class="fa fa-home"></i></span> %>
                 <h4 class="item--header--title"><%= @bien.nom %></h4>
               </header>
 
@@ -65,9 +72,6 @@
                 <li>Prix d'achat : <%= number_with_delimiter(@bien.prix_acquisition, delimiter: " ") %>€</li>
               </ul>
 
-              <footer class="item--footer">
-                <a href="#"><i class="fa fa-angle-right"></i>En savoir plus</a>
-              </footer>
             </div>
 
           </li>
@@ -92,9 +96,6 @@
                 <li></li>
               </ul>
 
-              <footer class="item--footer">
-                <a href="#"><i class="fa fa-angle-right"></i>En savoir plus</a>
-              </footer>
             </div>
           </li>
         </label>
@@ -118,9 +119,6 @@
                 <li><%= @bien.nb_sdb %> sdb</li>
               </ul>
 
-              <footer class="item--footer">
-                <a href="#"><i class="fa fa-angle-right"></i>En savoir plus</a>
-              </footer>
             </div>
           </li>
         </label>
@@ -168,7 +166,7 @@
 
 
   <!-- IMPORTANT ACTIONS (add loyer / depense) && SUIVI FINANCIER -->
-  <section class="section-dual-equiv-items-centered ">
+  <section class="section-dual-equiv-items-centered " style="align-items: stretch;">
 
     <!-- IMPORTANT ACTIONS -->
     <section class="section-important-actions">
@@ -235,7 +233,7 @@
 
     <!-- SUIVI FINANCIER -->
     <div class="flex-item-grow">
-      <div class="responsive-table">
+      <div class="responsive-table" >
         <table class="tableau-synthese">
           <thead>
             <tr>
@@ -245,6 +243,7 @@
             </tr>
           <thead>
           <tbody>
+						<p style="text-align: center; font-size: larger; color: #152F70;"> <strong> Dernières transactions </strong> </p>
             <tr>
               <td>Loyers</td>
               <td><%= number_with_delimiter(@loyers_received , delimiter: " ") %>€</td>
