@@ -54,109 +54,100 @@
 
 	</section>
 
+  <div class="section-biens-mapbox">
+    <!-- BIENS LIST -->
+    <div class="section-biens-list" id="biens-list">
 
-	<!-- BIENS LIST -->
-	<section class="section-biens-list" id="biens-list">
+      <!-- LIST -->
+      <div>
+        <% @biens.each do |bien| %>
+          <!-- BIEN LIST-CARD -->
+          <div class="card-product" style="border-radius: 5px;">
 
-		<!-- LIST -->
-		<div>
-			<% @biens.each do |bien| %>
-				<!-- BIEN LIST-CARD -->
-				<div class="card-product" style="background-color: #152F70; border-radius: 5px;">
+            <!-- LEFT PART of the card -->
+            <div class="card-product-informations">
+              <!-- ICON -->
+              <% if bien.categorie =="Maison"%>
+                <i class="fas fa-house-user"></i>
+              <% else %>
+                <i class="fas fa-building"></i>
+              <% end %>
+              <!-- BASE INFO -->
+              <div class="card-product-text-infos">
+                <%= link_to bien.nom, bien_path(bien) %>
+              </div>
 
-					<!-- LEFT PART of the card -->
-					<div class="card-product-informations">
-						<!-- ICON -->
-						<% if bien.categorie =="Maison"%>
-							<i class="fas fa-house-user"></i>
-						<% else %>
-							<i class="fas fa-building"></i>
-						<% end %>
-						<!-- BASE INFO -->
-						<div class="card-product-text-infos">
-							<%= link_to bien.nom, bien_path(bien) %>
-						</div>
+            </div>
 
-					</div>
+            <!-- RIGHT PART of the card QUICK ACTIONS -->
+            <div class="card-product-quick-actions">
 
-					<!-- RIGHT PART of the card QUICK ACTIONS -->
-					<div class="card-product-quick-actions">
-
-						<!-- LOYER PAID ? -->
-						<% if bien.loyers.empty? %>
-							<div>
-								<%# <p>Valider le loyer</p> %>
-								<%= link_to bien_loyers_path(bien_id: bien.id), method: :post do %>
-									<i class="fas fa-cash-register" title="Valider le loyer"></i>
-								<% end %>
-							</div>
-
-						<% elsif bien.loyers.last.date_paiement.month != Date.today.month %>
-							<div>
-								<%# <p>Valider le loyer</p> %>
-								<%= link_to bien_loyers_path(bien_id: bien.id), method: :post do %>
-									<i class="fas fa-cash-register" title="Valider le loyer"></i>
-								<% end %>
-							</div>
-						<% else %>
-							<div >
-								 <i class="fas fa-check" title="Loyer reçu"></i>
-							</div>
-						<% end %>
-
-						<!-- RELANCE TO DO ? -->
-						<% if bien.loyers.empty? %>
-
-							<div>
-								<%# <p>Faire une relance</p> %>
-								<%= link_to relance_bien_loyers_path(bien_id: bien.id), method: :post, class: 'relance-enveloppe' do %>
-                  				<i class="far fa-envelope-open" title="Faire une relance"></i>
-								<% end %>
-							</div>
-						<% elsif bien.loyers.last.date_paiement.month != Date.today.month %>
-							<div>
-								<%# <p>Faire une relance</p> %>
-								<%= link_to relance_bien_loyers_path(bien_id: bien.id), method: :post, class: 'enveloppe-relance' do %>
-                  				<i class="far fa-envelope-open" title="Faire une relance"></i>
-								<% end %>
-							</div>
-						<% end %>
-
-						<!-- ADD A DEPENSE -->
-						<div>
-							<%# <p>Ajouter une dépense</p> %>
-							<%= link_to bien_path(bien) do %>
-								<i class="fas fa-cart-plus" title="Ajouter une dépense"></i>
-							<% end %>
-						</div>
-					</div>
-				</div>
-			<% end %>
-		</div>
-
-		<!-- ADD A BIEN -->
-		<div class="card-product-new-bien" style="padding-top: 20px;">
-			<div class="large-block-base block-btn block-btn-add-bien">
-				<i class="far fa-plus-square"></i>
-				<p>Ajouter un nouveau bien</p>
-				<%= link_to "" , new_bien_path, class:"txt-hover" %>
-			</div>
-		</div>
-
-	</section>
+              <!-- LOYER PAID ? -->
+              <% if bien.loyers.empty? %>
+                <%# <p>Valider le loyer</p> %>
+                <div class="card-product-icone-text">
+                  <%= link_to bien_loyers_path(bien_id: bien.id), method: :post do %>
+                    <span><i class="fas fa-euro-sign" title="Valider le loyer"></i>Valider le loyer</span>
+                  <% end %>
+                </div>
 
 
-	<!-- BIENS MAP -->
-	<section class="section-card section-mapbox">
-		<h3>Localisation de vos <%= @biens.count %> biens</h3>
+              <% elsif bien.loyers.last.date_paiement.month != Date.today.month %>
+                <%# <p>Valider le loyer</p> %>
+                <div class="card-product-icone-text">
+                  <%= link_to bien_loyers_path(bien_id: bien.id), method: :post do %>
+                    <span><i class="fas fa-euro-sign" title="Valider le loyer"></i>Valider le loyer</span>
+                  <% end %>
+                </div>
+              <% else %>
+                <div class="card-product-icone-text" style="color:green">
+                  <span><i class="fas fa-check" title="Loyer reçu" style="color:green"></i>Loyer Reçu</span>
+                </div>
+              <% end %>
 
-		<div id="map"
-			data-markers="<%= @markers.to_json %>"
-			data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-		</div>
+              <!-- RELANCE TO DO ? -->
+              <% if bien.loyers.empty? %>
+              <%# <p>Faire une relance</p> %>
+                <div class="card-product-icone-text">
+                  <%= link_to relance_bien_loyers_path(bien_id: bien.id), method: :post, class: 'relance-enveloppe' do %>
+                    <span style="color:orange"><i class="far fa-envelope-open" title="Envoyer une relance au locataire" style="color:orange"></i>Envoyer relance</span>
+                  <% end %>
+                </div>
 
-	</section>
+              <% elsif bien.loyers.last.date_paiement.month != Date.today.month %>
+              <%# <p>Faire une relance</p> %>
+                <div class="card-product-icone-text">
+                  <%= link_to relance_bien_loyers_path(bien_id: bien.id), method: :post, class: 'enveloppe-relance' do %>
+                    <span style="color:orange"><i class="far fa-envelope-open" title="Envoyer une relance au locataire" style="color:orange"></i>Envoyer relance</span>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
 
+      <!-- ADD A BIEN -->
+
+      <div class="card-product-new-bien">
+        <div class="large-block-base block-btn block-btn-add-bien">
+          <i class="fas fa-plus-circle"></i>
+          <p>Ajouter un nouveau bien</p>
+          <%= link_to "" , new_bien_path, class:"txt-hover" %>
+        </div>
+      </div>
+    </div>
+
+    <!-- BIENS MAP -->
+    <div class="section-card section-mapbox">
+      <h3>Vos <%= @biens.count %> investissements locatifs</h3>
+
+      <div id="map"
+        data-markers="<%= @markers.to_json %>"
+        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
+    </div>
+  </div>
 
 	<!-- FOOTER -->
 	<div class="footer-set-height">

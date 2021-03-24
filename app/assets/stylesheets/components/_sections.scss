@@ -30,6 +30,8 @@
 
 .section-biens-list {
     margin-top: 16px;
+    width: 60%;
+    margin-right: 16px;
 }
 
 .section-graph {
@@ -52,7 +54,8 @@
     justify-content: space-around;
     align-items: center;
 
-    margin-bottom: 32px;
+    margin-bottom: 8px;
+    width: 40%;
 
     h3 {
         font-size: 16px;
@@ -133,6 +136,15 @@
     margin-top: 16px;
 }
 
+.section-biens-mapbox{
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  flex: 1 0 auto;
+  align-items: stretch;
+  padding-bottom: 32px;
+  padding-top: 24px;
+}
 
 // Other
 .section-title {
