@@ -3,7 +3,7 @@
     overflow: hidden;
     height: 80px;
     margin-bottom: 8px;
-    border-radius: 3px;
+    border-radius: 8px;
 
     background: white;
     box-shadow: 0 0 8px rgba(0,0,0,0.1);
@@ -11,6 +11,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.card-product:hover{
+  box-shadow: 1px 3px 20px grey;
+ -webkit-transition: box-shadow .6s
 }
 
 // Left-part
@@ -95,7 +100,7 @@
 .card-product-new-bien {
     height: 80px;
     margin-bottom: 8px;
-    border-radius: 3px;
+    border-radius: 8px;
     font-size: 28px;
 
     background: white;

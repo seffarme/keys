@@ -3,14 +3,14 @@
 .section-card {
     background-color: white;
     box-shadow: 0 0 8px rgba(0,0,0,0.1);
-    border-radius: 3px;
+    border-radius: 10px;
     margin-top: 16px;
     vertical-align: middle;
 }
 .section-card-no_shadow {
 	background-color: white;
 	// box-shadow: 0 0 8px rgba(0,0,0,0.1);
-	border-radius: 3px;
+	border-radius: 10px;
 	margin-top: 16px;
 	vertical-align: middle;
 
@@ -45,7 +45,10 @@
     display: flex;
     justify-content: space-around;
     width: 100%;
-    margin-top: 16px;
+    margin-top: 24px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+
 }
 
 .section-graph-show {
@@ -150,7 +153,7 @@
   flex: 1 0 auto;
   align-items: stretch;
   padding-bottom: 32px;
-  padding-top: 24px;
+  padding-top: 18px;
 }
 
 // Other
