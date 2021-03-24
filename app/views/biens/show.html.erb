@@ -186,7 +186,7 @@
         <!-- ADD DEPENSE -->
         <div class="section-card-add-depense">
           <p>Ajouter une dépense</p>
-    
+
           <%= form_for @bien do |f| %>
             <%= f.simple_fields_for :depenses, @bien.depenses.build do |ff| %>
               <%= ff.hidden_field :id %>
@@ -205,11 +205,11 @@
           <% end %>
         </div>
 
-      <% else %>  
+      <% else %>
 
       <!-- ADD DEPENSE only -->
       <div class="section-card-add-depense w-100">
-        <p>Ajouter une dépense</p>
+        <p><strong>Ajouter une dépense</strong></p>
 
         <%= form_for @bien do |f| %>
           <%= f.simple_fields_for :depenses, @bien.depenses.build do |ff| %>
@@ -281,9 +281,17 @@
               <td><%= number_with_delimiter(@autres_tbp , delimiter: " ") %>€</td>
             </tr>
             <tr>
-              <td>TOTAL</td>
-              <td><%= number_with_delimiter(@total_paid , delimiter: " ") %>€</td>
-              <td><%= number_with_delimiter(@total_tbp , delimiter: " ") %>€</td>
+              <td><strong>TOTAL</strong></td>
+							<% if @total_paid >= 0 %>
+              	<td class="number-positive"><%= number_with_delimiter(@total_paid , delimiter: " ") %>€</td>
+							<% else %>
+								<td class="number-negative"><%= number_with_delimiter(@total_paid , delimiter: " ") %>€</td>
+							<% end %>
+							<% if @total_tbp >= 0 %>
+              	<td class="number-positive"><%= number_with_delimiter(@total_tbp , delimiter: " ") %>€</td>
+							<% else %>
+								<td class="number-negative"><%= number_with_delimiter(@total_tbp , delimiter: " ") %>€</td>
+							<% end %>
             </tr>
           </tbody>
         </table>
@@ -298,7 +306,7 @@
   <!-- LAST OPERATIONS TABLE -->
   <section class="section-last-operations">
 
-    <p>Dernières transactions</p>
+    <p style="text-align: center; font-size: larger; color: #152F70;"> <strong> Dernières transactions </strong> </p>
     <ul class="responsive-table">
       <li class="table-header">
         <div class="col col-1">Date</div>
