@@ -8,20 +8,11 @@ class LoyersController < ApplicationController
                          bien_id: @bien.id,
                          locataire_id: @bien.locataires.first.id
                        })
-
-    previous_url = request.env["HTTP_REFERER"]
-    index_url = url_for(action: 'index', controller: 'biens', only_path: false, protocol: 'http')
-
     @loyer.save
 
     LoyerMailer.create_quittance(@loyer).deliver_now
 
-    flash[:loyer_success] = "💸 Loyer de #{@loyer.bien.nom} validé !"
-    if previous_url == index_url
-      redirect_to biens_path(anchor: 'biens-list')
-    else
-      redirect_to bien_path(@bien)
-    end
+    redirect_to params[:target], loyer_success: "💸 Loyer de #{@loyer.bien.nom} validé !"
   end
 
   def relance
