@@ -18,26 +18,32 @@
 	<% end %>
 
 	<!-- KEY PERFORMANCE INDICATORS *3 -->
-	<section class="section-kpi">
+	<%# <section class="section-kpi"> %>
+		<div class="kpi">
 
-		<!-- NET CF SINCE BEGINNING -->
-		<div class="section-card kpi-card" style="background-color: #152F70;">
-			<p class="kpi-big-number"><%= @total_cash_flow %><span class="kpi-little-symbol"> €</span></p>
-			<p class="kpi-metric-name">Nets générés au total</p>
-		</div>
+			<!-- NET CF SINCE BEGINNING -->
+			<div class="section-card-no_shadow kpi-card" style="color: black;">
+				<% if @total_cash_flow >= 0 %>
+					<p class="kpi-big-number-positive"> <%= number_with_delimiter(@total_cash_flow, delimiter: " ") %> <span class="kpi-little-symbol"> €</span></p>
+				<% else %>
+					<p class="kpi-big-number-negative"><%=number_with_delimiter(@total_cash_flow, delimiter: " ") %> <span class="kpi-little-symbol"> €</span></p>
+				<% end %>
+				<p class="kpi-metric-name">Nets générés au total</p>
+			</div>
 
-		<!-- ESTIMATED ANNUAL PERFORMANCE -->
-		<div class="section-card kpi-card" style="background-color: #152F70;">
-			<p class="kpi-big-number">X,X<span class="kpi-little-symbol">%</span></p>
-			<p class="kpi-metric-name">Rentabilité annuelle moyenne</p>
-		</div>
+			<!-- ESTIMATED ANNUAL PERFORMANCE -->
+			<div class="section-card-no_shadow kpi-card">
+				<p class="kpi-big-number" style="color: green;">X,X<span class="kpi-little-symbol">%</span></p>
+				<p class="kpi-metric-name" style="color: blcak;">Rentabilité annuelle moyenne</p>
+			</div>
 
-		<!-- ESTIMATED VALUE OF GLOBAL REAL ESTATE -->
-		<div class="section-card kpi-card" style="background-color: #152F70;">
-			<p class="kpi-big-number"><%= number_with_delimiter(@biens.reduce(0) { |sum, bien| sum + bien.prix_acquisition} , delimiter: " ") %><span class="kpi-little-symbol">€</span></p>
-			<p class="kpi-metric-name">Valeur estimée de vos biens</p>
+			<!-- ESTIMATED VALUE OF GLOBAL REAL ESTATE -->
+			<div class="section-card-no_shadow kpi-card">
+				<p class="kpi-big-number" style="color: #152F70;"><%= number_with_delimiter(@biens.reduce(0) { |sum, bien| sum + bien.prix_acquisition} , delimiter: " ") %><span class="kpi-little-symbol">€</span></p>
+				<p class="kpi-metric-name" style="color: black;">Valeur estimée de vos biens</p>
+			</div>
 		</div>
-	</section>
+	<%# </section> %>
 
 	<!-- GRAPHS OVER LAST 12 MONTHS-->
 	<section class="section-graph">
