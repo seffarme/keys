@@ -513,7 +513,7 @@ achat_lampesalon_appartementruedesdames.save
 # Depense 1
 pompe_chaleur_maisongennevilliers = Depense.new({
     nom: "Réparation pompe à chaleur",
-    montant: "15000",
+    montant: "5000",
     categorie: "Travaux",
     date_paiement: "01/03/2021"
 })
