@@ -14,21 +14,20 @@ class LoyersController < ApplicationController
 
     @loyer.save
 
-      LoyerMailer.create_quittance(@loyer).deliver_now
+    LoyerMailer.create_quittance(@loyer).deliver_now
 
-      if previous_url == index_url
-        redirect_to biens_path(anchor: 'biens-list')
-      else
-        redirect_to bien_path(@bien)
-      end
-
+    flash[:loyer_success] = "💸 Loyer de #{@loyer.bien.nom} validé !"
+    if previous_url == index_url
+      redirect_to biens_path(anchor: 'biens-list')
+    else
+      redirect_to bien_path(@bien)
+    end
   end
 
   def relance
-
     LoyerMailer.relance(@bien).deliver_now
     LoyerMailer.copie_relance(@bien).deliver_now
-    redirect_to biens_path(anchor: 'biens-list')
+    redirect_to biens_path(anchor: 'biens-list'), relance_loyer: "📧 Relance envoyée au locataire de #{@bien.nom}"
   end
 
   private
