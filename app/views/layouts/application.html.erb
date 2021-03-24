@@ -25,7 +25,9 @@
 
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
     <%= stylesheet_pack_tag 'application' %>
-    <link rel="icon" type="image/png" sizes="16x16" href="<%= image_path "logo_fond_bleu.ico" %>">
+    <link rel="shortcut icon" type="image/png" sizes="16x16" type="image/x-icon" href="<%= image_path "logo_fond_bleu.ico" %>">
+
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-LT2Z4YN23Q"></script>
     <script>
@@ -43,10 +45,10 @@
     <%= render 'shared/navbar_home' if @home %>
 		<%= render 'shared/navbar_body' unless @home %>
 
-    
+
     <!-- CONTENT -->
     <%= yield %>
-    
+
     <!-- FLASHES -->
     <%= render 'shared/flashes' %>
 

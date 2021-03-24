@@ -65,11 +65,11 @@
                 <h4 class="item--header--title"><%= @bien.nom %></h4>
               </header>
 
-              <ul class="item--description">
-                <li><%= @bien.categorie %></li>
-                <li>Loyer mensuel : <%= number_with_delimiter(@bien.montant_loyer, delimiter: " ") %>€</li>
+              <ul class="item--description" >
+                <!-- <li><%= @bien.categorie %></li> -->
+                <li><%= number_with_delimiter(@bien.montant_loyer, delimiter: " ") %> € / mois</li>
                 <li>Acquis le : <%= @bien.date_acquisition.strftime('%d/%m/%Y') %></li>
-                <li>Prix d'achat : <%= number_with_delimiter(@bien.prix_acquisition, delimiter: " ") %>€</li>
+                <li>Prix d'achat : <%= number_with_delimiter(@bien.prix_acquisition, delimiter: " ") %> €</li>
               </ul>
 
             </div>
@@ -89,9 +89,9 @@
               </header>
 
               <ul class="item--description">
-                <li><%= @bien.locataires.first.prenom %> <%= @bien.locataires.first.nom.upcase %></li>
-                <li><i class="fa fa-mobile-alt"></i> 0<%= @bien.locataires.first.num_tel %></li>
-                <li><i class="fa fa-envelope"></i> <%= @bien.locataires.first.email %></li></li>
+                <li style="font-size:18px"><strong><%= @bien.locataires.first.prenom %> <%= @bien.locataires.first.nom.upcase %></strong></li>
+                <li><i class="fa fa-mobile-alt"></i><a href="tel:0<%= @bien.locataires.first.num_tel %>"> 0<%= @bien.locataires.first.num_tel %></a></li>
+                <li><i class="fa fa-envelope"></i><a href="mailto:<%= @bien.locataires.first.email %>"> <%= @bien.locataires.first.email %></a></li></li>
                 <li><i class="far fa-calendar-alt"></i> Début location : <%= @bien.locataires.first.date_debut_location.strftime('%d/%m/%Y') %></li>
                 <li></li>
               </ul>
@@ -195,10 +195,10 @@
                   <%= ff.input :categorie, label: false, collection: Depense::CATEGORIE, prompt: "-- Catégorie --", input_html: {class: "form-input"}  %>
                 </div>
                 <div id="depense-form-date">
-                  <%= ff.input :date_paiement, label: false, as: :date, order: [:day, :month, :year], input_html: {class: "form-input"} %>
+                 <%= ff.input :date_paiement, label: false, placeholder: "sélectionner une date", as: :string, input_html: { class: "date-picker", id: "input-date"} %>
                 </div>
                 <% end %>
-                <%= f.submit "Enregistrer", class: "block-base block-btn block-btn-save-depense" %>
+                <%= f.submit "Enregistrer",class: "btn-gradient" %>
               </div>
           <% end %>
         </div>
@@ -219,9 +219,9 @@
                 <%= ff.input :categorie, label: false, collection: Depense::CATEGORIE, prompt: "-- Catégorie --", input_html: {class: "form-input"}  %>
               </div>
               <div id="depense-form-date">
-                <%= ff.input :date_paiement, label: false, as: :date, order: [:day, :month, :year], input_html: {class: "form-input"} %>
+                <%= ff.input :date_paiement, label: false, placeholder: "sélectionner une date", as: :string, input_html: {class: "date-picker", id: "input-date"} %>
                 <% end %>
-                <%= f.submit "Enregistrer", class: "block-base block-btn block-btn-save-depense" %>
+                <%= f.submit "Enregistrer", class: "btn-gradient" %>
               </div>
             </div>
         <% end %>

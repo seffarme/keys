@@ -30,27 +30,16 @@ import "bootstrap";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
-import { initMapbox } from "../plugins/init_mapbox";
-import { initRelance } from "../plugins/init_relance";
 
-var toastElList = [].slice.call(document.querySelectorAll(".toast"));
-var toastList = toastElList.map(function(toastEl) {
-  return new bootstrap.Toast(toastEl, option);
-});
+import { initMapbox } from '../plugins/init_mapbox';
+// import { initRelance } from '../plugins/init_relance';
+import { initFlatpickr } from '../plugins/flatpickr';
+
 
 document.addEventListener("turbolinks:load", () => {
   initMapbox();
   initChartCourbe();
   initChartBiens();
   initChartCourbeBien();
-  initRelance();
-});
-
-// NAVBAR transparente
-// import { initUpdateNavbarOnScroll } from '../components/navbar';
-
-// document.addEventListener('turbolinks:load', () => {
-//   // Call your JS functions here
-//   initUpdateNavbarOnScroll();
-// });
-// External chart.js
+  initFlatpickr();
+})

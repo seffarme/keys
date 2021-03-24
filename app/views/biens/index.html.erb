@@ -5,7 +5,6 @@
 		<p>Bonjour <%= current_user.prenom %>, ravi de vous revoir parmi nous !</p>
 	</div> -->
 
-
 	<!-- LOYERS POP UP; color depends on status -->
 	<% if @any_loyer_missing_all_bien %>
 		<section class="section-card section-pop-up section-alert">
@@ -31,17 +30,24 @@
 				<p class="kpi-metric-name">Nets générés au total</p>
 			</div>
 
+
 			<!-- ESTIMATED ANNUAL PERFORMANCE -->
-			<div class="section-card-no_shadow kpi-card">
-				<p class="kpi-big-number" style="color: green;">X,X<span class="kpi-little-symbol">%</span></p>
-				<p class="kpi-metric-name" style="color: blcak;">Rentabilité annuelle moyenne</p>
+			<div class="section-card-no_shadow kpi-card" style="color: black;">
+				<% if @rentability_ytd_all_biens >= 0 %>
+					<p class="kpi-big-number-positive"><%= number_with_precision(@rentability_ytd_all_biens, :precision => 2, :delimiter => ',') %><span class="kpi-little-symbol">%</span></p>
+				<% else %>
+					<p class="kpi-big-number-negative"><%= number_with_precision(@rentability_ytd_all_biens, :precision => 2, :delimiter => ',') %><span class="kpi-little-symbol">%</span></p>
+				<% end %>
+				<p class="kpi-metric-name">Rentabilité annuelle nette YTD</p>
 			</div>
+
 
 			<!-- ESTIMATED VALUE OF GLOBAL REAL ESTATE -->
 			<div class="section-card-no_shadow kpi-card">
 				<p class="kpi-big-number" style="color: #152F70;"><%= number_with_delimiter(@biens.reduce(0) { |sum, bien| sum + bien.prix_acquisition} , delimiter: " ") %><span class="kpi-little-symbol">€</span></p>
 				<p class="kpi-metric-name" style="color: black;">Valeur estimée de vos biens</p>
 			</div>
+
 		</div>
 	<%# </section> %>
 
