@@ -42,9 +42,9 @@ class Bien < ApplicationRecord
     depenses.where("date_paiement < ?", a).sum(:montant)
   end
 
-  def total_cash_flow
-    biens.each { |bien| bien.cash_flow_bien_to_date }.sum
-  end
+  # def total_cash_flow
+  #   biens.each { |bien| bien.cash_flow_bien_to_date }.sum
+  # end
 
   def total
     cash_flow_bien_to_date
@@ -58,19 +58,6 @@ class Bien < ApplicationRecord
     end
     return months_depenses
   end
-  # first graph
-
-  # @months = []
-  # (1..12).each {|m| @months << Date::MONTHNAMES}
-  # @months
-
-  # date = Date.today.beginning_of_year
-  # months = {}
-
-  # 12.times do |i| # from 0 to 11
-
-  #   month_name = I18n.l(Date.today.beginning_of_year + 1.months, format: '%B', locale: :en).capitalize
-  #   months[month_name] = i + 1
 
   # Depenses table of the last 12 months
 
@@ -93,9 +80,7 @@ class Bien < ApplicationRecord
     ActiveRecord::Base.connection.exec_query(sql).rows.flatten
   end
 
-
   # Loyers table of the last 12 months
-
 
   def months_loyers
     @months_loyers ||= calc_months_loyers
