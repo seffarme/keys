@@ -196,7 +196,7 @@ emprunt_pigalle.populate_depenses(appartement_pigalle)
 # Taxe foncière
 taxe_fonciere_pigalle = FraisRecurrent.new({
     nom: "Taxe foncière",
-    montant: "2000",
+    montant: "1000",
     categorie: "Taxe Foncière",
     recurrence: "Annuel",
     date_debut: "05/10/2018",
@@ -268,7 +268,7 @@ emprunt_ruedesdames.populate_depenses(appartement_rue_des_dames)
 # Taxe foncière
 taxe_fonciere_ruedesdames = FraisRecurrent.new({
     nom: "Taxe foncière",
-    montant: "1560",
+    montant: "1260",
     categorie: "Taxe Foncière",
     recurrence: "Annuel",
     date_debut: "05/10/2018",
@@ -341,7 +341,7 @@ emprunt_maisongennevilliers.populate_depenses(maison_gennevilliers)
 # Taxe foncière
 taxe_fonciere_maisongennevilliers = FraisRecurrent.new({
     nom: "Taxe foncière",
-    montant: "4500",
+    montant: "2500",
     categorie: "Taxe Foncière",
     recurrence: "Annuel",
     date_debut: "05/10/2011",
@@ -399,7 +399,7 @@ emprunt_clichy.populate_depenses(appartement_clichy)
 # Taxe foncière
 taxe_fonciere_clichy = FraisRecurrent.new({
     nom: "Taxe foncière",
-    montant: "5000",
+    montant: "2500",
     categorie: "Taxe Foncière",
     recurrence: "Annuel",
     date_debut: "05/10/2012",

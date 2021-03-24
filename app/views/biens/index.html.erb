@@ -31,9 +31,13 @@
 			</div>
 
 			<!-- ESTIMATED ANNUAL PERFORMANCE -->
-			<div class="section-card-no_shadow kpi-card">
-				<p class="kpi-big-number" style="color: green;"><%= number_with_precision(@rentability_ytd_all_biens, :precision => 2, :delimiter => ',') %><span class="kpi-little-symbol">%</span></p>
-				<p class="kpi-metric-name" style="color: blcak;">Rentabilité annuelle nette YTD</p>
+			<div class="section-card-no_shadow kpi-card" style="color: black;">
+				<% if @rentability_ytd_all_biens >= 0 %>
+					<p class="kpi-big-number-positive"><%= number_with_precision(@rentability_ytd_all_biens, :precision => 2, :delimiter => ',') %><span class="kpi-little-symbol">%</span></p>
+				<% else %>
+					<p class="kpi-big-number-negative"><%= number_with_precision(@rentability_ytd_all_biens, :precision => 2, :delimiter => ',') %><span class="kpi-little-symbol">%</span></p>
+				<% end %>
+				<p class="kpi-metric-name">Rentabilité annuelle nette YTD</p>
 			</div>
 
 			<!-- ESTIMATED VALUE OF GLOBAL REAL ESTATE -->
