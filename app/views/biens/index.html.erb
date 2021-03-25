@@ -102,7 +102,7 @@
               <% if bien.loyers.empty? %>
                 <%# <p>Valider le loyer</p> %>
                 <div class="card-product-icone-text">
-                  <%= link_to bien_loyers_path(bien_id: bien.id, target: biens_path(anchor: 'biens-list')), method: :post do %>
+                  <%= link_to bien_loyers_path(bien_id: bien.id, target: biens_path(anchor: "biens-list")), method: :post do %>
                     <span><i class="fas fa-euro-sign" title="Valider le loyer"></i>Valider le loyer</span>
                   <% end %>
                 </div>
@@ -111,7 +111,7 @@
               <% elsif bien.loyers.last.date_paiement.month != Date.today.month %>
                 <%# <p>Valider le loyer</p> %>
                 <div class="card-product-icone-text">
-                  <%= link_to bien_loyers_path(bien_id: bien.id), method: :post do %>
+                  <%= link_to bien_loyers_path(bien_id: bien.id, target: biens_path(anchor: "biens-list")), method: :post do %>
                     <span><i class="fas fa-euro-sign" title="Valider le loyer"></i>Valider le loyer</span>
                   <% end %>
                 </div>
