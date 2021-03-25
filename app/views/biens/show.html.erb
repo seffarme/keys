@@ -29,11 +29,15 @@
 
   <!-- LOYER POP UP; color depends on status -->
 	<% if @any_loyer_missing_this_bien %>
-    <section class="section-card section-pop-up section-alert">
-      <p>Le loyer du mois de mars n'a pas été réglé !</p>
+    <section class="section-card section-pop-up section-pop-up-hover section-alert">
+      <%= link_to '', href: "#biens-list" do %>
+        <i class="fas fa-info-circle"></i>
+        <p>Le loyer du mois de mars n'a pas été réglé !</p>
+      <% end %>
     </section>
   <% else %>
     <section class="section-card section-pop-up section-success">
+      <i class="fas fa-check-circle"></i>
       <p>Le loyer du mois de mars a été payé !</p>
     </section>
   <% end %>
@@ -41,7 +45,7 @@
 
 
   <!-- BLUE BLOCK + GRAPH CASH FLOWS -->
-  <section class="section-dual-equiv-items-centered ">
+  <section class="section-dual-equiv-items-centered" id="biens-list">
 
     <!-- BIEN DESCRIPTION AND INFORMATION as blue block -->
     <div class="section-dual-first-el">
