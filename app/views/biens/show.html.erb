@@ -3,9 +3,9 @@
   <!-- TITLE -->
   <section class="section-title">
     <!-- BACK TO LIST BTN -->
-    <div class="block-base block-btn block-btn-retour-biens">
+    <div class="block-base block-btn block-btn-retour-biens ">
       <%= link_to biens_path do %>
-      	<p> Retour aux biens</p>
+      	<p>Retour aux biens</p>
 			<% end %>
     </div>
 
@@ -29,15 +29,11 @@
 
   <!-- LOYER POP UP; color depends on status -->
 	<% if @any_loyer_missing_this_bien %>
-    <section class="section-card section-pop-up section-pop-up-hover section-alert">
-      <%= link_to '', href: "#biens-list" do %>
-        <i class="fas fa-info-circle"></i>
-        <p>Le loyer du mois de mars n'a pas été réglé !</p>
-      <% end %>
+    <section class="section-card section-pop-up section-alert">
+      <p>Le loyer du mois de mars n'a pas été réglé !</p>
     </section>
   <% else %>
     <section class="section-card section-pop-up section-success">
-      <i class="fas fa-check-circle"></i>
       <p>Le loyer du mois de mars a été payé !</p>
     </section>
   <% end %>
@@ -45,7 +41,7 @@
 
 
   <!-- BLUE BLOCK + GRAPH CASH FLOWS -->
-  <section class="section-dual-equiv-items-centered" id="biens-list">
+  <section class="section-dual-equiv-items-centered ">
 
     <!-- BIEN DESCRIPTION AND INFORMATION as blue block -->
     <div class="section-dual-first-el">
@@ -182,9 +178,7 @@
         <!-- ADD LOYER -->
         <div class="section-card-add-loyer section-warning">
           <p>Avez-vous reçu le loyer du mois de mars de <%= @bien.montant_loyer %>€ de la part de <%= @bien.locataires.first.prenom %> <%= @bien.locataires.first.nom %> ?</p>
-
           <%= link_to "J'ai reçu le loyer 💰", bien_loyers_path(bien_id: @bien.id target: bien_path(@bien)), method: :post, class:"btn-gradient" %>
-
         </div>
 
         <!-- ADD DEPENSE -->
@@ -196,15 +190,12 @@
               <%= ff.hidden_field :id %>
               <div class="form-depense">
                 <div id="depense-form-nom-montant-cat">
-                  <%= ff.input :nom, label: false, placeholder: "Nom du bien", input_html: {class: "form-input espace"} %>
-                  <%= ff.input :montant, label: false, placeholder: "Montant en €", input_html: {class: "form-input espace"} %>
+                  <%= ff.input :nom, label: false, placeholder: "Nom", input_html: {class: "form-input"} %>
+                  <%= ff.input :montant, label: false, placeholder: "Montant", input_html: {class: "form-input"} %>
                   <%= ff.input :categorie, label: false, collection: Depense::CATEGORIE, prompt: "-- Catégorie --", input_html: {class: "form-input"}  %>
                 </div>
                 <div id="depense-form-date">
                  <%= ff.input :date_paiement, label: false, placeholder: "sélectionner une date", as: :string, input_html: { class: "date-picker", id: "input-date"} %>
-								 <span class="input-icon">
-								 	<i class="far fa-calendar-alt" ></i>
-								 </span>
                 </div>
                 <% end %>
                 <%= f.submit "Enregistrer",class: "btn-gradient" %>
@@ -223,24 +214,18 @@
             <%= ff.hidden_field :id %>
             <div class="form-depense">
               <div id="depense-form-nom-montant-cat">
-                <%= ff.input :nom, label: false, placeholder: "Nom du bien", input_html: {class: "form-input espace"} %>
-                <%= ff.input :montant, label: false, placeholder: "Montant en €", input_html: {class: "form-input espace"} %>
+                <%= ff.input :nom, label: false, placeholder: "Nom", input_html: {class: "form-input"} %>
+                <%= ff.input :montant, label: false, placeholder: "Montant", input_html: {class: "form-input"} %>
                 <%= ff.input :categorie, label: false, collection: Depense::CATEGORIE, prompt: "-- Catégorie --", input_html: {class: "form-input"}  %>
               </div>
               <div id="depense-form-date">
-								<%= ff.input :date_paiement, label: false, placeholder: "sélectionner une date", as: :string, input_html: { class: "date-picker", id: "input-date"} %>
-								<span class="input-icon">
-									<i class="far fa-calendar-alt" ></i>
-								</span>
-							</div>
+                <%= ff.input :date_paiement, label: false, placeholder: "sélectionner une date", as: :string, input_html: {class: "date-picker", id: "input-date"} %>
                 <% end %>
                 <%= f.submit "Enregistrer", class: "btn-gradient" %>
               </div>
             </div>
         <% end %>
       </div>
-
-
 
       <% end %>
 
@@ -289,7 +274,7 @@
               <td><%= number_with_delimiter(@travaux_paid , delimiter: " ") %>€</td>
               <td><%= number_with_delimiter(@travaux_tbp , delimiter: " ") %>€</td>
             </tr>
-            <tr style="border-bottom-color: #152F70; border-bottom-width: medium">
+            <tr>
               <td>Autres</td>
               <td><%= number_with_delimiter(@autres_paid , delimiter: " ") %>€</td>
               <td><%= number_with_delimiter(@autres_tbp , delimiter: " ") %>€</td>
@@ -328,25 +313,12 @@
         <div class="col col-4">Montant</div>
       </li>
 
-    <% @lasts_transactions.first(10).each do |transaction| %>
+    <% @lasts_transactions.first(5).each do |transaction| %>
       <li class="table-row">
         <div class="col col-1" data-label="Date"><%= transaction['date_paiement'].strftime('%d/%m/%Y') %></div>
         <div class="col col-2" data-label="Categorie"><%= transaction['categorie'] || 'Loyer' %> </div>
         <div class="col col-3" data-label="Libellé"> <%= transaction['nom'] || 'Encaissé' %></div>
-        <div class="col col-4" data-label="Montant">
-
-          <b>
-
-            <% if transaction['categorie'] %>
-              <td style="color:red"><i style="color:red; margin-right:8px" class="fas fa-caret-down"></i> <%= number_with_delimiter(transaction['montant'] , delimiter: " ") %> €</td>
-            <% else %>
-              <td style="color:green"> <i style="color:green; margin-right:8px" class="fas fa-caret-up"></i>  <%= number_with_delimiter(transaction['montant'] , delimiter: " ") %> €</td>
-            <% end %>
-          </b>
-        </div>
-
-
-
+        <div class="col col-4" data-label="Montant"><b><%= number_with_delimiter(transaction['montant'] , delimiter: " ") %> €</b></div>
       </li>
     <% end %>
 
