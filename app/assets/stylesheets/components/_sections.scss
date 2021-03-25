@@ -120,9 +120,19 @@
         padding: 8px;
 
         p {
-            font-size: 16px;
+						text-align: center;
+						font-size: larger;
+						color: #152F70;
+						font-weight: bolder;
         }
     }
+}
+
+.input-icon {
+	float: left;
+  top: 10px;
+  position: relative;
+  right: 24px;
 }
 
 .section-dual-equiv-items-centered {
