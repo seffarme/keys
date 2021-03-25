@@ -557,7 +557,7 @@ ravalementfacade_appartementclichy = Depense.new({
     nom: "Ravalement de façade",
     montant: "12500",
     categorie: "Copropriété",
-    date_paiement: "01/05/2020"
+    date_paiement: "19/02/2021"
 })
 ravalementfacade_appartementclichy.bien = appartement_clichy
 ravalementfacade_appartementclichy.save
