@@ -196,7 +196,7 @@ const initChartBiens = () => {
                 const meta = chartInstance.controller.getDatasetMeta(i);
                 meta.data.forEach(function(bar, index) {
                   const data = dataset.data[index];
-                  const offset = data < 0 ? -5 : 20;
+                  const offset = data < 0 ? -10 : 20;
 
                   ctx.fillText(`${data} €`, bar._model.x, bar._model.y + offset);
                 });
