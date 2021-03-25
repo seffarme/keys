@@ -167,6 +167,72 @@
   <!-- IMPORTANT ACTIONS (add loyer / depense) && SUIVI FINANCIER -->
   <section class="section-dual-equiv-items-centered " style="align-items: stretch;">
 
+
+    <!-- SUIVI FINANCIER -->
+    <div class="flex-item-grow">
+      <div class="responsive-table" >
+        <table class="tableau-synthese">
+          <thead>
+            <tr>
+              <th>Année 2021</th>
+              <th>Encaissé / Payé</th>
+              <th>A venir</th>
+            </tr>
+          <thead>
+          <tbody>
+            <p style="text-align: center; font-size: larger; color: #152F70;"> <strong> Synthèse Annuelle </strong> </p>
+            <tr>
+              <td>Loyers</td>
+              <td><%= number_with_delimiter(@loyers_received , delimiter: " ") %>€</td>
+              <td><%= number_with_delimiter(@loyers_tbr , delimiter: " ") %>€</td>
+            </tr>
+            <tr>
+              <td>Crédit</td>
+              <td><%= number_with_delimiter(@credits_paid , delimiter: " ") %>€</td>
+              <td><%= number_with_delimiter(@credits_tbp , delimiter: " ") %>€</td>
+            </tr>
+            <tr>
+              <td>Taxe Foncière</td>
+              <td><%= number_with_delimiter(@taxe_fonciere_paid , delimiter: " ") %>€</td>
+              <td><%= number_with_delimiter(@taxe_fonciere_tbp , delimiter: " ") %>€</td>
+            </tr>
+            <tr>
+              <td>Copropriété</td>
+              <td><%= number_with_delimiter(@copropriete_paid , delimiter: " ") %>€</td>
+              <td><%= number_with_delimiter(@copropriete_tbp , delimiter: " ") %>€</td>
+            </tr>
+            <tr>
+              <td>Assurances</td>
+              <td><%= number_with_delimiter(@assurances_paid , delimiter: " ") %>€</td>
+              <td><%= number_with_delimiter(@assurances_tbp , delimiter: " ") %>€</td>
+            </tr>
+            <tr>
+              <td>Travaux</td>
+              <td><%= number_with_delimiter(@travaux_paid , delimiter: " ") %>€</td>
+              <td><%= number_with_delimiter(@travaux_tbp , delimiter: " ") %>€</td>
+            </tr>
+            <tr style="border-bottom-color: #152F70; border-bottom-width: medium">
+              <td>Autres</td>
+              <td><%= number_with_delimiter(@autres_paid , delimiter: " ") %>€</td>
+              <td><%= number_with_delimiter(@autres_tbp , delimiter: " ") %>€</td>
+            </tr>
+            <tr>
+              <td><strong>TOTAL</strong></td>
+              <% if @total_paid >= 0 %>
+                <td class="number-positive"><%= number_with_delimiter(@total_paid , delimiter: " ") %>€</td>
+              <% else %>
+                <td class="number-negative"><%= number_with_delimiter(@total_paid , delimiter: " ") %>€</td>
+              <% end %>
+              <% if @total_tbp >= 0 %>
+                <td class="number-positive"><%= number_with_delimiter(@total_tbp , delimiter: " ") %>€</td>
+              <% else %>
+                <td class="number-negative"><%= number_with_delimiter(@total_tbp , delimiter: " ") %>€</td>
+              <% end %>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
     <!-- IMPORTANT ACTIONS -->
     <section class="section-important-actions">
 
@@ -236,72 +302,6 @@
       <% end %>
 
     </section>
-
-    <!-- SUIVI FINANCIER -->
-    <div class="flex-item-grow">
-      <div class="responsive-table" >
-        <table class="tableau-synthese">
-          <thead>
-            <tr>
-              <th>Année 2021</th>
-              <th>Encaissé / Payé</th>
-              <th>A venir</th>
-            </tr>
-          <thead>
-          <tbody>
-            <p style="text-align: center; font-size: larger; color: #152F70;"> <strong> Dernières transactions </strong> </p>
-            <tr>
-              <td>Loyers</td>
-              <td><%= number_with_delimiter(@loyers_received , delimiter: " ") %>€</td>
-              <td><%= number_with_delimiter(@loyers_tbr , delimiter: " ") %>€</td>
-            </tr>
-            <tr>
-              <td>Crédit</td>
-              <td><%= number_with_delimiter(@credits_paid , delimiter: " ") %>€</td>
-              <td><%= number_with_delimiter(@credits_tbp , delimiter: " ") %>€</td>
-            </tr>
-            <tr>
-              <td>Taxe Foncière</td>
-              <td><%= number_with_delimiter(@taxe_fonciere_paid , delimiter: " ") %>€</td>
-              <td><%= number_with_delimiter(@taxe_fonciere_tbp , delimiter: " ") %>€</td>
-            </tr>
-            <tr>
-              <td>Copropriété</td>
-              <td><%= number_with_delimiter(@copropriete_paid , delimiter: " ") %>€</td>
-              <td><%= number_with_delimiter(@copropriete_tbp , delimiter: " ") %>€</td>
-            </tr>
-            <tr>
-              <td>Assurances</td>
-              <td><%= number_with_delimiter(@assurances_paid , delimiter: " ") %>€</td>
-              <td><%= number_with_delimiter(@assurances_tbp , delimiter: " ") %>€</td>
-            </tr>
-            <tr>
-              <td>Travaux</td>
-              <td><%= number_with_delimiter(@travaux_paid , delimiter: " ") %>€</td>
-              <td><%= number_with_delimiter(@travaux_tbp , delimiter: " ") %>€</td>
-            </tr>
-            <tr style="border-bottom-color: #152F70; border-bottom-width: medium">
-              <td>Autres</td>
-              <td><%= number_with_delimiter(@autres_paid , delimiter: " ") %>€</td>
-              <td><%= number_with_delimiter(@autres_tbp , delimiter: " ") %>€</td>
-            </tr>
-            <tr>
-              <td><strong>TOTAL</strong></td>
-              <% if @total_paid >= 0 %>
-                <td class="number-positive"><%= number_with_delimiter(@total_paid , delimiter: " ") %>€</td>
-              <% else %>
-                <td class="number-negative"><%= number_with_delimiter(@total_paid , delimiter: " ") %>€</td>
-              <% end %>
-              <% if @total_tbp >= 0 %>
-                <td class="number-positive"><%= number_with_delimiter(@total_tbp , delimiter: " ") %>€</td>
-              <% else %>
-                <td class="number-negative"><%= number_with_delimiter(@total_tbp , delimiter: " ") %>€</td>
-              <% end %>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
 
   </section>
 
