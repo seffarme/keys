@@ -314,6 +314,7 @@
         <div class="col col-4">Montant</div>
       </li>
 
+      
     <% @lasts_transactions.first(10).each do |transaction| %>
       <li class="table-row">
         <div class="col col-1" data-label="Date"><%= transaction['date_paiement'].strftime('%d/%m/%Y') %></div>
