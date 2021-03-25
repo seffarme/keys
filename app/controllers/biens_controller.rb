@@ -50,6 +50,7 @@ class BiensController < ApplicationController
 
   def update
     @bien.attributes = bien_params
+
     if @bien.save
       redirect_to bien_path(@bien)
     else
