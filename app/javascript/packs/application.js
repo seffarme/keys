@@ -37,9 +37,11 @@ import { initFlatpickr } from '../plugins/flatpickr';
 
 
 document.addEventListener("turbolinks:load", () => {
-  initMapbox();
-  initChartCourbe();
-  initChartBiens();
-  initChartCourbeBien();
-  initFlatpickr();
+  setTimeout(() => {
+    initMapbox();
+    initChartCourbe();
+    initChartBiens();
+    initChartCourbeBien();
+    initFlatpickr();
+  }, 200)
 })

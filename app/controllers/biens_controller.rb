@@ -50,6 +50,7 @@ class BiensController < ApplicationController
 
   def update
     @bien.attributes = bien_params
+
     if @bien.save
       redirect_to bien_path(@bien)
     else
@@ -138,59 +139,60 @@ class BiensController < ApplicationController
   end
 
   def set_biens
-    @biens = current_user.biens
+    @biens = current_user.biens.includes(:loyers)
   end
 
   def set_report
     ############################ Generate the loyers paid & to be paid ###########################################
-    @loyers_received_list = @bien.loyers.in_interval(CURRENT_START_PERIOD, Date.today)
-    @loyers_received = @loyers_received_list.reduce(0) { |sum, loyer| sum + loyer }
+    loyers_received_list = @bien.loyers.in_interval(CURRENT_START_PERIOD, Date.today)
+    @loyers_received = loyers_received_list.reduce(0) { |sum, loyer| sum + loyer }
 
     # Simulate future loyers
-    @loyers_tbr = 0
+    nb_loyers_tbr = 12 - loyers_received_list.count
+    @loyers_tbr = nb_loyers_tbr * @bien.montant_loyer
 
     ############################ Generate the depenses paid & to be paid ###########################################
     # CREDIT
-    @credits_paid_list = @bien.depenses.cat_credit.in_interval(CURRENT_START_PERIOD, Date.today)
-    @credits_paid = @credits_paid_list.reduce(0) { |sum, credit| sum + credit }
+    credits_paid_list = @bien.depenses.cat_credit.in_interval(CURRENT_START_PERIOD, Date.today)
+    @credits_paid = credits_paid_list.reduce(0) { |sum, credit| sum + credit }
 
-    @credits_tbp_list = @bien.depenses.cat_credit.in_interval(Date.today, CURRENT_END_PERIOD)
-    @credits_tbp = @credits_tbp_list.reduce(0) { |sum, credit| sum + credit }
+    credits_tbp_list = @bien.depenses.cat_credit.in_interval(Date.today, CURRENT_END_PERIOD)
+    @credits_tbp = credits_tbp_list.reduce(0) { |sum, credit| sum + credit }
 
     # TAXE FONCIERE
-    @taxe_fonciere_paid_list = @bien.depenses.cat_taxe_fonciere.in_interval(CURRENT_START_PERIOD, Date.today)
-    @taxe_fonciere_paid = @taxe_fonciere_paid_list.reduce(0) { |sum, taxe_fonciere| sum + taxe_fonciere }
+    taxe_fonciere_paid_list = @bien.depenses.cat_taxe_fonciere.in_interval(CURRENT_START_PERIOD, Date.today)
+    @taxe_fonciere_paid = taxe_fonciere_paid_list.reduce(0) { |sum, taxe_fonciere| sum + taxe_fonciere }
 
-    @taxe_fonciere_tbp_list = @bien.depenses.cat_taxe_fonciere.in_interval(Date.today, CURRENT_END_PERIOD)
-    @taxe_fonciere_tbp = @taxe_fonciere_tbp_list.reduce(0) { |sum, taxe_fonciere| sum + taxe_fonciere }
+    taxe_fonciere_tbp_list = @bien.depenses.cat_taxe_fonciere.in_interval(Date.today, CURRENT_END_PERIOD)
+    @taxe_fonciere_tbp = taxe_fonciere_tbp_list.reduce(0) { |sum, taxe_fonciere| sum + taxe_fonciere }
 
     # COPROPRIETE
-    @copropriete_paid_list = @bien.depenses.cat_copropriete.in_interval(CURRENT_START_PERIOD, Date.today)
-    @copropriete_paid = @copropriete_paid_list.reduce(0) { |sum, copropriete| sum + copropriete }
+    copropriete_paid_list = @bien.depenses.cat_copropriete.in_interval(CURRENT_START_PERIOD, Date.today)
+    @copropriete_paid = copropriete_paid_list.reduce(0) { |sum, copropriete| sum + copropriete }
 
-    @copropriete_tbp_list = @bien.depenses.cat_copropriete.in_interval(Date.today, CURRENT_END_PERIOD)
-    @copropriete_tbp = @copropriete_tbp_list.reduce(0) { |sum, copropriete| sum + copropriete }
+    copropriete_tbp_list = @bien.depenses.cat_copropriete.in_interval(Date.today, CURRENT_END_PERIOD)
+    @copropriete_tbp = copropriete_tbp_list.reduce(0) { |sum, copropriete| sum + copropriete }
 
     # ASSURANCES
-    @assurances_paid_list = @bien.depenses.cat_assurances.in_interval(CURRENT_START_PERIOD, Date.today)
-    @assurances_paid = @assurances_paid_list.reduce(0) { |sum, assurance| sum + assurance }
+    assurances_paid_list = @bien.depenses.cat_assurances.in_interval(CURRENT_START_PERIOD, Date.today)
+    @assurances_paid = assurances_paid_list.reduce(0) { |sum, assurance| sum + assurance }
 
-    @assurances_tbp_list = @bien.depenses.cat_assurances.in_interval(Date.today, CURRENT_END_PERIOD)
-    @assurances_tbp = @assurances_tbp_list.reduce(0) { |sum, assurance| sum + assurance }
+    assurances_tbp_list = @bien.depenses.cat_assurances.in_interval(Date.today, CURRENT_END_PERIOD)
+    @assurances_tbp = assurances_tbp_list.reduce(0) { |sum, assurance| sum + assurance }
 
     # TRAVAUX
-    @travaux_paid_list = @bien.depenses.cat_travaux.in_interval(CURRENT_START_PERIOD, Date.today)
-    @travaux_paid = @travaux_paid_list.reduce(0) { |sum, travaux| sum + travaux }
+    travaux_paid_list = @bien.depenses.cat_travaux.in_interval(CURRENT_START_PERIOD, Date.today)
+    @travaux_paid = travaux_paid_list.reduce(0) { |sum, travaux| sum + travaux }
 
-    @travaux_tbp_list = @bien.depenses.cat_travaux.in_interval(Date.today, CURRENT_END_PERIOD)
-    @travaux_tbp = @travaux_tbp_list.reduce(0) { |sum, travaux| sum + travaux }
+    travaux_tbp_list = @bien.depenses.cat_travaux.in_interval(Date.today, CURRENT_END_PERIOD)
+    @travaux_tbp = travaux_tbp_list.reduce(0) { |sum, travaux| sum + travaux }
 
     # AUTRES
-    @autres_paid_list = @bien.depenses.cat_autres.in_interval(CURRENT_START_PERIOD, Date.today)
-    @autres_paid = @autres_paid_list.reduce(0) { |sum, autres| sum + autres }
+    autres_paid_list = @bien.depenses.cat_autres.in_interval(CURRENT_START_PERIOD, Date.today)
+    @autres_paid = autres_paid_list.reduce(0) { |sum, autres| sum + autres }
 
-    @autres_tbp_list = @bien.depenses.cat_autres.in_interval(Date.today, CURRENT_END_PERIOD)
-    @autres_tbp = @autres_tbp_list.reduce(0) { |sum, autres| sum + autres }
+    autres_tbp_list = @bien.depenses.cat_autres.in_interval(Date.today, CURRENT_END_PERIOD)
+    @autres_tbp = autres_tbp_list.reduce(0) { |sum, autres| sum + autres }
 
     ############################ Generate the total for suivi fin ###########################################
     @total_paid = @loyers_received - (@credits_paid + @taxe_fonciere_paid + @copropriete_paid + @assurances_paid + @travaux_paid + @autres_paid)

@@ -20,14 +20,36 @@
 .section-pop-up {
     display: flex;
     justify-content: center;
+    align-items: center;
 
     padding: 12px;
+    a {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        color: $font-dark-grey;
+    }
 
     p {
         font-size: 14px;
         margin: 0;
     }
+
+    i {
+        margin-right: 12px;
+    }
 }
+
+.section-pop-up-hover {
+    &:hover {
+        box-shadow: 1px 3px 20px grey;
+        -webkit-transition: box-shadow .6s
+    }
+}
+
 
 .section-kpi {
     display: flex;

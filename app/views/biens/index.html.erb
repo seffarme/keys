@@ -7,11 +7,15 @@
 
 	<!-- LOYERS POP UP; color depends on status -->
 	<% if @any_loyer_missing_all_bien %>
-		<section class="section-card section-pop-up section-alert">
-			<p>Un ou plusieurs loyers du mois de mars n'ont pas été réglés !</p>
+		<section class="section-card section-pop-up section-pop-up-hover section-alert">
+      <%= link_to '', href: "#biens-list" do %>
+        <i class="fas fa-info-circle"></i>
+        <p>Un ou plusieurs loyers du mois de mars n'ont pas été réglés !</p>
+      <% end %>
 		</section>
 	<% else %>
 		<section class="section-card section-pop-up section-success">
+      <i class="fas fa-check-circle"></i>
 			<p>Tous les loyers du mois de mars ont été payés !</p>
 		</section>
 	<% end %>
@@ -98,7 +102,7 @@
               <% if bien.loyers.empty? %>
                 <%# <p>Valider le loyer</p> %>
                 <div class="card-product-icone-text">
-                  <%= link_to bien_loyers_path(bien_id: bien.id), method: :post do %>
+                  <%= link_to bien_loyers_path(bien_id: bien.id, target: biens_path(anchor: 'biens-list')), method: :post do %>
                     <span><i class="fas fa-euro-sign" title="Valider le loyer"></i>Valider le loyer</span>
                   <% end %>
                 </div>

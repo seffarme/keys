@@ -73,23 +73,48 @@ class Bien < ApplicationRecord
   #   months[month_name] = i + 1
 
   # Depenses table of the last 12 months
+
   def months_depenses
-    months_depenses = (0..11).to_a.map do |i|
-      a = Time.now.beginning_of_month - i.month
-      b = Time.now.end_of_month - i.month
-      depenses.where("date_paiement > ? AND date_paiement < ?", a, b).sum(:montant)
-    end
-    return months_depenses
+    @months_depenses ||= calc_months_depenses
   end
 
+  def calc_months_depenses
+    sql_months = (0...12).map {|i| "SELECT #{(Date.today - i.months).month} as mm, #{i} as pos"}.join(' UNION ALL ')
+    sql = <<~SQL
+      SELECT COALESCE(sum(montant), 0)
+      FROM (#{sql_months}) months
+      LEFT JOIN depenses on EXTRACT('MONTH' FROM depenses.date_paiement)
+       = months.mm AND depenses.date_paiement < date_trunc('month', now()) + interval '1 month'
+            AND depenses.date_paiement >= date_trunc('month', now()) - interval '11 month'
+            AND depenses.bien_id = #{id}
+            GROUP BY months.mm, months.pos
+       ORDER by months.pos
+    SQL
+    ActiveRecord::Base.connection.exec_query(sql).rows.flatten
+  end
+
+
   # Loyers table of the last 12 months
+
+
   def months_loyers
-    months_loyers = (0..11).to_a.map do |i|
-      a = Time.now.beginning_of_month - i.month
-      b = Time.now.end_of_month - i.month
-      loyers.where("date_paiement > ? AND date_paiement < ?", a, b).sum(:montant)
-    end
-    return months_loyers
+    @months_loyers ||= calc_months_loyers
+  end
+
+  def calc_months_loyers
+    sql_months = (0...12).map {|i| "SELECT #{(Date.today - i.months).month} as mm, #{i} as pos"}.join(' UNION ALL ')
+    sql = <<~SQL
+      SELECT COALESCE(sum(montant), 0)
+      FROM (#{sql_months}) months
+      LEFT JOIN loyers on EXTRACT('MONTH' FROM loyers.date_paiement)
+       = months.mm AND loyers.date_paiement < date_trunc('month', now()) + interval '1 month'
+            AND loyers.date_paiement >= date_trunc('month', now()) - interval '11 month'
+            AND loyers.bien_id = #{id}
+
+            GROUP BY months.mm, months.pos
+       ORDER by months.pos
+    SQL
+    ActiveRecord::Base.connection.exec_query(sql).rows.flatten
   end
 
   # CF table of the last 12 months
