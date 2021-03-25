@@ -3,18 +3,18 @@
   <!-- TITLE -->
   <section class="section-title">
     <!-- BACK TO LIST BTN -->
-    <div class="block-base block-btn block-btn-retour-biens ">
+    <div class="block-base block-btn block-btn-retour-biens">
       <%= link_to biens_path do %>
-      	<p>Retour aux biens</p>
+      	<p> Retour aux biens</p>
 			<% end %>
     </div>
 
     <!-- ICON -->
  <h1>
     <% if @bien.categorie == "Maison" %>
-        <i class="fas fa-home"></i>
+        <i class="fas fa-home" style="color: #152f70"></i>
     <% else %>
-        <i class="fas fa-building"></i>
+        <i class="fas fa-building" style="color: #152f70"></i>
     <% end %>
   </h1>
 
@@ -71,7 +71,7 @@
 
               <ul class="item--description" >
                 <!-- <li><%= @bien.categorie %></li> -->
-                <li><%= number_with_delimiter(@bien.montant_loyer, delimiter: " ") %> € / mois</li>
+                <li><h4><%= number_with_delimiter(@bien.montant_loyer, delimiter: " ") %> €/ mois</h4></li>
                 <li>Acquis le : <%= @bien.date_acquisition.strftime('%d/%m/%Y') %></li>
                 <li>Prix d'achat : <%= number_with_delimiter(@bien.prix_acquisition, delimiter: " ") %> €</li>
               </ul>
@@ -94,8 +94,8 @@
 
               <ul class="item--description">
                 <li style="font-size:18px"><strong><%= @bien.locataires.first.prenom %> <%= @bien.locataires.first.nom.upcase %></strong></li>
-                <li><i class="fa fa-mobile-alt"></i><a href="tel:0<%= @bien.locataires.first.num_tel %>"> 0<%= @bien.locataires.first.num_tel %></a></li>
-                <li><i class="fa fa-envelope"></i><a href="mailto:<%= @bien.locataires.first.email %>"> <%= @bien.locataires.first.email %></a></li></li>
+                <li><i class="fa fa-mobile-alt"></i><a href="tel: 0<%= @bien.locataires.first.num_tel %>"> 0<%= @bien.locataires.first.num_tel %></a></li>
+                <li><i class="fa fa-envelope"></i><a href="mailto: <%= @bien.locataires.first.email %>"> <%= @bien.locataires.first.email %></a></li></li>
                 <li><i class="far fa-calendar-alt"></i> Début location : <%= @bien.locataires.first.date_debut_location.strftime('%d/%m/%Y') %></li>
                 <li></li>
               </ul>
@@ -187,7 +187,7 @@
 
         <!-- ADD DEPENSE -->
         <div class="section-card-add-depense">
-          <p>Ajouter une dépense</p>
+          <h5>Ajouter une dépense</h5>
 
           <%= form_for @bien do |f| %>
             <%= f.simple_fields_for :depenses, @bien.depenses.build do |ff| %>
@@ -211,7 +211,7 @@
 
       <!-- ADD DEPENSE only -->
       <div class="section-card-add-depense w-100">
-        <p><strong>Ajouter une dépense</strong></p>
+        <h5>Ajouter une dépense</h5>
 
         <%= form_for @bien do |f| %>
           <%= f.simple_fields_for :depenses, @bien.depenses.build do |ff| %>
@@ -247,7 +247,7 @@
             </tr>
           <thead>
           <tbody>
-						<p style="text-align: center; font-size: larger; color: #152F70;"> <strong> Dernières transactions </strong> </p>
+						<h5> Synthèse Annuelle </h5>
             <tr>
               <td>Loyers</td>
               <td><%= number_with_delimiter(@loyers_received , delimiter: " ") %>€</td>
@@ -308,8 +308,7 @@
 
   <!-- LAST OPERATIONS TABLE -->
   <section class="section-last-operations">
-
-    <p style="text-align: center; font-size: larger; color: #152F70;"> <strong> Dernières transactions </strong> </p>
+    <h5> Dernières transactions</h5>
     <ul class="responsive-table">
       <li class="table-header">
         <div class="col col-1">Date</div>
