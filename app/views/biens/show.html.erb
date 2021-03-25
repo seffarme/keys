@@ -178,7 +178,7 @@
         <!-- ADD LOYER -->
         <div class="section-card-add-loyer section-warning">
           <p>Avez-vous reçu le loyer du mois de mars de <%= @bien.montant_loyer %>€ de la part de <%= @bien.locataires.first.prenom %> <%= @bien.locataires.first.nom %> ?</p>
-          <%= link_to "J'ai reçu le loyer 💰", bien_loyers_path(bien_id: @bien.id, target: bien_path(@bien)), method: :post, class:"block-base block-btn block-btn-save-loyer" %>
+          <%= link_to "J'ai reçu le loyer 💰", bien_loyers_path(bien_id: @bien.id, target: bien_path(@bien)), method: :post, class:"btn-gradient" %>
         </div>
 
         <!-- ADD DEPENSE -->
@@ -190,12 +190,15 @@
               <%= ff.hidden_field :id %>
               <div class="form-depense">
                 <div id="depense-form-nom-montant-cat">
-                  <%= ff.input :nom, label: false, placeholder: "Nom", input_html: {class: "form-input"} %>
-                  <%= ff.input :montant, label: false, placeholder: "Montant", input_html: {class: "form-input"} %>
+                  <%= ff.input :nom, label: false, placeholder: "Nom du bien", input_html: {class: "form-input espace"} %>
+                  <%= ff.input :montant, label: false, placeholder: "Montant en €", input_html: {class: "form-input espace"} %>
                   <%= ff.input :categorie, label: false, collection: Depense::CATEGORIE, prompt: "-- Catégorie --", input_html: {class: "form-input"}  %>
                 </div>
                 <div id="depense-form-date">
-                 <%= ff.input :date_paiement, label: false, placeholder: "sélectionner une date", as: :string, input_html: { class: "date-picker", id: "input-date"} %>
+									<%= ff.input :date_paiement, label: false, placeholder: "sélectionner une date", as: :string, input_html: { class: "date-picker", id: "input-date"} %>
+									<span class="input-icon">
+										<i class="far fa-calendar-alt" ></i>
+									</span>
                 </div>
                 <% end %>
                 <%= f.submit "Enregistrer",class: "btn-gradient" %>
@@ -214,12 +217,15 @@
             <%= ff.hidden_field :id %>
             <div class="form-depense">
               <div id="depense-form-nom-montant-cat">
-                <%= ff.input :nom, label: false, placeholder: "Nom", input_html: {class: "form-input"} %>
-                <%= ff.input :montant, label: false, placeholder: "Montant", input_html: {class: "form-input"} %>
+                <%= ff.input :nom, label: false, placeholder: "Nom du bien", input_html: {class: "form-input espace"} %>
+                <%= ff.input :montant, label: false, placeholder: "Montant en €", input_html: {class: "form-input espace"} %>
                 <%= ff.input :categorie, label: false, collection: Depense::CATEGORIE, prompt: "-- Catégorie --", input_html: {class: "form-input"}  %>
               </div>
               <div id="depense-form-date">
-                <%= ff.input :date_paiement, label: false, placeholder: "sélectionner une date", as: :string, input_html: {class: "date-picker", id: "input-date"} %>
+								<%= ff.input :date_paiement, label: false, placeholder: "sélectionner une date", as: :string, input_html: { class: "date-picker", id: "input-date"} %>
+								<span class="input-icon">
+									<i class="far fa-calendar-alt" ></i>
+								</span>
                 <% end %>
                 <%= f.submit "Enregistrer", class: "btn-gradient" %>
               </div>
