@@ -183,38 +183,38 @@
             <p style="text-align: center; font-size: larger; color: #152F70;"> <strong> Synthèse Annuelle </strong> </p>
             <tr>
               <td>Loyers</td>
-              <td><%= number_with_delimiter(@loyers_received , delimiter: " ") %>€</td>
-              <td><%= number_with_delimiter(@loyers_tbr , delimiter: " ") %>€</td>
+              <td><i style="color:green; margin-right:8px" class="fas fa-caret-up"></i><%= number_with_delimiter(@loyers_received , delimiter: " ") %>€</td>
+              <td><i style="color:green; margin-right:8px" class="fas fa-caret-up"></i><%= number_with_delimiter(@loyers_tbr , delimiter: " ") %>€</td>
             </tr>
             <tr>
               <td>Crédit</td>
-              <td><%= number_with_delimiter(@credits_paid , delimiter: " ") %>€</td>
-              <td><%= number_with_delimiter(@credits_tbp , delimiter: " ") %>€</td>
+              <td><i style="color:red; margin-right:8px" class="fas fa-caret-down"></i><%= number_with_delimiter(@credits_paid , delimiter: " ") %>€</td>
+              <td><i style="color:red; margin-right:8px" class="fas fa-caret-down"></i><%= number_with_delimiter(@credits_tbp , delimiter: " ") %>€</td>
             </tr>
             <tr>
               <td>Taxe Foncière</td>
-              <td><%= number_with_delimiter(@taxe_fonciere_paid , delimiter: " ") %>€</td>
-              <td><%= number_with_delimiter(@taxe_fonciere_tbp , delimiter: " ") %>€</td>
+              <td><i style="color:red; margin-right:8px" class="fas fa-caret-down"></i><%= number_with_delimiter(@taxe_fonciere_paid , delimiter: " ") %>€</td>
+              <td><i style="color:red; margin-right:8px" class="fas fa-caret-down"></i><%= number_with_delimiter(@taxe_fonciere_tbp , delimiter: " ") %>€</td>
             </tr>
             <tr>
               <td>Copropriété</td>
-              <td><%= number_with_delimiter(@copropriete_paid , delimiter: " ") %>€</td>
-              <td><%= number_with_delimiter(@copropriete_tbp , delimiter: " ") %>€</td>
+              <td><i style="color:red; margin-right:8px" class="fas fa-caret-down"></i><%= number_with_delimiter(@copropriete_paid , delimiter: " ") %>€</td>
+              <td><i style="color:red; margin-right:8px" class="fas fa-caret-down"></i><%= number_with_delimiter(@copropriete_tbp , delimiter: " ") %>€</td>
             </tr>
             <tr>
               <td>Assurances</td>
-              <td><%= number_with_delimiter(@assurances_paid , delimiter: " ") %>€</td>
-              <td><%= number_with_delimiter(@assurances_tbp , delimiter: " ") %>€</td>
+              <td><i style="color:red; margin-right:8px" class="fas fa-caret-down"></i><%= number_with_delimiter(@assurances_paid , delimiter: " ") %>€</td>
+              <td><i style="color:red; margin-right:8px" class="fas fa-caret-down"></i><%= number_with_delimiter(@assurances_tbp , delimiter: " ") %>€</td>
             </tr>
             <tr>
               <td>Travaux</td>
-              <td><%= number_with_delimiter(@travaux_paid , delimiter: " ") %>€</td>
-              <td><%= number_with_delimiter(@travaux_tbp , delimiter: " ") %>€</td>
+              <td><i style="color:red; margin-right:8px" class="fas fa-caret-down"></i><%= number_with_delimiter(@travaux_paid , delimiter: " ") %>€</td>
+              <td><i style="color:red; margin-right:8px" class="fas fa-caret-down"></i><%= number_with_delimiter(@travaux_tbp , delimiter: " ") %>€</td>
             </tr>
             <tr style="border-bottom-color: #152F70; border-bottom-width: medium">
               <td>Autres</td>
-              <td><%= number_with_delimiter(@autres_paid , delimiter: " ") %>€</td>
-              <td><%= number_with_delimiter(@autres_tbp , delimiter: " ") %>€</td>
+              <td><i style="color:red; margin-right:8px" class="fas fa-caret-down"></i><%= number_with_delimiter(@autres_paid , delimiter: " ") %>€</td>
+              <td><i style="color:red; margin-right:8px" class="fas fa-caret-down"></i><%= number_with_delimiter(@autres_tbp , delimiter: " ") %>€</td>
             </tr>
             <tr>
               <td><strong>TOTAL</strong></td>
