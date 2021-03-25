@@ -16,7 +16,7 @@ class LoyersController < ApplicationController
 
     LoyerMailer.create_quittance(@loyer).deliver_now
 
-    flash[:loyer_success] = "💸 Loyer de #{@loyer.bien.nom} validé !"
+    flash[:success] = "💸 Loyer de #{@loyer.bien.nom} validé !"
     if previous_url == index_url
       redirect_to biens_path(anchor: 'biens-list')
     else
