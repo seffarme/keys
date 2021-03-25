@@ -171,6 +171,13 @@ const initChartBiens = () => {
         ],
       },
         options: {
+
+            legend: {
+              labels: {
+                fontSize: 20
+              }
+            },
+
           "hover": {
           "animationDuration": 0
           },
@@ -183,6 +190,7 @@ const initChartBiens = () => {
               ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
               ctx.textAlign = 'center';
               ctx.textBaseline = 'bottom';
+              ctx.font = "10px Verdana";
 
               this.data.datasets.forEach(function(dataset, i) {
                 const meta = chartInstance.controller.getDatasetMeta(i);
@@ -190,7 +198,7 @@ const initChartBiens = () => {
                   const data = dataset.data[index];
                   const offset = data < 0 ? -5 : 20;
 
-                  ctx.fillText(data, bar._model.x, bar._model.y + offset);
+                  ctx.fillText(`${data} €`, bar._model.x, bar._model.y + offset);
                 });
               });
             }
