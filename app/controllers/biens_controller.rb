@@ -27,9 +27,8 @@ class BiensController < ApplicationController
 
   def show
     ## MERGE tableaux transactions ##
-    @lasts_transactions = (@bien.loyers.where('date_paiement < ?',
-                                              DateTime.now).order(date_paiement: :desc).limit(10).to_a + @bien.depenses.where('date_paiement < ?',
-                                                                                                                              DateTime.now).order(date_paiement: :desc).limit(10).to_a).map do |transaction|
+    @lasts_transactions = (@bien.loyers.where('date_paiement < ?', DateTime.now).order(date_paiement: :desc).limit(10).to_a + @bien.depenses.where('date_paiement < ?',
+    DateTime.now).order(date_paiement: :desc).limit(10).to_a).map do |transaction|
       transaction.attributes
     end
     @lasts_transactions.sort_by! { |t| t['date_paiement'] }.reverse!
