@@ -12,7 +12,7 @@ class LoyersController < ApplicationController
 
     LoyerMailer.create_quittance(@loyer).deliver_now
 
-    redirect_to params[:target], loyer_success: "💸 Loyer de #{@loyer.bien.nom} validé !"
+    redirect_to params[:target], success: "💸 Loyer de #{@loyer.bien.nom} validé !"
   end
 
   def relance
