@@ -328,12 +328,25 @@
         <div class="col col-4">Montant</div>
       </li>
 
-    <% @lasts_transactions.first(5).each do |transaction| %>
+    <% @lasts_transactions.first(10).each do |transaction| %>
       <li class="table-row">
         <div class="col col-1" data-label="Date"><%= transaction['date_paiement'].strftime('%d/%m/%Y') %></div>
         <div class="col col-2" data-label="Categorie"><%= transaction['categorie'] || 'Loyer' %> </div>
         <div class="col col-3" data-label="Libellé"> <%= transaction['nom'] || 'Encaissé' %></div>
-        <div class="col col-4" data-label="Montant"><b><%= number_with_delimiter(transaction['montant'] , delimiter: " ") %> €</b></div>
+        <div class="col col-4" data-label="Montant">
+
+          <b>
+
+            <% if transaction['categorie'] %>
+              <td style="color:red"><i style="color:red; margin-right:8px" class="fas fa-caret-down"></i> <%= number_with_delimiter(transaction['montant'] , delimiter: " ") %> €</td>
+            <% else %>
+              <td style="color:green"> <i style="color:green; margin-right:8px" class="fas fa-caret-up"></i>  <%= number_with_delimiter(transaction['montant'] , delimiter: " ") %> €</td>
+            <% end %>
+          </b>
+        </div>
+
+
+
       </li>
     <% end %>
 
