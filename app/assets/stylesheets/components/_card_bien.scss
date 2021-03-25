@@ -148,6 +148,10 @@ body {
 				transform: translateY($bien-height + 20px);
 			}
 
+      .item--description {
+        text-decoration: none;
+      }
+
 			.item--footer {
 				position: absolute;
 				bottom: 20px;
