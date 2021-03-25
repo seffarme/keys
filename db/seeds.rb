@@ -51,7 +51,7 @@ puts "[1/6] - Seeding the User DB..."
 mathieu_eustachy = User.new({
     prenom: "Mathieu",
     nom: "Eustachy",
-    email: "julie.laloy@gmail.com",
+    email: "mathieu.eustachy@gmail.com",
     num_tel: "0614714703",
     password: "123456",
     admin: true
