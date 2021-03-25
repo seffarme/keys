@@ -19,7 +19,7 @@ const initChartCourbe = () => {
       data: {
         datasets: [
           {
-            label: "CF/mois",
+            label: "Résultat /mois",
             data: depensesValue,
             backgroundColor: [
               "rgba(54, 162, 235, 0.2)",
@@ -52,7 +52,7 @@ const initChartCourbe = () => {
             borderWidth: 1,
           },
           {
-            label: "CF Cumulé",
+            label: "Résultat Cumulé",
             data: cashFlowCourbe,
 
             // Changes this dataset to become a line
@@ -120,7 +120,7 @@ const initChartCourbe = () => {
         },
         title: {
           display: true,
-          text: "Cash-Flow Mensuel",
+          text: "Résultat Mensuel YTD",
           fontSize: 20,
           padding: 15,
         },
@@ -147,7 +147,7 @@ const initChartBiens = () => {
         labels: labelValue,
         datasets: [
           {
-            label: "CashFlow",
+            label: "Résultat",
             data: cfbienValue,
 
             backgroundColor: [
@@ -278,7 +278,7 @@ const initChartCourbeBien = () => {
       data: {
         datasets: [
           {
-            label: "CashFlow",
+            label: "Résultat /mois",
             data: cfbmValue,
             backgroundColor: [
                   'rgba(54, 162, 235, 0.2)',
@@ -310,7 +310,7 @@ const initChartCourbeBien = () => {
               ],
               borderWidth: 1,
         }, {
-            label: 'Line CashFlow',
+            label: 'Résultat Cumulé',
 
             data: cashFlowCourbe,
 
@@ -380,7 +380,7 @@ const initChartCourbeBien = () => {
         },
         title: {
             display: true,
-            text: "Cash-Flow Mensuel",
+            text: "Résultat Mensuel YTD",
             fontSize: 20,
             padding: 15,
         },
