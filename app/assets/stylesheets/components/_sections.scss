@@ -15,6 +15,12 @@
 	vertical-align: middle;
 
 }
+.section-card-no-margin {
+    background-color: white;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    vertical-align: middle;
+}
 
 // Style
 .section-pop-up {
@@ -58,7 +64,6 @@
 }
 
 .section-biens-list {
-    margin-top: 16px;
     width: 60%;
     margin-right: 16px;
 }
@@ -191,8 +196,8 @@
   align-items: stretch;
   flex: 1 0 auto;
   align-items: stretch;
-  padding-bottom: 32px;
-  padding-top: 18px;
+  margin-top: 24px;
+  margin-bottom: 32px;
 }
 
 // Other
