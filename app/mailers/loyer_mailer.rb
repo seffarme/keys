@@ -4,7 +4,15 @@ class LoyerMailer < ApplicationMailer
     @loyer = loyer
     @locataire = @loyer.locataire
     @bien = @loyer.bien
-    mail(to: @locataire.email, subject:  "votre quittance : #{@bien.nom}")
+    mail(to: @locataire.email, subject:  "Votre quittance : #{@bien.nom}")
+  end
+
+
+  def copie_create_quittance(loyer)
+    @loyer = loyer
+    @locataire = @loyer.locataire
+    @bien = @loyer.bien
+    mail(to: @bien.user.email, subject:  "// COPIE // - Votre quittance : #{@bien.nom}")
   end
 
   def relance(bien)
