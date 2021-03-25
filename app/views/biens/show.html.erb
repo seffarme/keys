@@ -325,7 +325,7 @@
       <li class="table-row">
         <div class="col col-1" data-label="Date"><%= transaction['date_paiement'].strftime('%d/%m/%Y') %></div>
         <div class="col col-2" data-label="Categorie"><%= transaction['categorie'] || 'Loyer' %> </div>
-        <div class="col col-3" data-label="Libellé"> <%= transaction['nom'] || 'Encaissé' %></div>
+        <div class="col col-3" style="text-transform: none;" data-label="LIBELLE"> <%= transaction['nom'] || 'Encaissé' %></div>
         <div class="col col-4" data-label="Montant">
 
           <b>
