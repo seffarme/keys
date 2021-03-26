@@ -116,27 +116,14 @@
                     <span><i class="fas fa-euro-sign" title="Valider le loyer"></i>Valider le loyer</span>
                   <% end %>
                 </div>
-              <% else %>
-                <div class="card-product-icone-text" style="color:green">
-                  <span><i class="fas fa-check" title="Loyer reçu" style="color:green"></i>Loyer Reçu</span>
-                </div>
-              <% end %>
-
-              <!-- RELANCE TO DO ? -->
-              <% if bien.loyers.empty? %>
-              <%# <p>Faire une relance</p> %>
                 <div class="card-product-icone-text">
                   <%= link_to relance_bien_loyers_path(bien_id: bien.id), method: :post, class: 'relance-enveloppe' do %>
                     <span style="color:orange"><i class="far fa-envelope-open" title="Envoyer une relance au locataire" style="color:orange"></i>Envoyer relance</span>
                   <% end %>
                 </div>
-
-              <% elsif bien.loyers.last.date_paiement.month != Date.today.month %>
-              <%# <p>Faire une relance</p> %>
-                <div class="card-product-icone-text">
-                  <%= link_to relance_bien_loyers_path(bien_id: bien.id), method: :post, class: 'enveloppe-relance' do %>
-                    <span style="color:orange"><i class="far fa-envelope-open" title="Envoyer une relance au locataire" style="color:orange"></i>Envoyer relance</span>
-                  <% end %>
+              <% else %>
+                <div class="card-product-icone-text" style="color:green">
+                  <span><i class="fas fa-check" title="Loyer reçu" style="color:green"></i>Loyer Reçu</span>
                 </div>
               <% end %>
             </div>
