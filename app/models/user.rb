@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_many :biens
   has_many :loyers, through: :biens
 
-  after_create :send_welcome_email
+  # after_create :send_welcome_email
   def sum_depenses_biens
     self.biens.map { |bien| bien.sum_depenses }.sum
   end

@@ -10,15 +10,15 @@ class LoyersController < ApplicationController
                        })
     @loyer.save
 
-    LoyerMailer.create_quittance(@loyer).deliver_now
-    LoyerMailer.copie_create_quittance(@loyer).deliver_now
+    # LoyerMailer.create_quittance(@loyer).deliver_now
+    # LoyerMailer.copie_create_quittance(@loyer).deliver_now
 
     redirect_to params[:target], success: "💸 Loyer de #{@loyer.bien.nom} validé !"
   end
 
   def relance
-    LoyerMailer.relance(@bien).deliver_now
-    LoyerMailer.copie_relance(@bien).deliver_now
+    # LoyerMailer.relance(@bien).deliver_now
+    # LoyerMailer.copie_relance(@bien).deliver_now
     redirect_to biens_path(anchor: 'biens-list'), relance_loyer: "📧 Relance envoyée au locataire de #{@bien.nom}"
   end
 
