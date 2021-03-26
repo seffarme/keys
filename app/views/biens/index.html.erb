@@ -99,7 +99,7 @@
             <div class="card-product-quick-actions">
 
               <!-- LOYER PAID ? -->
-              <% last_loyer =  bien.loyers.order(date_paiement: :desc).last %>
+              <% last_loyer =  bien.loyers.order(date_paiement: :desc).first %>
               <% if last_loyer.nil? || last_loyer.date_paiement.month != Date.today.month %>
                 
                 <!-- 
