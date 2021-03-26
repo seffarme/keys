@@ -283,7 +283,7 @@
             <%= ff.hidden_field :id %>
             <div class="form-depense">
               <div id="depense-form-nom-montant-cat">
-                <%= ff.input :nom, label: false, placeholder: "Nom du bien", input_html: {class: "form-input espace" } %>
+                <%= ff.input :nom, label: false, placeholder: "Nom de la dépense", input_html: {class: "form-input espace" } %>
                 <%= ff.input :montant, label: false, placeholder: "Montant en €", input_html: {class: "form-input espace"} %>
                 <%= ff.input :categorie, label: false, collection: Depense::CATEGORIE, prompt: "-- Catégorie --", input_html: {class: "form-input"}  %>
               </div>
