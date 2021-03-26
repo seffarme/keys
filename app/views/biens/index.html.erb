@@ -99,16 +99,17 @@
             <div class="card-product-quick-actions">
 
               <!-- LOYER PAID ? -->
-              <% if bien.loyers.empty? %>
-                <%# <p>Valider le loyer</p> %>
-                <div class="card-product-icone-text">
-                  <%= link_to bien_loyers_path(bien_id: bien.id, target: biens_path(anchor: "biens-list")), method: :post do %>
-                    <span><i class="fas fa-euro-sign" title="Valider le loyer"></i>Valider le loyer</span>
-                  <% end %>
-                </div>
+              <% last_loyer =  bien.loyers.order(date_paiement: :desc).last %>
+              <% if last_loyer.nil? || last_loyer.date_paiement.month != Date.today.month %>
+                
+                <!-- 
+                last_loyer&.id:  <%= last_loyer&.id %>
+                last_loyer&.date_paiement:  <%= last_loyer&.date_paiement %>
+                bien.loyers.empty?: <%= bien.loyers.empty? %>
+                bien.loyers.last&.date_paiement&.month <%= bien.loyers.last&.date_paiement&.month %>
+                -->
 
 
-              <% elsif bien.loyers.last.date_paiement.month != Date.today.month %>
                 <%# <p>Valider le loyer</p> %>
                 <div class="card-product-icone-text">
                   <%= link_to bien_loyers_path(bien_id: bien.id, target: biens_path(anchor: "biens-list")), method: :post do %>
