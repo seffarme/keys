@@ -125,6 +125,6 @@ Rails.application.configure do
 
   config.hosts << "www.keyz.work"
   config.hosts << "https://keyzimmo.herokuapp.com/"
-
+  config.hosts << "keyzimmo.herokuapp.com"
 
 end
